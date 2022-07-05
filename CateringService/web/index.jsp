@@ -11,10 +11,11 @@
         <script src="js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div class="container-fluid">
-            <header>
+        <div class="container-md">
                 <%@include file="includes/navbar.jsp"%>
-            </header>
+            <section>
+                <img class="img-fluid img-thumbnail" src="img/catering.jpg" alt="Food on multiple plates"/>
+            </section>
             <footer></footer>
         </div>
     </body>
