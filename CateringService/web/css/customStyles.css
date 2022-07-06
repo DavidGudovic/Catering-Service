@@ -1,1 +1,6 @@
-
+.seperator-red{
+    border-left: 2px solid red;
+}
+.seperator-green{
+    border-left: 2px solid green;
+}

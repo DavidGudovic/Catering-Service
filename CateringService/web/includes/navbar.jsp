@@ -34,6 +34,7 @@
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">KORPA</a>
                 </li>
+                <li class="seperator-red"></li>
                 <li class="nav-item">
                     <a class="nav-link" href="Test?User=Dusko">Login</a> <!-- TODO replace TEST -->
                 </li>
@@ -45,6 +46,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">KORPA</a>
                 </li>
+                <li class="seperator-green"></li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><%=session.getAttribute("User")%></a>
                 </li>
