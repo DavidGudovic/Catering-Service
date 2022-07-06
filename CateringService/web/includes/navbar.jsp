@@ -33,7 +33,6 @@
                 <% if (session.getAttribute("User") == null) {%>
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">KORPA</a>
-                    <!-- TODO: else -->
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="Test?User=Dusko">Login</a> <!-- TODO replace TEST -->
@@ -41,6 +40,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Registracija</a>
                 </li>
+                
                 <% } else { %>
                 <li class="nav-item">
                     <a class="nav-link" href="#">KORPA</a>

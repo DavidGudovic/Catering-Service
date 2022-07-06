@@ -17,7 +17,7 @@ public class Test extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession sesija = request.getSession();
-        if (request.getParameter("Action") != "logout") {
+        if (!"logout".equals(request.getParameter("Action"))) {
             sesija.setAttribute("User", request.getParameter("User"));
         } else {
             sesija.invalidate();
