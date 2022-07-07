@@ -16,7 +16,7 @@
             <section>
                 <img class="img-fluid img-thumbnail" src="img/catering.jpg" alt="Food on multiple plates"/>
             </section>
-            <footer></footer>
+               <%@include file="includes/footer.jsp"%>
         </div>
     </body>
 </html>
