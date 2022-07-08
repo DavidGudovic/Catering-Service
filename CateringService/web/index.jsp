@@ -15,6 +15,7 @@
                 <%@include file="includes/navbar.jsp"%>
             <section>
                 <img class="img-fluid img-thumbnail" src="img/catering.jpg" alt="Food on multiple plates"/>
+                
             </section>
                <%@include file="includes/footer.jsp"%>
         </div>
