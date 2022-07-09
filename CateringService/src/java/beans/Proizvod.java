@@ -4,7 +4,7 @@ public class Proizvod {
 
     private int proizvodID;
     private int cenaPoPorciji;
-    private int kategorijaID;
+    private Kategorija kategorija;
     private String nazivProizvoda;
     private String opis;
     private String slika;
@@ -12,10 +12,10 @@ public class Proizvod {
     public Proizvod() {
     }
 
-    public Proizvod(int proizvodID, int cenaPoPorciji, int kategorijaID, String nazivProizvoda, String opis, String slika) {
+    public Proizvod(int proizvodID, int cenaPoPorciji, Kategorija kategorija, String nazivProizvoda, String opis, String slika) {
         this.proizvodID = proizvodID;
         this.cenaPoPorciji = cenaPoPorciji;
-        this.kategorijaID = kategorijaID;
+        this.kategorija = kategorija;
         this.nazivProizvoda = nazivProizvoda;
         this.opis = opis;
         this.slika = slika;
@@ -37,12 +37,12 @@ public class Proizvod {
         this.cenaPoPorciji = cenaPoPorciji;
     }
 
-    public int getKategorijaID() {
-        return kategorijaID;
+    public Kategorija getKategorija() {
+        return kategorija;
     }
 
-    public void setKategorijaID(int kategorijaID) {
-        this.kategorijaID = kategorijaID;
+    public void setKategorija(Kategorija kategorija) {
+        this.kategorija = kategorija;
     }
 
     public String getNazivProizvoda() {

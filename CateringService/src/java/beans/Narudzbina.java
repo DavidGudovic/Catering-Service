@@ -4,8 +4,9 @@ import java.util.HashMap;
 
 public class Narudzbina {
     private String datumKreiranja;
-    private String DatumOstvarivanja;
-    private int korisnikID;
+    private String datumOstvarivanja;
+    private String nacinPlacanja;
+    private Korisnik korisnik;
     private int narudzbinaID;
     private int popust;
     private float UkupnaCena;
@@ -16,10 +17,11 @@ public class Narudzbina {
         stavkeNarudzbine = new HashMap<>();
     }
 
-    public Narudzbina(String datumKreiranja, String DatumOstvarivanja, int korisnikID, int narudzbinaID, int popust, float UkupnaCena, HashMap<Proizvod, Integer> stavkeNarudzbine) {
+    public Narudzbina(String datumKreiranja, String datumOstvarivanja,String nacinPlacanja, Korisnik korisnik, int narudzbinaID, int popust, float UkupnaCena, HashMap<Proizvod, Integer> stavkeNarudzbine) {
         this.datumKreiranja = datumKreiranja;
-        this.DatumOstvarivanja = DatumOstvarivanja;
-        this.korisnikID = korisnikID;
+        this.datumOstvarivanja = datumOstvarivanja;
+        this.nacinPlacanja = nacinPlacanja;
+        this.korisnik = korisnik;
         this.narudzbinaID = narudzbinaID;
         this.popust = popust;
         this.UkupnaCena = UkupnaCena;
@@ -36,19 +38,24 @@ public class Narudzbina {
     }
 
     public String getDatumOstvarivanja() {
-        return DatumOstvarivanja;
+        return datumOstvarivanja;
     }
 
-    public void setDatumOstvarivanja(String DatumOstvarivanja) {
-        this.DatumOstvarivanja = DatumOstvarivanja;
+    public void setDatumOstvarivanja(String datumOstvarivanja) {
+        this.datumOstvarivanja = datumOstvarivanja;
+    }
+    public String getNacinPlacanja(){
+        return nacinPlacanja;
+    }
+    public void setNacinPlacanja(String nacinPlacanja){
+        this.nacinPlacanja = nacinPlacanja;
+    }
+    public Korisnik getKorisnik() {
+        return korisnik;
     }
 
-    public int getKorisnikID() {
-        return korisnikID;
-    }
-
-    public void setKorisnikID(int korisnikID) {
-        this.korisnikID = korisnikID;
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
     }
 
     public int getNarudzbinaID() {

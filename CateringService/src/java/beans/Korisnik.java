@@ -8,18 +8,18 @@ public class Korisnik {
     private String prezime;
     private int korisnikID;
     private int poeni;
-    private int rolaID;
+    private Rola rola;
 
     public Korisnik() {
     }
 
-    public Korisnik(String adresa, String ime, String prezime, int korisnikID, int poeni, int rolaID) {
+    public Korisnik(String adresa, String ime, String prezime, int korisnikID, int poeni, Rola rola) {
         this.adresa = adresa;
         this.ime = ime;
         this.prezime = prezime;
         this.korisnikID = korisnikID;
         this.poeni = poeni;
-        this.rolaID = rolaID;
+        this.rola = rola;
     }
     
     
@@ -63,12 +63,12 @@ public class Korisnik {
         this.poeni = poeni;
     }
 
-    public int getRolaID() {
-        return rolaID;
+    public Rola getRola() {
+        return rola;
     }
 
-    public void setRolaID(int rolaID) {
-        this.rolaID = rolaID;
+    public void setRola(Rola rola) {
+        this.rola = rola;
     }
     
 }
