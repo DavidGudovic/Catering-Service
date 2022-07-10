@@ -25,7 +25,15 @@
     margin: auto;
     margin-right: 20px;
 }
-.logo {
-    width: 20px;
-    height: 20px;
+
+
+.reg-form{
+      display: flex;
+      margin-top: 2rem;
+      flex-direction: column;    
 }
+.reg-buttons{
+    text-align:center;
+}
+
+
