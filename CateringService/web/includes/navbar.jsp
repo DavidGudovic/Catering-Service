@@ -39,10 +39,10 @@
                 </li>
                 <li class="seperator-red"></li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Test?User=Dusko">Login</a> <!-- TODO replace TEST -->
+                    <a class="nav-link" href="login.jsp">Login</a> <!-- TODO replace TEST -->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Registracija</a>
+                    <a class="nav-link" href="registracija.jsp">Registracija</a>
                 </li>
 
                 <% } else {%>
