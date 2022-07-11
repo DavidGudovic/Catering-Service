@@ -2,6 +2,7 @@ package repository;
 
 import beans.Proizvod;
 import interfaces.IRepository;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -22,6 +23,11 @@ public class ProizvodRepository implements IRepository<Proizvod> {
 
     @Override
     public void izbrisi(Proizvod t) {
+    }
+
+    @Override
+    public Proizvod getJedan(Proizvod trazeni) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
