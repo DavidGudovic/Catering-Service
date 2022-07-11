@@ -4,9 +4,17 @@
         <servlet-name>Authenticate</servlet-name>
         <servlet-class>servlets.Authenticate</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Profil</servlet-name>
+        <servlet-class>servlets.Profil</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authenticate</servlet-name>
         <url-pattern>/Authenticate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Profil</servlet-name>
+        <url-pattern>/Profil</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
