@@ -8,6 +8,10 @@
         <servlet-name>Profil</servlet-name>
         <servlet-class>servlets.Profil</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Pocetna</servlet-name>
+        <servlet-class>servlets.Pocetna</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authenticate</servlet-name>
         <url-pattern>/Authenticate</url-pattern>
@@ -16,6 +20,14 @@
         <servlet-name>Profil</servlet-name>
         <url-pattern>/Profil</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Pocetna</servlet-name>
+        <url-pattern>/Pocetna</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>Pocetna</welcome-file>
+    </welcome-file-list>
+    
     <session-config>
         <session-timeout>
             30
