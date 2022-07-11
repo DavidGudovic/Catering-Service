@@ -21,7 +21,7 @@ public class Authenticate extends HttpServlet {
         
         HttpSession session = request.getSession();
         session.invalidate();
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("Pocetna").forward(request, response);
     }
     
     @Override
@@ -56,7 +56,7 @@ public class Authenticate extends HttpServlet {
                 if (sessionKorisnik != null && loginKorisnik.getPassword().equals(sessionKorisnik.getPassword())) {
                     session.setAttribute("User", sessionKorisnik.getKorisnickoIme());
                     session.setAttribute("UserRola", sessionKorisnik.getRola().getRolaID());
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    response.sendRedirect("Pocetna");
                 } else {
                     request.setAttribute("msg", "Pogrešna šifra ili username");
                     request.getRequestDispatcher("login.jsp").forward(request, response);

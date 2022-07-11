@@ -40,7 +40,7 @@ public class KorisnikRepository implements IRepository<Korisnik> {
      @Override
     public Korisnik getJedan(Korisnik trazeni) throws SQLException {
             Connection con = ConnectionManager.getConnection();
-            String sql = "SELECT * FROM `korisnici` WHERE `KorisnickoIme` = ?";
+            String sql = "SELECT `KorisnickoIme`, `Ime`, `Prezime`, `Adresa`, `Poeni`, `PasswordHash`, `RolaID` FROM `korisnici` WHERE `KorisnickoIme` = ?";
             
             try(PreparedStatement stmt = con.prepareStatement(sql)){
                 stmt.setString(1, trazeni.getKorisnickoIme());
