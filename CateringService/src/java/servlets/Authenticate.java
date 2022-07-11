@@ -18,6 +18,7 @@ public class Authenticate extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        
         HttpSession session = request.getSession();
         session.invalidate();
         request.getRequestDispatcher("index.jsp").forward(request, response);
