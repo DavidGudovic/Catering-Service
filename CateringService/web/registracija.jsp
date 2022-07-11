@@ -14,7 +14,7 @@
         <div class="container-md">
             <%@include file="includes/navbar.jsp"%>
             <div class="row">
-                <section class="col-6">  
+                <section class="col-md-6 col-xs-12">  
                     <div class="container-fluid">
                         <form class="reg-form rounded" action="Authenticate" method="post">  
                             <strong>REGISTRACIJA</strong><br>
@@ -45,7 +45,7 @@
                         <p> ${msg}</p> <!-- Poruka o gresci ili uspehu -->
                     </div>
                 </section>
-                <aside class="col-6">
+                <aside class="col-md-6 hidden-xs">
                     <div class="container-fluid">
                         <?xml version="1.0" encoding="utf-8"?>
                         <!-- Generator: Adobe Illustrator 24.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->

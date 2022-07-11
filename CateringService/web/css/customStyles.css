@@ -26,14 +26,32 @@
     margin-right: 20px;
 }
 
-
 .reg-form{
       display: flex;
       margin-top: 2rem;
       flex-direction: column;    
 }
 .reg-buttons{
-    text-align:center;
+    text-align: center;
 }
 
-
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 40%;
+    width: 60%;
+    -webkit-box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.75); 
+    box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.75);
+    padding: 5%;
+    margin: 13% 0 2rem 0;
+}
+.login-cent{
+    display: flex;
+    min-height: 90vh;
+    justify-content: center;
+    
+}
+btn-login{
+    width: 50%;
+}

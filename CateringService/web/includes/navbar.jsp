@@ -54,7 +54,7 @@
                     <a class="nav-link" href="#"><%=session.getAttribute("User")%></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Test?Action=logout">Logout</a> <!-- TODO replace TEST -->
+                    <a class="nav-link" href="Authenticate?">Logout</a> <!-- TODO replace TEST -->
                 </li>
                 <% }%>
             </ul>
