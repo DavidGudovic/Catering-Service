@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container-fluid">
         <!-- NAVBAR BREND -->
-        <a class="navbar-brand logo" href="index.jsp">
+        <a class="navbar-brand logo" href="Pocetna">
           Lorem Catering
         </a>
 
@@ -14,7 +14,7 @@
             <!-- LEVI NAV -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.jsp">POČETNA</a>
+                    <a class="nav-link active" aria-current="page" href="Pocetna">POČETNA</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">KONTAKT</a>
@@ -24,8 +24,8 @@
                         PONUDA
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Slatki program</a></li>
-                        <li><a class="dropdown-item" href="#">Slani program</a></li>
+                        <li><a class="dropdown-item" href="Pocetna?program=slatki">Slatki program</a></li>
+                        <li><a class="dropdown-item" href="Pocetna?program=slani">Slani program</a></li>
                     </ul>
                 </li>
             </ul>
@@ -39,7 +39,7 @@
                 </li>
                 <li class="seperator-red"></li>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.jsp">Login</a> <!-- TODO replace TEST -->
+                    <a class="nav-link" href="login.jsp">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="registracija.jsp">Registracija</a>
@@ -54,7 +54,7 @@
                     <a class="nav-link" href="#"><%=session.getAttribute("User")%></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Authenticate?">Logout</a> <!-- TODO replace TEST -->
+                    <a class="nav-link" href="Authenticate?">Logout</a> 
                 </li>
                 <% }%>
             </ul>

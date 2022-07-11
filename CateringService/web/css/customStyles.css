@@ -52,6 +52,31 @@
     justify-content: center;
     
 }
-btn-login{
+.btn-login{
+    align-self: center;
     width: 50%;
+}
+.fullpage{
+    min-height: 90vh;
+}
+.wrapper{
+  display: grid;
+  grid-template-columns: 1fr 4fr; 
+}
+.wrapper > div{
+    background:#eee;
+    padding: 1em;
+}
+.wrapper > div:nth-child(odd){
+    background:#ddd;
+}
+.kategorije{
+}
+.proizvodiPrikaz{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 1em 1em;
+}
+.proizvodiPrikaz > div{
 }
