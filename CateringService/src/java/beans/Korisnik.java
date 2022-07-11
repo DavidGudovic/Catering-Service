@@ -15,7 +15,12 @@ public class Korisnik {
 
     public Korisnik() {
     }
-
+    
+    public Korisnik(String korisnickoIme, String password){  // Konstruktor za pretrage
+        this.korisnickoIme = korisnickoIme;
+        this.password = MD5.getHash(password);
+    }
+    
     public Korisnik(String adresa, String ime, String prezime, String korisnickoIme,String password, int poeni, Rola rola) {
         this.adresa = adresa;
         this.ime = ime;
@@ -34,7 +39,10 @@ public class Korisnik {
         this.password = MD5.getHash(password);
     }
     
-    
+    public void setPasswordHash(String passwordHash) {
+        this.password = passwordHash;
+    }
+     
       public String getAdresa() {
         return adresa;
     }
@@ -82,5 +90,7 @@ public class Korisnik {
     public void setRola(Rola rola) {
         this.rola = rola;
     }
+
+  
     
 }

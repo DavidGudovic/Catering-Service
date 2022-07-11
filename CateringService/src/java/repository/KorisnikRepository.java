@@ -1,15 +1,17 @@
 package repository;
 
 import beans.Korisnik;
+import beans.Rola;
 import database.ConnectionManager;
 import interfaces.IRepository;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 public class KorisnikRepository implements IRepository<Korisnik> {
-
+    
     @Override
     // Dodaje korisnika u bazu 
     public void dodaj(Korisnik t) throws SQLException {
@@ -34,7 +36,35 @@ public class KorisnikRepository implements IRepository<Korisnik> {
                 con.close();
             }
     }
-
+    // Vraca korisnika po ID-u, ako nema vraca null, baca SQLException. 
+     @Override
+    public Korisnik getJedan(Korisnik trazeni) throws SQLException {
+            Connection con = ConnectionManager.getConnection();
+            String sql = "SELECT * FROM `korisnici` WHERE `KorisnickoIme` = ?";
+            
+            try(PreparedStatement stmt = con.prepareStatement(sql)){
+                stmt.setString(1, trazeni.getKorisnickoIme());
+                ResultSet rs = stmt.executeQuery();
+                Korisnik nadjeni = new Korisnik();
+                if(rs.next()){                
+                nadjeni.setKorisnickoIme(rs.getString("KorisnickoIme"));
+                nadjeni.setIme(rs.getString("Ime"));
+                nadjeni.setPrezime(rs.getString("Prezime"));
+                nadjeni.setPasswordHash(rs.getString("PasswordHash"));
+                nadjeni.setAdresa(rs.getString("Adresa"));
+                nadjeni.setPoeni(rs.getInt("Poeni"));
+                nadjeni.setRola(new Rola(rs.getInt("RolaID"), ""));      
+                rs.close();
+                return nadjeni;
+                }               
+            }catch(SQLException sqle){
+                throw sqle;
+            }finally{              
+                con.close();
+            }
+            return null;
+    }
+    
     @Override
     public List<Korisnik> getSve() {
         return null;
@@ -49,5 +79,7 @@ public class KorisnikRepository implements IRepository<Korisnik> {
     public void izbrisi(Korisnik objekat) {
 
     }
+
+   
 
 }
