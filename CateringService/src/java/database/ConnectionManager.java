@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionMenager {
+public class ConnectionManager {
     //Hardcode-ovane vrednosti mogle bi biti izvucene iz nekog conf fajla.
     private static String url = "jdbc:mysql://localhost:3306/catering?";    
     private static String driverName = "com.mysql.cj.jdbc.Driver";   
