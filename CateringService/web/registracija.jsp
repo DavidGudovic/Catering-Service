@@ -13,7 +13,7 @@
     <body>
         <div class="container-md">
             <%@include file="includes/navbar.jsp"%>
-            <div class="row">
+            <div class="row reg-center">
                 <section class="col-md-6 col-xs-12">  
                     <div class="container-fluid">
                         <form class="reg-form rounded" action="Authenticate" method="post">  

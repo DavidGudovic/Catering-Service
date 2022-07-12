@@ -1,9 +1,13 @@
-.seperator-red{
+.seperator-red{    /* div seperator anon*/
     border-left: 2px solid red;
 }
-.seperator-green{
+.seperator-green{   /* div seperator ulogovan korisnik */
     border-left: 2px solid green;
 }
+.bg-grey{
+    background-color: #ddd;
+}
+/** CSS ZA FOOTER, color, fiksiran, justify levo i desno elemente **/
 #footer{
     position: fixed;
     bottom: 0;
@@ -25,23 +29,31 @@
     margin: auto;
     margin-right: 20px;
 }
-
+/** KRAJ CSSA ZA FOOTER**/
+/** CSS ZA REGISTER **/
 .reg-form{
-      display: flex;
-      margin-top: 2rem;
-      flex-direction: column;    
+    display: flex;
+    margin-top: 2rem;
+    flex-direction: column;
 }
 .reg-buttons{
     text-align: center;
 }
+.reg-center{
+    display: flex;
+    min-height: 90vh;
+    place-items:center;
 
+}
+/** KRAJ CSSA ZA REGISTER**/
+/** CSS ZA LOGIN BOX, centriran i shadow **/ 
 .login-form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: 40%;
     width: 60%;
-    -webkit-box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.75); 
+    -webkit-box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.75);
     box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.75);
     padding: 5%;
     margin: 13% 0 2rem 0;
@@ -50,33 +62,90 @@
     display: flex;
     min-height: 90vh;
     justify-content: center;
-    
+
 }
 .btn-login{
     align-self: center;
     width: 50%;
 }
+/** KRAJ CSSA ZA LOGIN**/
+/** CSS ZA POCETNU STRANU**/
 .fullpage{
     min-height: 90vh;
 }
 .wrapper{
-  display: grid;
-  grid-template-columns: 1fr 4fr; 
+    display: grid;
+    grid-template-columns: 1fr 4fr;
 }
-.wrapper > div{
-    background:#eee;
+.wrapper > div{           /**kategorija **/
+    background:#b7e4c7;
     padding: 1em;
 }
-.wrapper > div:nth-child(odd){
-    background:#ddd;
+.wrapper > div:nth-child(odd){  /** prikaz **/
+    background:#57cc99;
 }
-.kategorije{
-}
+
+/** CSS za dinamicki prikaz proizvoda na Pocetnoj strani **/
 .proizvodiPrikaz{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, auto);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 32%));
+    grid-template-rows: repeat(auto-fit, minmax(300px, 400px));
     gap: 1em 1em;
 }
-.proizvodiPrikaz > div{
+
+.proizvod{
+    -webkit-box-shadow: -6px 10px 19px 0px rgba(0,0,0,0.35);
+    box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.35);
+    background-color: #fff;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows:200px auto auto;
 }
+
+.proizvod > img{
+    height: 200px;
+}
+.proizvod-body{
+    height:100px;
+    padding: 2px;
+}
+proizvod-body > p{
+    max-height: 20px;
+}
+.proizvod-footer{
+    padding:4px;
+}
+.proizvod-opis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.kolicina-input{
+    margin-top: 0.3em;
+    min-width: 0;
+    max-width: 100%;
+}
+/** KRAJ PROIZVOD CSS-a**/
+
+/** CSS ZA KATEGORIJE **/
+.pola-bordera {
+      border-top:1px solid black;
+      position: relative;
+    }
+.pola-bordera:after {
+      padding:0;margin:0;display:block;
+      content: "";
+      width:50%;
+      height:1.1px;
+      background-color:white;
+      position: absolute;
+      right:0;
+      top:-1px;
+    }
+    .kategorije{
+        display: inline-flex;
+        flex-direction: column;
+        text-align: center;
+    }
