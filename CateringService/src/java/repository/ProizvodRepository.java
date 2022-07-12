@@ -27,8 +27,7 @@ public class ProizvodRepository implements IRepository<Proizvod> {
         String sql = "SELECT `ProizvodID`, `NazivProizvoda`, `Opis`, `Slika`, `CenaPoPorciji`, `Program`, `KategorijaID` FROM `proizvodi` WHERE 1";
         
         try(PreparedStatement stmt = con.prepareStatement(sql)){
-        ResultSet rs = stmt.executeQuery();
-        
+        ResultSet rs = stmt.executeQuery();       
         while(rs.next()){
             svi.add(new Proizvod(rs.getInt("ProizvodID"),
                                 rs.getInt("CenaPoPorciji"),
@@ -36,8 +35,7 @@ public class ProizvodRepository implements IRepository<Proizvod> {
                                 rs.getString("NazivProizvoda"),
                                 rs.getString("Opis"),
                                 rs.getString("Slika")));
-        }
-        
+        }        
         rs.close();
         return svi;
         }catch(SQLException sqle){

@@ -1,25 +1,25 @@
 package beans;
 
 public class Kategorija {
-    private String opisKategorije;
+    private String program;
     private String nazivKategorije;
     private int kategorijaID;
 
     public Kategorija() {
     }
 
-    public Kategorija(String opisKategorije, String nazivKategorije, int kategorijaID) {
-        this.opisKategorije = opisKategorije;
+    public Kategorija(String program, String nazivKategorije, int kategorijaID) {
+        this.program = program;
         this.nazivKategorije = nazivKategorije;
         this.kategorijaID = kategorijaID;
     }
 
-    public String getOpisKategorije() {
-        return opisKategorije;
+    public String getProgram() {
+        return program;
     }
 
-    public void setOpisKategorije(String opisKategorije) {
-        this.opisKategorije = opisKategorije;
+    public void setProgram(String program) {
+        this.program = program;
     }
 
     public String getNazivKategorije() {

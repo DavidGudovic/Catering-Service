@@ -18,7 +18,7 @@ public class Proizvod {
         this.kategorija = kategorija;
         this.nazivProizvoda = nazivProizvoda;
         this.opis = opis;
-        this.slika = slika;
+        this.slika = "./img/" + slika + ".jpg";
     }
 
     public int getProizvodID() {
@@ -66,7 +66,7 @@ public class Proizvod {
     }
 
     public void setSlika(String slika) {
-        this.slika = slika;
+        this.slika = "./img/" + slika + ".jpg";
     }
     
 }

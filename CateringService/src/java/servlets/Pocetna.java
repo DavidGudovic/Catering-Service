@@ -4,15 +4,17 @@
  */
 package servlets;
 
+import beans.Kategorija;
 import beans.Proizvod;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import repository.KategorijaRepository;
 import repository.ProizvodRepository;
 
 public class Pocetna extends HttpServlet {  // Puni Listu proizvodima iz baze i predaje ih index.jsp-u za prikaz;
@@ -22,15 +24,34 @@ public class Pocetna extends HttpServlet {  // Puni Listu proizvodima iz baze i 
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        ProizvodRepository repository = new ProizvodRepository();
+        ProizvodRepository proizvodRepository = new ProizvodRepository();
+        KategorijaRepository kategorijaRepository = new KategorijaRepository();
+        List<Proizvod> proizvodi = null;
+        List<Kategorija> kategorije = null;
+        
         try {
-            List<Proizvod> proizvodi = repository.getSve();
-            request.setAttribute("proizvodi", proizvodi);
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            kategorije = kategorijaRepository.getSve();
+            proizvodi = proizvodRepository.getSve();           
         } catch (SQLException sqle){
+        request.setAttribute("msg", sqle + " GRESKA");
         request.getRequestDispatcher("/index.jsp").forward(request, response);
-        request.setAttribute("msg", sqle + " GRESAK");
+        }   // puni listu proizvoda i kategorija iz baze 
+        
+        
+        if(request.getParameter("kategorija") == null){  //Obican poziv pocetne
+        request.setAttribute("proizvodi", proizvodi);
+        } else {  // filtriran poziv
+            
+        List<Proizvod> filtriraniProizvodi = new ArrayList<>();
+        for(Proizvod p: proizvodi){
+            if(Integer.parseInt(request.getParameter("kategorija")) == p.getKategorija().getKategorijaID()){
+                filtriraniProizvodi.add(p);
+            }
         }
+        request.setAttribute("proizvodi", filtriraniProizvodi);
+        }
+         request.setAttribute("kategorije", kategorije);
+         request.getRequestDispatcher("/index.jsp").forward(request, response);
              
         // if slatki
         // do work
@@ -48,7 +69,7 @@ public class Pocetna extends HttpServlet {  // Puni Listu proizvodima iz baze i 
 
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Puni listu proizvoda i predaje index.jsp-u za prikaz";
     }
 
 }
