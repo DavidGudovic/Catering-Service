@@ -14,7 +14,7 @@
 
             <div class="row">            
                 <div class="col-6"> 
-                    <input class="kolicina-input" type="number"  name="kolicina">
+                    <input class="kolicina-input" placeholder="Kolicina" type="number"  name="kolicina">
                 </div>
                 <div class="col-6">
                     <input type="submit" class="btn btn-primary" value="Dodaj u korpu!"/>

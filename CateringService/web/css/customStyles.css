@@ -4,8 +4,8 @@
 .seperator-green{   /* div seperator ulogovan korisnik */
     border-left: 2px solid green;
 }
-.bg-grey{
-    background-color: #ddd;
+.nav-boja{
+    background-color: #f6bd60;
 }
 /** CSS ZA FOOTER, color, fiksiran, justify levo i desno elemente **/
 #footer{
@@ -46,7 +46,7 @@
 
 }
 /** KRAJ CSSA ZA REGISTER**/
-/** CSS ZA LOGIN BOX, centriran i shadow **/ 
+/** CSS ZA LOGIN BOX, centriran i shadow **/
 .login-form{
     display: flex;
     flex-direction: column;
@@ -78,11 +78,14 @@
     grid-template-columns: 1fr 4fr;
 }
 .wrapper > div{           /**kategorija **/
-    background:#b7e4c7;
+    /* background:#b7e4c7; */
+    background: #8ecae6;
     padding: 1em;
 }
 .wrapper > div:nth-child(odd){  /** prikaz **/
-    background:#57cc99;
+    /* background:#57cc99; */
+    background: #219ebc;
+    margin-right: 3px;
 }
 
 /** CSS za dinamicki prikaz proizvoda na Pocetnoj strani **/
@@ -91,6 +94,7 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 32%));
     grid-template-rows: repeat(auto-fit, minmax(300px, 400px));
     gap: 1em 1em;
+    justify-content: space-evenly;
 }
 
 .proizvod{
@@ -105,15 +109,15 @@
 .proizvod > img{
     height: 200px;
 }
-.proizvod-body{
+.proizvod-body{   
+    padding: 20px;
     height:100px;
-    padding: 2px;
 }
 proizvod-body > p{
     max-height: 20px;
 }
 .proizvod-footer{
-    padding:4px;
+    padding:20px;
 }
 .proizvod-opis{
     overflow: hidden;
@@ -130,22 +134,60 @@ proizvod-body > p{
 /** KRAJ PROIZVOD CSS-a**/
 
 /** CSS ZA KATEGORIJE **/
-.pola-bordera {
-      border-top:1px solid black;
-      position: relative;
-    }
+
+.pola-bordera {   /* Plava - Bela */
+    border-top:1px solid black; 
+    position: relative;
+}
 .pola-bordera:after {
-      padding:0;margin:0;display:block;
-      content: "";
-      width:50%;
-      height:1.1px;
-      background-color:white;
-      position: absolute;
-      right:0;
-      top:-1px;
-    }
-    .kategorije{
-        display: inline-flex;
-        flex-direction: column;
-        text-align: center;
-    }
+    padding:0;
+    margin:0;
+    display:block;
+    content: "";
+    width:50%;
+    height:1.1px;
+    background-color:white;
+    position: absolute;
+    right:0;
+    top:-1px;
+}
+.bordera-pola {   /*Bela - Plava */
+    border-bottom:1px solid white;
+    position: relative;
+}
+.bordera-pola:after {
+    padding:0;
+    margin:0;
+    display:block;
+    content: "";
+    width:50%;
+    height:1.1px;
+    background-color:black;
+    position: absolute;
+    right:0;
+    top:-1px;
+}
+.celi-border{
+    border-top:1px solid black;
+    position: relative;
+}
+
+
+.kategorije{
+    display: inline-flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.bold{
+    font-weight: bold;
+    font-size: 30px;
+    color: #2c3e50;
+}
+.kategorije > h5{
+    color : #f6bd60;
+}
+.kategorije > a{
+    color: #023047;
+    font-size: 20px;
+}

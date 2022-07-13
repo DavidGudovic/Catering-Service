@@ -18,20 +18,33 @@
         <div class="container-md">
             <%@include file="/includes/navbar.jsp"%>
             <div class="wrapper fullpage">
+                <!-- AUTOMATSKI PRIKAZ KATEGORIJA -->
                 <div class="kategorije">
-                    <h5>Kategorije</h5>
-                    <a class="pola-bordera" href='Pocetna'><strong>Sve</strong></a>
-                    <c:forEach var="kategorija" items="${kategorije}">
-                        <a class="pola-bordera" href='Pocetna?kategorija=${kategorija.getKategorijaID()}'><strong>${kategorija.getNazivKategorije()}</strong></a>
-                            </c:forEach>
+                    <h5>KATEGORIJE</h5>    
+                    <a class="pola-bordera" href='Pocetna'><strong>Sve</strong></a></br>
+                    <h5 class="bold pola-bordera">Slane</h5>                    
+                    <c:forEach var="kategorija" items="${slaneKategorije}">
+                        <a class="" href='Pocetna?kategorija=${kategorija.getKategorijaID()}'>
+                            <strong>${kategorija.getNazivKategorije()}</strong>
+                        </a>
+                    </c:forEach>                   
+                    </br>
+                    <h5 class="bold pola-bordera">Slatke</h5>                    
+                    <c:forEach var="slatKategorija" items="${slatkeKategorije}">
+                        <a class="" href='Pocetna?kategorija=${slatKategorija.getKategorijaID()}'>
+                            <strong>${slatKategorija.getNazivKategorije()}</strong>
+                        </a>
+                    </c:forEach>
                 </div>
+                <!-- KRAJ PRIKAZA KATEGORIJA -->
+                <!-- AUTOMATSKI PRIKAZ PROIZVODA -->
                 <div class="proizvodiPrikaz">
                     ${msg}
                     <c:forEach var="proizvod" items="${proizvodi}">     
                         <%@include file="/includes/proizvod.jsp" %>                    
                     </c:forEach>
-
                 </div>
+                <!-- KRAJ PRIKAZA PROIZVODA -->
             </div>
             <%@include file="/includes/footer.jsp"%>
         </div>

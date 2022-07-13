@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<nav class="navbar navbar-expand-lg navbar-light bg-grey sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light nav-boja sticky-top">
     <div class="container-fluid">
         <!-- NAVBAR BREND -->
         <a class="navbar-brand logo" href="Pocetna">
