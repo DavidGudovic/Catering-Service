@@ -6,7 +6,6 @@ import repository.KorisnikRepository;
 
 public class Korisnik {
 
-  
     private String adresa;
     private String ime;
     private String prezime;
@@ -17,13 +16,13 @@ public class Korisnik {
 
     public Korisnik() {
     }
-    
-    public Korisnik(String korisnickoIme, String password){  // Konstruktor za pretrage
+
+    public Korisnik(String korisnickoIme, String password) {  // Konstruktor za pretrage
         this.korisnickoIme = korisnickoIme;
         this.password = MD5.getHash(password);
     }
-    
-    public Korisnik(String adresa, String ime, String prezime, String korisnickoIme,String password, int poeni, Rola rola) {
+
+    public Korisnik(String adresa, String ime, String prezime, String korisnickoIme, String password, int poeni, Rola rola) {
         this.adresa = adresa;
         this.ime = ime;
         this.prezime = prezime;
@@ -40,12 +39,12 @@ public class Korisnik {
     public void setPassword(String password) {
         this.password = MD5.getHash(password);
     }
-    
+
     public void setPasswordHash(String passwordHash) {
         this.password = passwordHash;
     }
-     
-      public String getAdresa() {
+
+    public String getAdresa() {
         return adresa;
     }
 
@@ -92,36 +91,38 @@ public class Korisnik {
     public void setRola(Rola rola) {
         this.rola = rola;
     }
-    
+
     //Sistemske operacije
-    
     // proverava da li se predata sifra podudara sa korisnikom u bazi koji dodaje repozitory
     // ako se podudara, puni objekat podacima iz baze i vraca true(uspeh);
-    public boolean login() throws SQLException{
+    public boolean login() throws SQLException {
         KorisnikRepository repositorij = new KorisnikRepository();
-        try{
-        Korisnik celi = repositorij.getJedan(this);
-        if(this.password.equals(celi.getPassword())){
-            this.ime = celi.ime;
-            this.prezime = celi.prezime;
-            this.adresa = celi.adresa;
-            this.rola = celi.rola;
-            this.poeni = celi.poeni;
-            return true;
-        } else{
-            return false;
-        }
-        }catch(SQLException ex){
-            return false;
+        try {
+            Korisnik celi = repositorij.getJedan(this);
+            if (celi != null) {
+                if (this.password.equals(celi.getPassword())) {
+                    this.ime = celi.ime;
+                    this.prezime = celi.prezime;
+                    this.adresa = celi.adresa;
+                    this.rola = celi.rola;
+                    this.poeni = celi.poeni;
+                    return true;
+                } else {
+                    return false;
+                }
+            } else return false;
+        } catch (SQLException sqle) {
+            throw sqle;
         }
     }
+
     // Predaje sebe repozitoriju za dodavanje u bazu, u slucaju greske forwarduje exception kontroleru
-    public void registruj() throws SQLException{
+    public void registruj() throws SQLException {
         KorisnikRepository repositorij = new KorisnikRepository();
-        try{
+        try {
             repositorij.dodaj(this);
-        }catch(SQLException sqle){
+        } catch (SQLException sqle) {
             throw sqle;
-        }        
-    }    
+        }
+    }
 }

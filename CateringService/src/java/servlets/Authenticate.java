@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import repository.KorisnikRepository;
 
 public class Authenticate extends HttpServlet {
     
@@ -29,9 +28,6 @@ public class Authenticate extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
-        //TO DO Delete
-        KorisnikRepository repositorij = new KorisnikRepository();
         
         if (request.getParameter("loginKorisnicko") == null) {  //register request;  kreira korisnika i poziva registruj() nad njim 
             try {
