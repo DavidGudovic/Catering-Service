@@ -14,7 +14,7 @@ import repository.KorisnikRepository;
 public class Authenticate extends HttpServlet {
     
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) // get se poziva samo za logout
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) // logout request
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
@@ -29,9 +29,11 @@ public class Authenticate extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        
+        //TO DO Delete
         KorisnikRepository repositorij = new KorisnikRepository();
         
-        if (request.getParameter("loginKorisnicko") == null) {  //register, kreira korisnika i salje ga Repozitorijumu za dodavanje u bazu
+        if (request.getParameter("loginKorisnicko") == null) {  //register request;  kreira korisnika i poziva registruj() nad njim 
             try {
                 Korisnik noviKorisnik = new Korisnik(request.getParameter("adresa"),
                         request.getParameter("ime"),
@@ -39,7 +41,7 @@ public class Authenticate extends HttpServlet {
                         request.getParameter("korisnickoIme"),
                         request.getParameter("password"),
                         0, new Rola(3, "Klijent"));
-                repositorij.dodaj(noviKorisnik);
+                noviKorisnik.registruj();
             } catch (SQLException sqle) {
                 request.setAttribute("msg", "GRESKA");
                 request.getRequestDispatcher("registracija.jsp").forward(request, response);
@@ -48,14 +50,13 @@ public class Authenticate extends HttpServlet {
             request.getRequestDispatcher("login.jsp").forward(request, response);
             
             
-        } else {    //login  Objekat se pretrazuje po ID-u u repozitorijumu, sifra se provjerava ovdje.
+        } else {    //login request; kreira korisnika sa samo ID-em i passwordom, poziva login, ako uspije zapocinje sesiju; 
             Korisnik loginKorisnik = new Korisnik(request.getParameter("loginKorisnicko"), request.getParameter("password"));
             HttpSession session = request.getSession();
-            try {
-                Korisnik sessionKorisnik = repositorij.getJedan(loginKorisnik);
-                if (sessionKorisnik != null && loginKorisnik.getPassword().equals(sessionKorisnik.getPassword())) {
-                    session.setAttribute("User", sessionKorisnik.getKorisnickoIme());
-                    session.setAttribute("UserRola", sessionKorisnik.getRola().getRolaID());
+            try {                
+                if (loginKorisnik.login()) {
+                    session.setAttribute("User", loginKorisnik.getKorisnickoIme());
+                    session.setAttribute("UserRola", loginKorisnik.getRola().getRolaID());
                     response.sendRedirect("Pocetna");
                 } else {
                     request.setAttribute("msg", "Pogrešna šifra ili username");

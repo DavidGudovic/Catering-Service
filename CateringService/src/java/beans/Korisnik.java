@@ -1,6 +1,8 @@
 package beans;
 
 import database.MD5;
+import java.sql.SQLException;
+import repository.KorisnikRepository;
 
 public class Korisnik {
 
@@ -90,7 +92,36 @@ public class Korisnik {
     public void setRola(Rola rola) {
         this.rola = rola;
     }
-
-  
     
+    //Sistemske operacije
+    
+    // proverava da li se predata sifra podudara sa korisnikom u bazi koji dodaje repozitory
+    // ako se podudara, puni objekat podacima iz baze i vraca true(uspeh);
+    public boolean login() throws SQLException{
+        KorisnikRepository repositorij = new KorisnikRepository();
+        try{
+        Korisnik celi = repositorij.getJedan(this);
+        if(this.password.equals(celi.getPassword())){
+            this.ime = celi.ime;
+            this.prezime = celi.prezime;
+            this.adresa = celi.adresa;
+            this.rola = celi.rola;
+            this.poeni = celi.poeni;
+            return true;
+        } else{
+            return false;
+        }
+        }catch(SQLException ex){
+            return false;
+        }
+    }
+    // Predaje sebe repozitoriju za dodavanje u bazu, u slucaju greske forwarduje exception kontroleru
+    public void registruj() throws SQLException{
+        KorisnikRepository repositorij = new KorisnikRepository();
+        try{
+            repositorij.dodaj(this);
+        }catch(SQLException sqle){
+            throw sqle;
+        }        
+    }    
 }

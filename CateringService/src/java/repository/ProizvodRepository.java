@@ -19,19 +19,21 @@ public class ProizvodRepository implements IRepository<Proizvod> {
         }
 
     
-    /** Vraca ArrayList svih proizvoda iz baze  **/
+    // Vraca ArrayList svih proizvoda iz baze i odgovarajuce kategorije inner join-om
     @Override    
     public List<Proizvod> getSve() throws SQLException{
         Connection con = ConnectionManager.getConnection();
         List<Proizvod> svi = new ArrayList<>();
-        String sql = "SELECT `ProizvodID`, `NazivProizvoda`, `Opis`, `Slika`, `CenaPoPorciji`, `Program`, `KategorijaID` FROM `proizvodi` WHERE 1";
+        String sql = "SELECT `ProizvodID`, `NazivProizvoda`, `Opis`, `Slika`, `CenaPoPorciji`, proizvodi.`KategorijaID`, `NazivKategorije`, `Program`"
+                     + " FROM `proizvodi` INNER JOIN `kategorije` ON proizvodi.KategorijaID = kategorije.KategorijaID"
+                     + " WHERE 1";
         
         try(PreparedStatement stmt = con.prepareStatement(sql)){
         ResultSet rs = stmt.executeQuery();       
         while(rs.next()){
             svi.add(new Proizvod(rs.getInt("ProizvodID"),
                                 rs.getInt("CenaPoPorciji"),
-                                new Kategorija("","",rs.getInt("KategorijaID")),
+                                new Kategorija(rs.getString("Program"),rs.getString("NazivKategorije"),rs.getInt("KategorijaID")),
                                 rs.getString("NazivProizvoda"),
                                 rs.getString("Opis"),
                                 rs.getString("Slika")));

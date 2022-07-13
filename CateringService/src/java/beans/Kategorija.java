@@ -1,5 +1,8 @@
 package beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Kategorija {
     private String program;
     private String nazivKategorije;
@@ -36,6 +39,18 @@ public class Kategorija {
 
     public void setKategorijaID(int kategorijaID) {
         this.kategorijaID = kategorijaID;
+    }
+    
+        //Static metode
+        // Vraca listu kategorija po zadatom kriterijumu ( in 'slatki', 'slani' )
+    public static List<Kategorija> filterKategorije(List<Kategorija> sveKat,String kriterijum) {
+        List<Kategorija> filtriraneKategorije = new ArrayList<>();
+        for (Kategorija k : sveKat) {
+            if (k.getProgram().equals(kriterijum)) {
+                filtriraneKategorije.add(k);
+            }
+        }
+        return filtriraneKategorije;
     }
     
 }

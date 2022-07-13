@@ -40,7 +40,9 @@ public class KorisnikRepository implements IRepository<Korisnik> {
      @Override
     public Korisnik getJedan(Korisnik trazeni) throws SQLException {
             Connection con = ConnectionManager.getConnection();
-            String sql = "SELECT `KorisnickoIme`, `Ime`, `Prezime`, `Adresa`, `Poeni`, `PasswordHash`, `RolaID` FROM `korisnici` WHERE `KorisnickoIme` = ?";
+            String sql = "SELECT `KorisnickoIme`, `Ime`, `Prezime`, `Adresa`, `Poeni`, `PasswordHash`, korisnici.`RolaID`, role.`NazivRole` "
+                    + "FROM `korisnici` INNER JOIN `role` ON korisnici.RolaID = role.RolaID "
+                    + "WHERE `KorisnickoIme` = ?";
             
             try(PreparedStatement stmt = con.prepareStatement(sql)){
                 stmt.setString(1, trazeni.getKorisnickoIme());
@@ -53,7 +55,7 @@ public class KorisnikRepository implements IRepository<Korisnik> {
                 nadjeni.setPasswordHash(rs.getString("PasswordHash"));
                 nadjeni.setAdresa(rs.getString("Adresa"));
                 nadjeni.setPoeni(rs.getInt("Poeni"));
-                nadjeni.setRola(new Rola(rs.getInt("RolaID"), ""));      
+                nadjeni.setRola(new Rola(rs.getInt("RolaID"), rs.getString("NazivRole")));      
                 rs.close();
                 return nadjeni;
                 }               

@@ -1,5 +1,8 @@
 package beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Proizvod {
 
     private int proizvodID;
@@ -7,7 +10,7 @@ public class Proizvod {
     private Kategorija kategorija;
     private String nazivProizvoda;
     private String opis;
-    private String slika;
+    private String slika;  // relative path do slike.
 
     public Proizvod() {
     }
@@ -68,5 +71,27 @@ public class Proizvod {
     public void setSlika(String slika) {
         this.slika = "./img/" + slika + ".jpg";
     }
-    
+
+    //STATIC metode
+    // Vraca listu proizvoda filtriranih po kategoriji ili po programu (in 'slani' 'slatki')
+    // Ako se pretrazuje po programu( != null ) kategorija ce biti ignorisana, u pozivima sam stavljao vrednost -1 simbolicno
+    public static List<Proizvod> filtrirajPonudu(List<Proizvod> proizvodi, String trazeniProgram, int trazenaKategorija) {
+
+        List<Proizvod> filtriraniProizvodi = new ArrayList<>();
+        if (trazeniProgram == null) {   // filtriranje je po kategoriji
+            for (Proizvod p : proizvodi) {
+                if (p.getKategorija().getKategorijaID() == trazenaKategorija) {
+                    filtriraniProizvodi.add(p);
+                }
+            }
+        } else // filtriranje je po programu
+        {
+            for (Proizvod p : proizvodi) {
+                if (p.getKategorija().getProgram().equals(trazeniProgram)) {
+                    filtriraniProizvodi.add(p);
+                }
+            }
+        }
+        return filtriraniProizvodi;
+    }
 }
