@@ -20,8 +20,8 @@
             <div class="wrapper fullpage">
                 <!-- AUTOMATSKI PRIKAZ KATEGORIJA -->
                 <div class="kategorije">
-                    <h5>KATEGORIJE</h5>    
-                    <a class="pola-bordera" href='Pocetna'><strong>Sve</strong></a></br>
+                    <h5 class="pola-bordera">KATEGORIJE</h5>    
+                    <a href='Pocetna'><strong>Sve</strong></a></br>
                     <h5 class="bold pola-bordera">Slane</h5>                    
                     <c:forEach var="kategorija" items="${slaneKategorije}">
                         <a class="" href='Pocetna?kategorija=${kategorija.getKategorijaID()}'>
