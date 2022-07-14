@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +24,18 @@
                         <h2><a class="profil-link" href="Profil?User=${User}&View=Izbrisi">Izbriši profil</a></h2>
                         <img src="./img/svg/tacna-cropped.svg" alt="ruka"/>
                     </div>
-                    <%@include file="includes/profilInfo.jsp"%>
+                    <c:if test = "${param.View == 'Profil'}">
+                        <%@include file="includes/profilInfo.jsp"%>
+                    </c:if>
+                    <c:if test = "${param.View == 'Korpa'}">
+                        <%@include file="includes/korpa.jsp"%>
+                    </c:if>
+                    <c:if test = "${param.View == 'Istorija'}">
+                        <%@include file="includes/istorija.jsp"%>
+                    </c:if>
+                    <c:if test = "${param.View == 'Izbrisi'}">
+                        <%@include file="includes/izbrisi.jsp"%>
+                    </c:if>
             </section>
             <%@include file="includes/footer.jsp"%>
         </div>

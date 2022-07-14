@@ -46,6 +46,7 @@
 .forbidden > p{
     font-size:60px;
     font-weight: bold;
+    text-align:center;
 }
 /* Kraj utility-a */
 /** CSS ZA FOOTER, color, fiksiran, justify levo i desno elemente **/
@@ -73,16 +74,16 @@
 /** KRAJ CSSA ZA FOOTER**/
 /** CSS ZA REGISTER **/
 .reg-form{
-   display: grid;
-   grid-template-rows: auto;
-   place-items: center;
-   border: solid 2px #fff;
-   width: 80%;
-   padding: 2rem;
-   padding-left: 3rem;
-   padding-right: 3rem;
-   max-width: 500px;
-   --webkit-box-shadow: -6px 10px 19px 0px rgba(0,0,0,0.5);
+    display: grid;
+    grid-template-rows: auto;
+    place-items: center;
+    border: solid 2px #fff;
+    width: 80%;
+    padding: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    max-width: 500px;
+    --webkit-box-shadow: -6px 10px 19px 0px rgba(0,0,0,0.5);
     box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.5);
 }
 .reg-form > input{
@@ -143,7 +144,7 @@
 }
 .wrapper > div{           /**kategorija **/
     /* background:#b7e4c7; */
-    background: #219ebc; 
+    background: #219ebc;
     /* background: #8ecae6; */ /* Jaca plava */
     padding: 1em;
 }
@@ -163,7 +164,7 @@
     justify-content: space-evenly;
     overflow: hidden;
 }
-  
+
 .proizvod-slika{
     width: 100%;
     transition: transform 0.4s ease;
@@ -188,7 +189,7 @@
 .proizvod > img{
     height: 200px;
 }
-.proizvod-body{   
+.proizvod-body{
     padding: 20px;
     height:100px;
 }
@@ -215,7 +216,7 @@ proizvod-body > p{
 /** CSS ZA KATEGORIJE **/
 
 .pola-bordera {   /* Plava - Bela */
-    border-bottom:1px solid black; 
+    border-bottom:1px solid black;
     position: relative;
 }
 .pola-bordera:after {
@@ -254,7 +255,7 @@ proizvod-body > p{
     display: inline-flex;
     flex-direction: column;
 }
-.bold{  
+.bold{
     font-size: 30px;
 }
 .kategorije > h5{
@@ -281,7 +282,7 @@ proizvod-body > p{
 }
 .profil-linkovi{
     display: flex;
-    flex-direction: column;    
+    flex-direction: column;
     background-color: #8ecae6;
     padding-top: 1rem;
 }
@@ -299,9 +300,9 @@ proizvod-body > p{
     text-decoration: none;
 }
 .profil-linkovi > img{
-   padding-left: 1rem;
-   padding-right: 1rem;
-   place-content: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    place-content: center;
 }
 .profil-prikaz{
     display: grid;
@@ -309,16 +310,16 @@ proizvod-body > p{
     background-color: #219ebc;
 }
 .forma-prikaz{
-   display: grid;
-   grid-template-rows: auto;
-   place-items: center;
-   border: solid 2px #fff;
-   width: 80%;
-   padding: 2rem;
-   padding-left: 3rem;
-   padding-right: 3rem;
-   
-   --webkit-box-shadow: -6px 10px 19px 0px rgba(0,0,0,0.5);
+    display: grid;
+    grid-template-rows: auto;
+    place-items: center;
+    border: solid 2px #fff;
+    width: 80%;
+    padding: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+
+    --webkit-box-shadow: -6px 10px 19px 0px rgba(0,0,0,0.5);
     box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.5);
 }
 .forma-prikaz > input{
@@ -328,4 +329,38 @@ proizvod-body > p{
 }
 .input-prikaz{
     background-color: #D3D3D3;
+}
+
+/* KRAJ CCSSA ZA PROFIL */
+/* CSS ZA FORMU BRISANJA */
+.upozorenje{
+    background: #bc3f21;
+    display: grid;
+    place-items: center;
+}
+.form-brisanje{
+    display: grid;
+    grid-template-rows: auto;
+    place-items: center;
+    border: solid 2px #fff;
+    width: 80%;
+    padding: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    place-items: center;
+}
+.form-brisanje > #hvala{
+    font-size:40px;
+    font-weight: bold;
+    text-align:center;
+}
+.Del-greska{
+    color: #8ecae6;
+    font-weight: bold;
+    padding-top: 1rem;
+}
+.form-brisanje > input{
+    text-align: center;
+    margin: 1rem;
+    width: 60%;
 }
