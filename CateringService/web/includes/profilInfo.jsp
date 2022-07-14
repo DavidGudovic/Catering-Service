@@ -29,7 +29,7 @@
 
         <input class="input-prikaz" type="text" name="adresa" id="adresa" value="${Adresa}" required/></br>
         <div class="prikaz-button">
-            <input class="btn btn-primary " type="submit" value="Izmeni podatke">                                 
+            <input class="btn btn-primary " type="submit" value="Izmeni" name="zahtev">                                 
         </div>
         <p class="Info-${param.Status}"> 
         <c:if test="${param.Status == 'uspeh'}">
