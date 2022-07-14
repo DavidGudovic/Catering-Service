@@ -17,8 +17,10 @@ public class Profil extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        if (session.getAttribute("User") == null) request.getRequestDispatcher("error.jsp").forward(request, response);
-        
+        if (session.getAttribute("User") == null) {
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
+
         if (session.getAttribute("User").equals(request.getParameter("User"))) {  // Ima pristup ?
             switch (request.getParameter("View")) {
                 case "Profil":  // Prikaz forme za izmenu profila
@@ -42,6 +44,9 @@ public class Profil extends HttpServlet {
                 case "Korpa":  // Prikaz trenutne korpe TODO/Novi Controller?
                     request.getRequestDispatcher("profil.jsp").forward(request, response);
                     break;
+                case "Izbrisi":  // Prikaz trenutne korpe TODO/Novi Controller?
+                    request.getRequestDispatcher("profil.jsp").forward(request, response);
+                    break;
                 default:   // 403 Forbidden
                     request.getRequestDispatcher("error.jsp").forward(request, response);
                     break;
@@ -52,30 +57,43 @@ public class Profil extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) // Poziva se za izmenu profila
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) // Poziva se za izmenu profila ili brisanje 
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String status;
-        Korisnik trenutni = new Korisnik(session.getAttribute("User").toString(),
-                                         request.getParameter("password"));
-        Korisnik izmenjenKorisnik = new Korisnik(request.getParameter("korisnickoIme"),
-                                                 request.getParameter("noviPassword"),
-                                                 request.getParameter("ime"),
-                                                 request.getParameter("prezime"),   
-                                                 request.getParameter("adresa"));
-        try{
-        if(trenutni.izmeniInformacije(izmenjenKorisnik)){
-            status = "uspeh";
-        } else {
-            status = "greska";
+        String status;  //Koristi se ispis poruke o uspesnosti radnje
+        if (request.getParameter("zahtev").equals("Izmeni")) {  // Izmena
+            Korisnik trenutni = new Korisnik(session.getAttribute("User").toString(),
+                    request.getParameter("password"));
+            Korisnik izmenjenKorisnik = new Korisnik(request.getParameter("korisnickoIme"),
+                    request.getParameter("noviPassword"),
+                    request.getParameter("ime"),
+                    request.getParameter("prezime"),
+                    request.getParameter("adresa"));
+            try {
+                if (trenutni.izmeniInformacije(izmenjenKorisnik)) {
+                    status = "uspeh";
+                } else {
+                    status = "greska";
+                }
+            } catch (SQLException sqle) {
+                status = sqle.getMessage();
+            }
+            // Poziva svoju doGet metodu za prikaz izmenjenih podataka ili greske
+            response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Profil&Status=" + status);
+        } else{  // Brisanje
+            Korisnik zaBrisanje = new Korisnik(session.getAttribute("User").toString(),request.getParameter("password"));
+            
+            if(zaBrisanje.izbrisiProfil())
+            {
+                session.invalidate();
+                response.sendRedirect("Pocetna");
+            } else { // pogresna sifra
+                response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Izbrisi&Status=greska");
+            }
+            
+            
         }
-        }catch(SQLException sqle){
-            status=sqle.getMessage();
-        }
-        // Poziva svoju doGet metodu za prikaz izmenjenih podataka ili greske
-        response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Profil&Status=" + status);
-        
     }
 
     @Override

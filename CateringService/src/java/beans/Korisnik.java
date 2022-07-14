@@ -182,4 +182,17 @@ public class Korisnik {
             throw sqle;
         }
     }
+
+    public boolean izbrisiProfil() {
+        KorisnikRepository repository = new KorisnikRepository(); 
+        try{
+            Korisnik korisnik = repository.getJedan(this);
+            if(korisnik.getPassword().equals(this.password)){
+                repository.izbrisi(korisnik);
+                return true;
+            } return false;
+        }catch(SQLException sqle){
+            return false;
+        }
+    }
 }
