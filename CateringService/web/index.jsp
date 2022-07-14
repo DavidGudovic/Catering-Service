@@ -14,6 +14,7 @@
         <script src="js/bootstrap.min.js"></script>    
         <!-- <script defer src="./js/scripts.js"></script> -->
     </head>
+    
     <body>
         <div class="container-md">
             <%@include file="/includes/navbar.jsp"%>
