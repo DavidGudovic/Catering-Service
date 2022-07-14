@@ -27,7 +27,7 @@
                         <a class="" href='Pocetna?kategorija=${kategorija.getKategorijaID()}'>
                             <strong>${kategorija.getNazivKategorije()}</strong>
                         </a>
-                    </c:forEach>                   
+                    </c:forEach>       
                     </br>
                     <h5 class="bold pola-bordera">Slatke</h5>                    
                     <c:forEach var="slatKategorija" items="${slatkeKategorije}">
@@ -43,6 +43,7 @@
                     <c:forEach var="proizvod" items="${proizvodi}">     
                         <%@include file="/includes/proizvod.jsp" %>                    
                     </c:forEach>
+                   
                 </div>
                 <!-- KRAJ PRIKAZA PROIZVODA -->
             </div>

@@ -1,3 +1,18 @@
+/* Utility css */
+.Info-uspeh{
+    font-weight: bold;
+    padding-top: 1rem;
+}
+.Info-greska{
+    color: red;
+    font-weight: bold;
+    padding-top: 1rem;
+}
+.Info-con{
+    color: red;
+    font-weight: bold;
+    padding-top: 1rem;
+}
 .seperator-red{    /* div seperator anon*/
     border-left: 2px solid red;
 }
@@ -8,8 +23,31 @@
     background-color: #f6bd60;
 }
 .logo{
-    width:4%;
+    width: 4%;
+    min-width: 50px;
 }
+.greska{
+    color: red;
+    font-weight: bold;
+    padding-top: 1rem;
+}
+.uspeh{
+    color: #097969;
+    font-weight: bold;
+    padding-top: 1rem;
+}
+.forbidden{
+    background: #bc3f21;
+    display: grid;
+    place-items: center;
+    height:90vh;
+}
+
+.forbidden > p{
+    font-size:60px;
+    font-weight: bold;
+}
+/* Kraj utility-a */
 /** CSS ZA FOOTER, color, fiksiran, justify levo i desno elemente **/
 #footer{
     position: fixed;
@@ -35,19 +73,32 @@
 /** KRAJ CSSA ZA FOOTER**/
 /** CSS ZA REGISTER **/
 .reg-form{
-    display: flex;
-    margin-top: 2rem;
-    flex-direction: column;
+   display: grid;
+   grid-template-rows: auto;
+   place-items: center;
+   border: solid 2px #fff;
+   width: 80%;
+   padding: 2rem;
+   padding-left: 3rem;
+   padding-right: 3rem;
+   max-width: 500px;
+   --webkit-box-shadow: -6px 10px 19px 0px rgba(0,0,0,0.5);
+    box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.5);
+}
+.reg-form > input{
+    text-align: center;
+    width: 90%;
 }
 .reg-buttons{
     text-align: center;
 }
 .reg-center{
-    display: flex;
+    display: grid;
     min-height: 90vh;
     place-items:center;
 
 }
+
 /** KRAJ CSSA ZA REGISTER**/
 /** CSS ZA LOGIN BOX, centriran i shadow **/
 
@@ -60,12 +111,21 @@
     -webkit-box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.75);
     box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.75);
     padding: 5%;
-    margin: 13% 0 2rem 0;
+}
+.login-form > input{
+    text-align: center;
+}
+.login-form > strong{
+    text-align: center;
+    padding-bottom: 1rem;
+}
+.login-form > p{
+    text-align: center;
 }
 .login-cent{
-    display: flex;
+    display: grid;
     min-height: 90vh;
-    justify-content: center;
+    place-items: center;
 
 }
 .btn-login{
@@ -193,9 +253,7 @@ proizvod-body > p{
 .kategorije{
     display: inline-flex;
     flex-direction: column;
-    text-align: center;
 }
-
 .bold{  
     font-size: 30px;
 }
@@ -205,6 +263,11 @@ proizvod-body > p{
 .kategorije > a{
     color: #023047;
     font-size: 20px;
+    text-decoration: none;
+}
+.kategorije > a:hover{
+    color: #f6bd60;
+
 }
 /* KRAJ CSSA ZA KATEGORIJE */
 /* CSS ZA PROFIL */

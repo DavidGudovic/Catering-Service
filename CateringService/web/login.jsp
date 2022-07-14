@@ -14,14 +14,13 @@
         <div class="container-md">
             <%@include file="includes/navbar.jsp"%>
             <section>
-                <div class="container login-cent">
-                    
-                    <form class="login-form" action="Authenticate" method="post">
-                        ${msg}
-                        <strong> LOGIN </strong>
+                <div class="container login-cent">     
+                    <form class="login-form" action="Authenticate" method="post">     
+                        <strong class="bold"> LOGIN </strong>
                         <input type="text" placeholder="Korisnicko ime" name="loginKorisnicko" required></br>
                         <input type="password" placeholder="Password" name="password" required></br>
                         <input class="btn btn-info btn-login" type="submit" value="Uloguj se!">
+                        <p class="${msgTip}">${msg}</p>
                        </form>  
                 </div>
             </section>

@@ -57,8 +57,8 @@
                         ${User}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfil">
-                        <li><a class="dropdown-item" href="profil.jsp">Profil</a></li>
-                        <li><a class="dropdown-item" href="Profil?action=istorija">Narudžbine</a></li>
+                        <li><a class="dropdown-item" href="Profil?User=${User}&View=Profil">Profil</a></li>
+                        <li><a class="dropdown-item" href="Profil?User=${User}&View=Istorija">Narudžbine</a></li>
                         <li><a class="dropdown-item" href="Authenticate">Logout</a></li>
                     </ul>
                 </li>               
