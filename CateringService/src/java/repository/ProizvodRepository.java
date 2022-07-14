@@ -15,7 +15,7 @@ import java.util.List;
 public class ProizvodRepository implements IRepository<Proizvod> {
 
     @Override
-    public void dodaj(Proizvod t) {
+    public void dodaj(Proizvod zaDodavanje) {
         }
 
     
@@ -48,11 +48,11 @@ public class ProizvodRepository implements IRepository<Proizvod> {
     }
 
     @Override
-    public void izmeni(Proizvod oldT, Proizvod newT) {
+    public void izmeni(Proizvod stariT, Proizvod noviT) {
     }
 
     @Override
-    public void izbrisi(Proizvod t) {
+    public void izbrisi(Proizvod zaBrisanje) {
     }
 
     @Override

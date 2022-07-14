@@ -9,7 +9,7 @@ import java.util.List;
 public class IzvestajRepository implements IRepository<Izvestaj>{
 
     @Override
-    public void dodaj(Izvestaj t) {
+    public void dodaj(Izvestaj zaDodavanje) {
         }
 
     @Override
@@ -18,11 +18,11 @@ public class IzvestajRepository implements IRepository<Izvestaj>{
     }
 
     @Override
-    public void izmeni(Izvestaj oldT, Izvestaj newT) {
+    public void izmeni(Izvestaj stariT, Izvestaj noviT) {
         }
 
     @Override
-    public void izbrisi(Izvestaj t) {
+    public void izbrisi(Izvestaj zaBrisanje) {
         }
 
     @Override

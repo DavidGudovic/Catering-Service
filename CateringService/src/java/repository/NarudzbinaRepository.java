@@ -8,7 +8,7 @@ import java.util.List;
 public class NarudzbinaRepository implements IRepository<Narudzbina> {
 
     @Override
-    public void dodaj(Narudzbina t) {
+    public void dodaj(Narudzbina zaDodavanje) {
     }
 
     @Override
@@ -17,11 +17,11 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
     }
 
     @Override
-    public void izmeni(Narudzbina oldT, Narudzbina newT) {
+    public void izmeni(Narudzbina stariT, Narudzbina noviT) {
     }
 
     @Override
-    public void izbrisi(Narudzbina t) {
+    public void izbrisi(Narudzbina zaBrisanje) {
     }
 
     @Override

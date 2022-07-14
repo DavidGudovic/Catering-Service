@@ -14,18 +14,18 @@ public class KorisnikRepository implements IRepository<Korisnik> {
 
     @Override
     // Dodaje korisnika u bazu 
-    public void dodaj(Korisnik t) throws SQLException {
+    public void dodaj(Korisnik zaDodavanje) throws SQLException {
         Connection con = ConnectionManager.getConnection();
         String sql = "INSERT INTO `korisnici`(`KorisnickoIme`, `Ime`, `Prezime`, `Adresa`, `Poeni`, `PasswordHash`, `RolaID`)"
                 + " VALUES (?, ?, ?, ?, ?, ?, ?)";
         try ( PreparedStatement stmt = con.prepareStatement(sql)) {
-            stmt.setString(1, t.getKorisnickoIme());
-            stmt.setString(2, t.getIme());
-            stmt.setString(3, t.getPrezime());
-            stmt.setString(4, t.getAdresa());
-            stmt.setInt(5, t.getPoeni());
-            stmt.setString(6, t.getPassword());
-            stmt.setInt(7, t.getRola().getRolaID());
+            stmt.setString(1, zaDodavanje.getKorisnickoIme());
+            stmt.setString(2, zaDodavanje.getIme());
+            stmt.setString(3, zaDodavanje.getPrezime());
+            stmt.setString(4, zaDodavanje.getAdresa());
+            stmt.setInt(5, zaDodavanje.getPoeni());
+            stmt.setString(6, zaDodavanje.getPassword());
+            stmt.setInt(7, zaDodavanje.getRola().getRolaID());
 
             stmt.executeUpdate();
         } catch (SQLException sqle) {
@@ -72,19 +72,19 @@ public class KorisnikRepository implements IRepository<Korisnik> {
     }
 
     @Override
-    public void izmeni(Korisnik oldT, Korisnik newT) throws SQLException {
+    public void izmeni(Korisnik stariT, Korisnik noviT) throws SQLException {
         Connection con = ConnectionManager.getConnection();
         String sql = "UPDATE `korisnici` SET `Ime`=?,`Prezime`=?,`Adresa`=?,`Poeni`=?,`PasswordHash`=?,`RolaID`=? "
                 + "WHERE `KorisnickoIme` = ?";
         try ( PreparedStatement stmt = con.prepareStatement(sql)) {
-          stmt.setString(1,newT.getIme());
-          stmt.setString(2,newT.getPrezime());
-          stmt.setString(3,newT.getAdresa());
-          stmt.setInt(4,newT.getPoeni());
-          stmt.setString(5,newT.getPassword());
-          stmt.setInt(6,newT.getRola().getRolaID());
+          stmt.setString(1,noviT.getIme());
+          stmt.setString(2,noviT.getPrezime());
+          stmt.setString(3,noviT.getAdresa());
+          stmt.setInt(4,noviT.getPoeni());
+          stmt.setString(5,noviT.getPassword());
+          stmt.setInt(6,noviT.getRola().getRolaID());
           
-          stmt.setString(7, oldT.getKorisnickoIme());
+          stmt.setString(7, stariT.getKorisnickoIme());
           stmt.executeUpdate();
         } catch (SQLException sqle) {
             throw sqle;
@@ -94,8 +94,15 @@ public class KorisnikRepository implements IRepository<Korisnik> {
     }
 
     @Override
-    public void izbrisi(Korisnik objekat) {
-
+    public void izbrisi(Korisnik zaBrisanje) throws SQLException{
+       Connection con = ConnectionManager.getConnection();
+       String sql = "DELETE FROM `korisnici` WHERE `KorisnickoIme` = ?";
+       try(PreparedStatement stmt = con.prepareStatement(sql)){
+           stmt.setString(1,zaBrisanje.getKorisnickoIme());
+           stmt.executeUpdate();
+       } catch(SQLException sqle){
+           throw sqle;
+       }
     }
 
 }

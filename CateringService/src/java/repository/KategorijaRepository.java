@@ -14,7 +14,7 @@ import java.util.List;
 public class KategorijaRepository implements IRepository<Kategorija> {
 
     @Override
-    public void dodaj(Kategorija t) {
+    public void dodaj(Kategorija zaDodavanje) {
         
     }
 
@@ -38,12 +38,12 @@ public class KategorijaRepository implements IRepository<Kategorija> {
     }
 
     @Override
-    public void izmeni(Kategorija oldT, Kategorija newT) {
+    public void izmeni(Kategorija stariT, Kategorija noviT) {
         
     }
 
     @Override
-    public void izbrisi(Kategorija objekat) {
+    public void izbrisi(Kategorija zaBrisanje) {
         
     }
 
