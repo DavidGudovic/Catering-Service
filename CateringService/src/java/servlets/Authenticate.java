@@ -4,6 +4,7 @@ import beans.Korisnik;
 import beans.Rola;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +27,7 @@ public class Authenticate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
+        
         
         if (request.getParameter("loginKorisnicko") == null) {  //register request;  kreira korisnika i poziva registruj() nad njim 
             try {
@@ -38,10 +38,14 @@ public class Authenticate extends HttpServlet {
                         request.getParameter("password"),
                         0, new Rola(3, "Klijent"));
                 noviKorisnik.registruj();
-            } catch (SQLException sqle) {
-                request.setAttribute("msg", "GRESKA");
+            } catch (SQLIntegrityConstraintViolationException sql) {
+                request.setAttribute("msg", "Korisničko ime već postoji!");
+                request.getRequestDispatcher("registracija.jsp").forward(request, response);
+            } catch(SQLException sqle){
+                request.setAttribute("msg", "Greška pri konekciji, pokušajte ponovo");
                 request.getRequestDispatcher("registracija.jsp").forward(request, response);
             }
+            request.setAttribute("msgTip", "uspeh");
             request.setAttribute("msg", "Uspesna registracija, ulogujte se!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
             
@@ -55,10 +59,12 @@ public class Authenticate extends HttpServlet {
                     session.setAttribute("UserRola", loginKorisnik.getRola().getRolaID());
                     response.sendRedirect("Pocetna");
                 } else {
+                    request.setAttribute("msgTip", "greska");
                     request.setAttribute("msg", "Pogrešna šifra ili username");
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                 }                  
             } catch (SQLException sqle) {
+                request.setAttribute("msgTip", "greska");
                 request.setAttribute("msg", "Interna greška, pokušajte ponovo!");
             }
         }
