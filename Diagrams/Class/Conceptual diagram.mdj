@@ -2860,7 +2860,7 @@
 											"top": 431,
 											"width": 439.41650390625,
 											"height": 13,
-											"text": "+login(korisnickoIme, password): void",
+											"text": "+login(): bool",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2962,7 +2962,7 @@
 											"top": 521,
 											"width": 439.41650390625,
 											"height": 13,
-											"text": "+izmeniInformacije(korisnickoIme, ime, prezime, adresa, password): void",
+											"text": "+izmeniInformacije(Korisnik): bool",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3726,29 +3726,11 @@
 							"parameters": [
 								{
 									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NQ1kQ4nwWk=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NPyuw207KA="
-									},
-									"name": "korisnickoIme",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NQ1kg4oKXE=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NPyuw207KA="
-									},
-									"name": "password",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
 									"_id": "AAAAAAGB5NQ1kg4pkCs=",
 									"_parent": {
 										"$ref": "AAAAAAGB5NPyuw207KA="
 									},
-									"type": "void",
+									"type": "bool",
 									"direction": "return"
 								}
 							]
@@ -3767,7 +3749,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGB5NQ2FQ5pWwg="
 									},
-									"name": "program"
+									"name": "program",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -3775,7 +3758,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGB5NQ2FQ5pWwg="
 									},
-									"name": "kategorija"
+									"name": "kategorija",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -3914,44 +3898,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGB5NgHNSFPqRE="
 									},
-									"name": "korisnickoIme",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5Nhu9SHDzzg=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NgHNSFPqRE="
-									},
-									"name": "ime",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5Nhu9SHEY9U=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NgHNSFPqRE="
-									},
-									"name": "prezime",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5Nhu9SHFrXc=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NgHNSFPqRE="
-									},
-									"name": "adresa",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5Nhu9SHGoOM=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NgHNSFPqRE="
-									},
-									"name": "password",
-									"type": ""
+									"name": "Korisnik"
 								},
 								{
 									"_type": "UMLParameter",
@@ -3959,7 +3906,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGB5NgHNSFPqRE="
 									},
-									"type": "void",
+									"type": "bool",
 									"direction": "return"
 								}
 							]
