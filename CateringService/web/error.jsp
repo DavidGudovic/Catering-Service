@@ -1,9 +1,3 @@
-<%-- 
-    Document   : nedozvoljenPristup
-    Created on : Jul 14, 2022, 9:56:09 AM
-    Author     : dgudo
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
