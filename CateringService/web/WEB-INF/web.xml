@@ -16,6 +16,10 @@
         <servlet-name>Narucivanje</servlet-name>
         <servlet-class>servlets.Narucivanje</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Korpa</servlet-name>
+        <servlet-class>servlets.Korpa</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authenticate</servlet-name>
         <url-pattern>/Authenticate</url-pattern>
@@ -34,6 +38,10 @@
     <servlet-mapping>
         <servlet-name>Narucivanje</servlet-name>
         <url-pattern>/Narucivanje</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Korpa</servlet-name>
+        <url-pattern>/Korpa</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
