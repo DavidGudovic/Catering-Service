@@ -1,10 +1,11 @@
 package beans;
 
 import database.MD5;
+import java.io.Serializable;
 import java.sql.SQLException;
 import repository.KorisnikRepository;
 
-public class Korisnik {
+public class Korisnik implements Serializable{
 
     private String adresa;
     private String ime;
@@ -51,7 +52,7 @@ public class Korisnik {
     public void setPassword(String password) {
         this.password = MD5.getHash(password);
     }
-
+    
     public void setPasswordHash(String passwordHash) {
         this.password = passwordHash;
     }
@@ -168,8 +169,7 @@ public class Korisnik {
                     izmene.setRola(originalniKorisnik.getRola());
                     izmene.setPoeni(originalniKorisnik.getPoeni());
                 }  // else - Administrator je izmenio podatke
-                
-                
+                                
                 originalniKorisnik.setPasswordHash(izmene.getPassword());
                 originalniKorisnik.napuniPodatke(izmene);
                 repository.izmeni(this, originalniKorisnik);
@@ -194,5 +194,12 @@ public class Korisnik {
         }catch(SQLException sqle){
             return false;
         }
+    }
+
+    void dodajPoene(int poeni) throws SQLException{
+        KorisnikRepository repository = new KorisnikRepository();
+        Korisnik zaBazu = repository.getJedan(this);
+        zaBazu.setPoeni(zaBazu.getPoeni() + poeni);
+        repository.izmeni(this, zaBazu);
     }
 }
