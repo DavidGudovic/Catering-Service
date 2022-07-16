@@ -5,7 +5,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ketering Služba</title>
-
+        <link rel="icon" href="./img/svg/minilogo.svg" type="image/icon type">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="./css/customStyles.css"/>
 
@@ -35,6 +35,9 @@
                     </c:if>
                     <c:if test = "${param.View == 'Izbrisi'}">
                         <%@include file="includes/izbrisi.jsp"%>
+                    </c:if>
+                    <c:if test = "${param.View == 'Poruka'}">
+                        <%@include file="includes/poruka.jsp"%>
                     </c:if>
             </section>
             <%@include file="includes/footer.jsp"%>

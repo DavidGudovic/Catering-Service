@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ketering Služba</title>
-
+        <link rel="icon" href="./img/svg/minilogo.svg" type="image/icon type">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="./css/customStyles.css"/>
 

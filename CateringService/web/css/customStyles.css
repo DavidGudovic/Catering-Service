@@ -1,4 +1,17 @@
 /* Utility css */
+.poruka{
+    background: #219ebc; /* #bc3f21; */
+    display: grid;
+    place-items: center;
+}
+.poruka > #hvala{
+    font-size:40px;
+    font-weight: bold;
+}
+.poruka > p{
+     text-align:center;  
+}
+
 .Info-uspeh{
     font-weight: bold;
     padding-top: 1rem;
@@ -180,6 +193,7 @@
     -webkit-box-shadow: -6px 10px 19px 0px rgba(0,0,0,0.35);
     box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.35);
     background-color: #fff;
+    border-radius: 0.5rem;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows:200px auto auto;
@@ -334,7 +348,7 @@ proizvod-body > p{
 /* KRAJ CCSSA ZA PROFIL */
 /* CSS ZA FORMU BRISANJA */
 .upozorenje{
-    background: #bc3f21;
+    background: #219ebc; /* #bc3f21; */
     display: grid;
     place-items: center;
 }
@@ -347,7 +361,6 @@ proizvod-body > p{
     padding: 2rem;
     padding-left: 3rem;
     padding-right: 3rem;
-    place-items: center;
 }
 .form-brisanje > #hvala{
     font-size:40px;
@@ -355,7 +368,7 @@ proizvod-body > p{
     text-align:center;
 }
 .Del-greska{
-    color: #8ecae6;
+    color: #bc3f21;/*#8ecae6;*/
     font-weight: bold;
     padding-top: 1rem;
 }
@@ -364,3 +377,88 @@ proizvod-body > p{
     margin: 1rem;
     width: 60%;
 }
+/* KRAJ FORME ZA BRISANJE */
+
+/* CSS ZA KORPU */
+.korpa-prikaz{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 130px;
+    background-color: #219ebc;
+    padding: 1rem;
+    padding-top: 0;
+    text-align:center;
+    
+}
+.prazna-korpa{
+    display: grid;
+    background-color: #219ebc;
+    padding: 1rem;
+    place-items: center;
+}
+.prazna-korpa > p{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    
+}
+.korpa-prikaz > h3{
+    padding: 3rem;
+}
+.stavke-prikaz{
+    grid-row: 2 / span 3;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-auto-rows: 150px;
+    overflow: auto;
+    height: 60vh;
+    width:100%;
+
+    
+}
+.korpa-stavka{
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    background-color: #D3D3D3;
+    border: solid 2px #fff;
+    width: 100%;
+    padding: 2rem;
+}
+
+.stavka-total{
+    display: grid;
+    place-items:center;
+    font-weight: bold;
+}
+.total{
+    text-align:end;
+}
+.btn-korpa{
+   margin-bottom: 1rem;
+   margin-right: 2rem;
+   max-height: 3rem;
+   text-align: end;
+}
+.poeni-korpa{
+    width: 12rem;
+    max-height: 3rem;
+}
+.korpa-footer{
+    display: inline-flex;
+    margin-right: 2.1rem;
+    font-weight: bold;
+    font-size: 2rem;
+    padding-top:1rem;
+    height: max-content;
+    justify-content: space-between;
+}
+/* KRAJ CSSA ZA KORPU */
+.istorija-prikaz{
+    display: grid;
+    place-items: center;
+    background-color: #219ebc;
+}
+/* CSS ZA ISTORIJU */ 
+/* KRAJ CSSA ZA ISTORIJU */
