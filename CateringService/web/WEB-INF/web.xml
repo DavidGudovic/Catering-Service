@@ -12,6 +12,10 @@
         <servlet-name>Pocetna</servlet-name>
         <servlet-class>servlets.Pocetna</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Narucivanje</servlet-name>
+        <servlet-class>servlets.Narucivanje</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authenticate</servlet-name>
         <url-pattern>/Authenticate</url-pattern>
@@ -27,7 +31,10 @@
     <welcome-file-list>
         <welcome-file>Pocetna</welcome-file>
     </welcome-file-list>
-    
+    <servlet-mapping>
+        <servlet-name>Narucivanje</servlet-name>
+        <url-pattern>/Narucivanje</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

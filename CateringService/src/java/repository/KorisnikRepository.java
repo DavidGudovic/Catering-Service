@@ -71,6 +71,7 @@ public class KorisnikRepository implements IRepository<Korisnik> {
         return null;
     }
 
+    // Menja red u bazi sa stariT.KorisnickoIme informacijama iz noviT
     @Override
     public void izmeni(Korisnik stariT, Korisnik noviT) throws SQLException {
         Connection con = ConnectionManager.getConnection();
@@ -92,7 +93,8 @@ public class KorisnikRepository implements IRepository<Korisnik> {
             con.close();
         }
     }
-
+    
+    //Brise red u bazi sa korisnickim imenom iz ZaBrisanje
     @Override
     public void izbrisi(Korisnik zaBrisanje) throws SQLException{
        Connection con = ConnectionManager.getConnection();

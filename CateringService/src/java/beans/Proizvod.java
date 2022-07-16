@@ -1,9 +1,10 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Proizvod {
+public class Proizvod implements Serializable{
 
     private int proizvodID;
     private int cenaPoPorciji;
@@ -13,6 +14,9 @@ public class Proizvod {
     private String slika;  // relative path do slike.
 
     public Proizvod() {
+    }
+    public Proizvod(int proizvodID) {  //Konstruktor za pretrage
+        this.proizvodID = proizvodID;
     }
 
     public Proizvod(int proizvodID, int cenaPoPorciji, Kategorija kategorija, String nazivProizvoda, String opis, String slika) {
@@ -72,7 +76,8 @@ public class Proizvod {
         this.slika = "./img/" + slika + ".jpg";
     }
 
-    //STATIC metode
+    // Sistemske operacije
+    
     // Vraca listu proizvoda filtriranih po kategoriji ili po programu (in 'slani' 'slatki')
     // Ako se pretrazuje po programu( != null ) kategorija ce biti ignorisana, u pozivima sam stavljao vrednost -1 simbolicno
     public static List<Proizvod> filtrirajPonudu(List<Proizvod> proizvodi, String trazeniProgram, int trazenaKategorija) {
