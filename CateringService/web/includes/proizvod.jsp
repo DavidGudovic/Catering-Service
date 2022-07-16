@@ -15,7 +15,7 @@
 
             <div class="row">            
                 <div class="col-6"> 
-                    <input class="kolicina-input" placeholder="Kolicina" type="number"  name="kolicina" min="0" required>
+                    <input class="kolicina-input" placeholder="Kolicina" type="number"  name="kolicina" min="1" required>
                     <input type="hidden" name="proizvodID" value="${proizvod.getProizvodID()}")>
                 </div>
                 <div class="col-6">
