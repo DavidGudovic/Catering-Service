@@ -1,9 +1,24 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jul 16, 2022 at 07:06 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
--- Database: `catering`  SAMO STRUKTURA
+-- Database: `catering`
 --
 
 -- --------------------------------------------------------
@@ -46,6 +61,14 @@ CREATE TABLE `korisnici` (
   `RolaID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Triggers `korisnici`
+--
+DELIMITER $$
+CREATE TRIGGER `IzbrisiNarudzbe` BEFORE DELETE ON `korisnici` FOR EACH ROW UPDATE narudzbine SET narudzbine.KorisnickoIme = 'izbrisani' WHERE narudzbine.KorisnickoIme = OLD.KorisnickoIme
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -58,7 +81,7 @@ CREATE TABLE `narudzbine` (
   `DatumKreiranja` date NOT NULL,
   `DatumOstvarivanja` date DEFAULT NULL,
   `Ostvarena` int(11) NOT NULL,
-  `UkupnaCena` float NOT NULL,
+  `UkupnaCena` int(11) NOT NULL,
   `Popust` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -76,6 +99,14 @@ CREATE TABLE `proizvodi` (
   `CenaPoPorciji` int(11) NOT NULL,
   `KategorijaID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Triggers `proizvodi`
+--
+DELIMITER $$
+CREATE TRIGGER `IzbrisiStavke` BEFORE DELETE ON `proizvodi` FOR EACH ROW UPDATE stavkenarudzbine SET `ProizvodID` = 0 WHERE OLD.`ProizvodID` = stavkenarudzbine.ProizvodID
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -97,7 +128,6 @@ CREATE TABLE `role` (
 CREATE TABLE `stavkenarudzbine` (
   `ProizvodID` int(11) NOT NULL,
   `NarudzbinaID` int(11) NOT NULL,
-  `KorisnickoIme` varchar(50) NOT NULL,
   `Kolicina` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -129,7 +159,7 @@ ALTER TABLE `korisnici`
 -- Indexes for table `narudzbine`
 --
 ALTER TABLE `narudzbine`
-  ADD PRIMARY KEY (`NarudzbinaID`,`KorisnickoIme`),
+  ADD PRIMARY KEY (`NarudzbinaID`) USING BTREE,
   ADD KEY `FK_Narudzbina_Korisnik` (`KorisnickoIme`);
 
 --
@@ -149,8 +179,7 @@ ALTER TABLE `role`
 -- Indexes for table `stavkenarudzbine`
 --
 ALTER TABLE `stavkenarudzbine`
-  ADD PRIMARY KEY (`ProizvodID`,`NarudzbinaID`,`KorisnickoIme`),
-  ADD KEY `FK_Stavke_Narudzbe_Korisnik` (`KorisnickoIme`),
+  ADD PRIMARY KEY (`ProizvodID`,`NarudzbinaID`) USING BTREE,
   ADD KEY `FK_Stavke_Narudzbe` (`NarudzbinaID`);
 
 --
@@ -220,7 +249,9 @@ ALTER TABLE `proizvodi`
 --
 ALTER TABLE `stavkenarudzbine`
   ADD CONSTRAINT `FK_Stavke_Narudzbe` FOREIGN KEY (`NarudzbinaID`) REFERENCES `narudzbine` (`NarudzbinaID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_Stavke_Narudzbe_Korisnik` FOREIGN KEY (`KorisnickoIme`) REFERENCES `narudzbine` (`KorisnickoIme`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_Stavke_Proizvodi` FOREIGN KEY (`ProizvodID`) REFERENCES `proizvodi` (`ProizvodID`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
