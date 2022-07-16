@@ -57,6 +57,7 @@ public class Authenticate extends HttpServlet {
                 if (loginKorisnik.login()) {
                     session.setAttribute("User", loginKorisnik.getKorisnickoIme());
                     session.setAttribute("UserRola", loginKorisnik.getRola().getRolaID());
+                    session.setAttribute("Poeni", loginKorisnik.getPoeni());
                     response.sendRedirect("Pocetna");
                 } else {
                     request.setAttribute("msgTip", "greska");

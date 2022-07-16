@@ -44,7 +44,10 @@ public class Profil extends HttpServlet {
                 case "Korpa":  // Prikaz trenutne korpe TODO/Novi Controller?
                     request.getRequestDispatcher("profil.jsp").forward(request, response);
                     break;
-                case "Izbrisi":  // Prikaz trenutne korpe TODO/Novi Controller?
+                case "Izbrisi":  // Prikaz strane za brisanje
+                    request.getRequestDispatcher("profil.jsp").forward(request, response);
+                    break;
+                case "Poruka":  // Prikaz poruke o ostvarenoj narudzbi i poenima
                     request.getRequestDispatcher("profil.jsp").forward(request, response);
                     break;
                 default:   // 403 Forbidden
@@ -81,24 +84,21 @@ public class Profil extends HttpServlet {
             }
             // Poziva svoju doGet metodu za prikaz izmenjenih podataka ili greske
             response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Profil&Status=" + status);
-        } else{  // Brisanje
-            Korisnik zaBrisanje = new Korisnik(session.getAttribute("User").toString(),request.getParameter("password"));
-            
-            if(zaBrisanje.izbrisiProfil())
-            {
+        } else {  // Brisanje
+            Korisnik zaBrisanje = new Korisnik(session.getAttribute("User").toString(), request.getParameter("password"));
+            if (zaBrisanje.izbrisiProfil()) {
                 session.invalidate();
                 response.sendRedirect("Pocetna");
             } else { // pogresna sifra
                 response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Izbrisi&Status=greska");
             }
-            
-            
+
         }
     }
 
     @Override
     public String getServletInfo() {
-        return "Hendluje pozive za prikaz informacija, istoriju porudzbina i korpe";
+        return "Hendluje pozive za prikaz informacija, istoriju porudzbina i brisanja profila";
     }
 
 }
