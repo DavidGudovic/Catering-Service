@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="./css/customStyles.css"/>
 
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/scripts.js"></script>
     </head>
     <body>
         <div class="container-md">
