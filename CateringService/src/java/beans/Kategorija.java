@@ -1,9 +1,10 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Kategorija {
+public class Kategorija implements Serializable{
     private String program;
     private String nazivKategorije;
     private int kategorijaID;

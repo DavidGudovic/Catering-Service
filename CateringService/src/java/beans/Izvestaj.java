@@ -1,6 +1,8 @@
 package beans;
 
-public class Izvestaj {
+import java.io.Serializable;
+
+public class Izvestaj implements Serializable{
     private String tekstIzvestaja;
 
     public Izvestaj() {
