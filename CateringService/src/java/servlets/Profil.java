@@ -41,7 +41,7 @@ public class Profil extends HttpServlet {
                 case "Istorija":  // Prikaz istorije trgovine TODO
                     request.getRequestDispatcher("profil.jsp").forward(request, response);
                     break;
-                case "Korpa":  // Prikaz trenutne korpe TODO/Novi Controller?
+                case "Korpa":
                     request.getRequestDispatcher("profil.jsp").forward(request, response);
                     break;
                 case "Izbrisi":  // Prikaz strane za brisanje

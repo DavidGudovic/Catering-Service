@@ -41,7 +41,7 @@ public class KorisnikRepository implements IRepository<Korisnik> {
         Connection con = ConnectionManager.getConnection();
         String sql = "SELECT `KorisnickoIme`, `Ime`, `Prezime`, `Adresa`, `Poeni`, `PasswordHash`, korisnici.`RolaID`, role.`NazivRole` "
                 + "FROM `korisnici` INNER JOIN `role` ON korisnici.RolaID = role.RolaID "
-                + "WHERE `KorisnickoIme` = ?";
+                + "WHERE `KorisnickoIme` = ? AND `KorisnickoIme` != 'izbrisani'";
 
         try ( PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, trazeni.getKorisnickoIme());

@@ -14,7 +14,7 @@ public class Narudzbina implements Serializable {
     private Korisnik korisnik;
     private int narudzbinaID;
     private int popust;
-    private float ukupnaCena;
+    private int ukupnaCena;
     private HashMap<Proizvod, Integer> stavkeNarudzbine; // cuva kolicinu proizvoda 
 
     //constructors
@@ -22,7 +22,7 @@ public class Narudzbina implements Serializable {
         stavkeNarudzbine = new HashMap<>();
     }
 
-    public Narudzbina(String datumKreiranja, String datumOstvarivanja, Korisnik korisnik, int narudzbinaID, int popust, float UkupnaCena, HashMap<Proizvod, Integer> stavkeNarudzbine) {
+    public Narudzbina(String datumKreiranja, String datumOstvarivanja, Korisnik korisnik, int narudzbinaID, int popust, int UkupnaCena, HashMap<Proizvod, Integer> stavkeNarudzbine) {
         if (datumKreiranja.equals("sada")) {
             Date d = new Date();
             this.datumKreiranja = d.toString();
@@ -78,11 +78,11 @@ public class Narudzbina implements Serializable {
         this.popust = popust;
     }
 
-    public float getUkupnaCena() {
+    public int getUkupnaCena() {
         return ukupnaCena;
     }
 
-    public void setUkupnaCena(float UkupnaCena) {
+    public void setUkupnaCena(int UkupnaCena) {
         this.ukupnaCena = UkupnaCena;
     }
 
@@ -103,13 +103,32 @@ public class Narudzbina implements Serializable {
                 return;
             }
         }
-
         // Ako je novi proizvod puni ga relevantnim podacima iz baze
         ProizvodRepository repository = new ProizvodRepository();
         try {
             stavkeNarudzbine.put(repository.getJedan(p), kolicina);
         } catch (SQLException sqle) {
             throw sqle;
+        }
+    }
+
+    // Menja kolicinu zadatog proizvoda  po ID-u
+    public void izmeniKolicinu(int proizvodID, int novaKolicina) {
+        for (Proizvod prod : stavkeNarudzbine.keySet()) {
+            if (prod.getProizvodID() == proizvodID) {
+                stavkeNarudzbine.put(prod, novaKolicina);
+                break;
+            }
+        }
+    }
+
+    //ukljanja zadati proizvod iz hashmape po ID-u
+    public void ukloniProizvod(int proizvodID) {
+        for (Proizvod prod : stavkeNarudzbine.keySet()) {
+            if (prod.getProizvodID() == proizvodID) {
+                stavkeNarudzbine.remove(prod);
+                break;
+            }
         }
     }
 
@@ -121,19 +140,18 @@ public class Narudzbina implements Serializable {
         }
         return ukupno;
     }
-    
-    
+
     //Predaje this repositoriju za dodavanje narudzbe u bazu i poziva dodavanje ostvarenih poena nad korisnikom koji je narucio 
     public void naruci() throws SQLException {
         NarudzbinaRepository repository = new NarudzbinaRepository();
         try {
             repository.dodaj(this);
-            this.korisnik.dodajPoene(Math.round(this.ukupnaCena) / 1000);
+            this.korisnik.dodajPoene(Math.round(this.ukupnaCena) / 2000);
         } catch (SQLException sqle) {
             throw sqle;
         }
     }
-    
+
     //Racuna popust od poena 
     public void izracunajPopust(int poeni) {
         if (poeni > 0) {
@@ -144,4 +162,5 @@ public class Narudzbina implements Serializable {
             this.setUkupnaCena(this.getTotalBezPopusta());
         }
     }
+
 }

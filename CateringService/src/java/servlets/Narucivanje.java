@@ -35,7 +35,7 @@ public class Narucivanje extends HttpServlet {
 
         switch (request.getParameter("zahtev")) {
             case "Dodaj u korpu!":
-                // Dodaj
+                // Dodaj artikal u korpu
                 Proizvod zaDodavanje = new Proizvod(Integer.parseInt(request.getParameter("proizvodID")));
                 if (session.getAttribute("Narudzbina") != null) { // ako se dodaje u postojecu narudzbu
                     narudzbina = (Narudzbina) session.getAttribute("Narudzbina");
@@ -48,11 +48,13 @@ public class Narucivanje extends HttpServlet {
                     narudzbina.dodajProizvod(zaDodavanje, Integer.parseInt(request.getParameter("kolicina")));
                 } catch (SQLException sqle) {
                     response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Poruka&Status=greska");
+                    return;
                 }
                 session.setAttribute("Narudzbina", narudzbina);
                 response.sendRedirect("Pocetna");
                 break;
             case "Naruči":
+                // Dodaj narudzbu u bazu podataka
                 narudzbina = (Narudzbina) session.getAttribute("Narudzbina");
                 if (!request.getParameter("poeni").equals("")) {
                     narudzbina.izracunajPopust(Integer.valueOf(request.getParameter("poeni")));
@@ -64,6 +66,7 @@ public class Narucivanje extends HttpServlet {
                     narudzbina.naruci();
                 } catch (SQLException sqle) {
                     response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Poruka&Status=greska&");
+                    return;
                 }
                 int dobijeniPoeni = (int) (narudzbina.getUkupnaCena() / 1000);
                 session.removeAttribute("Narudzbina");
@@ -72,6 +75,7 @@ public class Narucivanje extends HttpServlet {
                 break;
 
             case "Otkaži":
+                //Izbrisi narudzbu iz sesije
                 session.removeAttribute("Narudzbina");
                 response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Korpa");
                 break;

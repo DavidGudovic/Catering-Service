@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import repository.KorisnikRepository;
 
-public class Korisnik implements Serializable{
+public class Korisnik implements Serializable {
 
     private String adresa;
     private String ime;
@@ -52,7 +52,7 @@ public class Korisnik implements Serializable{
     public void setPassword(String password) {
         this.password = MD5.getHash(password);
     }
-    
+
     public void setPasswordHash(String passwordHash) {
         this.password = passwordHash;
     }
@@ -156,7 +156,7 @@ public class Korisnik implements Serializable{
         this.rola = puni.rola;
         this.poeni = puni.poeni;
     }
-    
+
     //Proverava da li je korisnik uneo tacnu sifru,
     //ako jeste salje izmenjene podatke repositoriju za promenu u bazi
     public boolean izmeniInformacije(Korisnik izmene) throws SQLException {
@@ -169,11 +169,11 @@ public class Korisnik implements Serializable{
                     izmene.setRola(originalniKorisnik.getRola());
                     izmene.setPoeni(originalniKorisnik.getPoeni());
                 }  // else - Administrator je izmenio podatke
-                                
+
                 originalniKorisnik.setPasswordHash(izmene.getPassword());
                 originalniKorisnik.napuniPodatke(izmene);
                 repository.izmeni(this, originalniKorisnik);
-                
+
                 return true;
             } else {
                 return false;  // pogresan password;
@@ -184,22 +184,28 @@ public class Korisnik implements Serializable{
     }
 
     public boolean izbrisiProfil() {
-        KorisnikRepository repository = new KorisnikRepository(); 
-        try{
+        KorisnikRepository repository = new KorisnikRepository();
+        try {
             Korisnik korisnik = repository.getJedan(this);
-            if(korisnik.getPassword().equals(this.password)){
+            if (korisnik.getPassword().equals(this.password)) {
                 repository.izbrisi(korisnik);
                 return true;
-            } return false;
-        }catch(SQLException sqle){
+            }
+            return false;
+        } catch (SQLException sqle) {
             return false;
         }
     }
 
-    void dodajPoene(int poeni) throws SQLException{
+    void dodajPoene(int poeni) throws SQLException {
         KorisnikRepository repository = new KorisnikRepository();
-        Korisnik zaBazu = repository.getJedan(this);
-        zaBazu.setPoeni(zaBazu.getPoeni() + poeni);
-        repository.izmeni(this, zaBazu);
+        try {
+            Korisnik zaBazu = repository.getJedan(this);
+            zaBazu.setPoeni(zaBazu.getPoeni() + poeni);
+            repository.izmeni(this, zaBazu);
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
+
     }
 }

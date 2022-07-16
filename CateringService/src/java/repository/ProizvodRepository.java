@@ -24,7 +24,7 @@ public class ProizvodRepository implements IRepository<Proizvod> {
         List<Proizvod> svi = new ArrayList<>();
         String sql = "SELECT `ProizvodID`, `NazivProizvoda`, `Opis`, `Slika`, `CenaPoPorciji`, proizvodi.`KategorijaID`, `NazivKategorije`, `Program`"
                 + " FROM `proizvodi` INNER JOIN `kategorije` ON proizvodi.KategorijaID = kategorije.KategorijaID"
-                + " WHERE 1";
+                + " WHERE 1 AND `ProizvodID` != 0";
 
         try ( PreparedStatement stmt = con.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();

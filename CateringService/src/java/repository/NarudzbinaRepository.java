@@ -20,8 +20,8 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
         Connection con = ConnectionManager.getConnection();
         String sqlNarudzbina = "INSERT INTO `narudzbine`( `KorisnickoIme`, `DatumKreiranja`, `DatumOstvarivanja`, `Ostvarena`, `UkupnaCena`, `Popust`) "
                 + "VALUES (?,?,?,?,?,?)";
-        String sqlStavke = "INSERT INTO `stavkenarudzbine`(`ProizvodID`, `NarudzbinaID`, `KorisnickoIme`, `Kolicina`)"
-                + " VALUES (?,?,?,?)";
+        String sqlStavke = "INSERT INTO `stavkenarudzbine`(`ProizvodID`, `NarudzbinaID`, `Kolicina`)"
+                + " VALUES (?,?,?)";
         Date trenutniDatum = new Date();
         java.sql.Date sqlDate = new java.sql.Date(trenutniDatum.getTime());
         //Dodavanje narudzbe
@@ -30,7 +30,7 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
             stmt.setDate(2, sqlDate);
             stmt.setDate(3, null);
             stmt.setInt(4, 0);
-            stmt.setFloat(5, zaDodavanje.getUkupnaCena());
+            stmt.setInt(5, zaDodavanje.getUkupnaCena());
             stmt.setInt(6, zaDodavanje.getPopust());
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
@@ -45,8 +45,7 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
         for(HashMap.Entry<Proizvod, Integer> stavka : zaDodavanje.getStavkeNarudzbine().entrySet()){
             stmt.setInt(1, stavka.getKey().getProizvodID());
             stmt.setInt(2, zaDodavanje.getNarudzbinaID());
-            stmt.setString(3, zaDodavanje.getKorisnik().getKorisnickoIme());
-            stmt.setInt(4, stavka.getValue());
+            stmt.setInt(3, stavka.getValue());
             stmt.addBatch();
         }
         stmt.executeBatch();
