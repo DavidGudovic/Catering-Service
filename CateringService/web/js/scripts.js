@@ -1,10 +1,5 @@
-//const slike = document.querySelectorAll('img');  
-
-//slike.forEach(img => {
-  //  img.addEventListener('error', function handleError() {
-    //    const defaultSlika =
-      //          './img/svg/minilogo.svg';
-
-        //img.src = defaultSlika;
-   // });
-//});
+// Skripta menja link buttona za menjanje kolicine u korpi
+function updateUrl(element){
+            var link = document.getElementById("a" + element.id);
+            link.setAttribute("href", "Korpa?Zahtev=Izmeni&Proizvod="+ element.id +"&Kolicina=" + element.value);  
+}
