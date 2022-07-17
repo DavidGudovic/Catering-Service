@@ -21,7 +21,7 @@
                         <img src="./img/svg/posluzaonik-cropped.svg" alt="Posluzaonik"/>
                         <h2><a class="profil-link" href="Profil?User=${User}&View=Profil">Informacije</a></h2>
                         <h2><a class="profil-link" href="Profil?User=${User}&View=Korpa">Korpa</a></h2>
-                        <h2><a class="profil-link" href="Profil?User=${User}&View=Istorija">Istorija</a></h2>
+                        <h2><a class="profil-link" href="Istorija">Istorija</a></h2>
                         <h2><a class="profil-link" href="Profil?User=${User}&View=Izbrisi">Izbriši profil</a></h2>
                         <img src="./img/svg/tacna-cropped.svg" alt="ruka"/>
                     </div>
@@ -31,15 +31,13 @@
                     <c:if test = "${param.View == 'Korpa'}">
                         <%@include file="includes/korpa.jsp"%>
                     </c:if>
-                    <c:if test = "${param.View == 'Istorija'}">
-                        <%@include file="includes/istorija.jsp"%>
-                    </c:if>
                     <c:if test = "${param.View == 'Izbrisi'}">
                         <%@include file="includes/izbrisi.jsp"%>
                     </c:if>
                     <c:if test = "${param.View == 'Poruka'}">
                         <%@include file="includes/poruka.jsp"%>
                     </c:if>
+                        
             </section>
             <%@include file="includes/footer.jsp"%>
         </div>
