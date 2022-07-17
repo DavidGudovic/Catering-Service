@@ -131,7 +131,18 @@ public class Narudzbina implements Serializable {
         } catch (SQLException sqle) {
             throw sqle;
         }
+    }
 
+    public void otkaziNarudzbinu(int NarudzbinaID) throws SQLException {
+        NarudzbinaRepository repository = new NarudzbinaRepository();
+        try {
+            this.setNarudzbinaID(NarudzbinaID);
+            Narudzbina zaIzmenu = repository.getJedan(this);
+            zaIzmenu.setStatus(2);
+            repository.izmeni(this, zaIzmenu);
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
     }
 
     // Dodaje proizvod u hashmapu

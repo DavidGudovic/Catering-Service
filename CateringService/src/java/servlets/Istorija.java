@@ -36,6 +36,15 @@ public class Istorija extends HttpServlet {
         switch (request.getParameter("Zahtev")) {
             case "Otkazi":
                 // Otkazivanje narudzbine sa statusom U Pripremi
+                Narudzbina zaOtkazivanje = new Narudzbina();
+                try{
+                    zaOtkazivanje.otkaziNarudzbinu(Integer.valueOf(request.getParameter("Narudzba")));
+                    response.sendRedirect("Istorija?Zahtev=Pregled");
+                } catch(SQLException sqle){
+                    request.setAttribute("msg", sqle.getMessage());
+                    request.getRequestDispatcher("istorija.jsp").forward(request, response);
+                }
+                
                 break;
             case "Ponovi":
                 // Kopiranje stare narudzbe u korpu

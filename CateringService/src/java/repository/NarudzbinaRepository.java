@@ -127,8 +127,34 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
     }
 
     @Override
-    public void izmeni(Narudzbina stariT, Narudzbina noviT) {
-        throw new UnsupportedOperationException();
+    public void izmeni(Narudzbina stariT, Narudzbina noviT) throws SQLException{
+        Connection con = ConnectionManager.getConnection();
+        String sql = "UPDATE `narudzbine` "
+                + "SET `NarudzbinaID`=?,`KorisnickoIme`=?,`DatumKreiranja`=?,`DatumOstvarivanja`=?,`Status`=?,`UkupnaCena`=?,`Popust`=? "
+                + "WHERE NarudzbinaID = ?";
+
+        try(PreparedStatement stmt = con.prepareStatement(sql)){
+            stmt.setInt(1, noviT.getNarudzbinaID());
+            stmt.setString(2, noviT.getKorisnik().getKorisnickoIme());
+            stmt.setDate(3, java.sql.Date.valueOf(noviT.getDatumKreiranja()));
+            
+            if(noviT.getDatumOstvarivanja().equals("")){
+                stmt.setDate(4, null);
+            } else{
+                stmt.setDate(4, java.sql.Date.valueOf(noviT.getDatumOstvarivanja()));
+            }
+            stmt.setInt(5, noviT.getStatus());
+            stmt.setInt(6, noviT.getUkupnaCena());
+            stmt.setInt(7, noviT.getPopust());
+            
+            stmt.setInt(8, stariT.getNarudzbinaID());
+            
+            stmt.executeUpdate();        
+        }catch(SQLException sqle){
+            throw sqle;
+        }finally{
+            con.close();
+        }
     }
 
     @Override
