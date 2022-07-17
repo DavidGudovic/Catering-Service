@@ -13,6 +13,7 @@ public class Narudzbina implements Serializable {
 
     private String datumKreiranja;
     private String datumOstvarivanja;
+    private int status; // 0- Priprema, 1- Ostvarena 2- Otkazana
     private Korisnik korisnik;
     private int narudzbinaID;
     private int popust;
@@ -24,7 +25,7 @@ public class Narudzbina implements Serializable {
         stavkeNarudzbine = new HashMap<>();
     }
 
-    public Narudzbina(String datumKreiranja, String datumOstvarivanja, Korisnik korisnik, int narudzbinaID, int popust, int UkupnaCena, HashMap<Proizvod, Integer> stavkeNarudzbine) {
+    public Narudzbina(String datumKreiranja, String datumOstvarivanja, int status, Korisnik korisnik, int narudzbinaID, int popust, int UkupnaCena, HashMap<Proizvod, Integer> stavkeNarudzbine) {
         if (datumKreiranja.equals("sada")) {
             Date d = new Date();
             this.datumKreiranja = d.toString();
@@ -32,6 +33,7 @@ public class Narudzbina implements Serializable {
             this.datumKreiranja = datumKreiranja;
         }
         this.datumOstvarivanja = datumOstvarivanja;
+        this.status = status;
         this.korisnik = korisnik;
         this.narudzbinaID = narudzbinaID;
         this.popust = popust;
@@ -54,6 +56,14 @@ public class Narudzbina implements Serializable {
 
     public void setDatumOstvarivanja(String datumOstvarivanja) {
         this.datumOstvarivanja = datumOstvarivanja;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public Korisnik getKorisnik() {
@@ -97,20 +107,33 @@ public class Narudzbina implements Serializable {
     }
 
     // Sistemske operacije
-    
     //STATIC metode
-    
-    public static List<Narudzbina> prikazNarudzbiKorisnika(Korisnik korisnik) throws SQLException{
+    public static List<Narudzbina> prikazNarudzbiKorisnika(Korisnik korisnik) throws SQLException {
         NarudzbinaRepository narudzbinaRepository = new NarudzbinaRepository();
         List<Narudzbina> rezultat = new ArrayList<>();
-        try{
-            rezultat = narudzbinaRepository.getSveOdKorisnika(korisnik);                        
-        }catch(SQLException sqle){
+        try {
+            rezultat = narudzbinaRepository.getSveOdKorisnika(korisnik);
+        } catch (SQLException sqle) {
             throw sqle;
         }
         return rezultat;
     }
-    
+
+    // NON-STATIC metode
+    //Dobija i setuje podatke iz baze potrebne da se stavki kopija narudzbe u trenutnu korpu korisnika
+    public void ponoviNarudzbu(int NarudzbinaID) throws SQLException {
+        NarudzbinaRepository repository = new NarudzbinaRepository();
+        try {
+            this.setNarudzbinaID(NarudzbinaID);
+            Narudzbina zaPonavljanje = repository.getJedan(this);
+            this.stavkeNarudzbine = zaPonavljanje.getStavkeNarudzbine();
+            this.korisnik = zaPonavljanje.getKorisnik();
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
+
+    }
+
     // Dodaje proizvod u hashmapu
     public void dodajProizvod(Proizvod p, int kolicina) throws SQLException {
         for (Proizvod prod : stavkeNarudzbine.keySet()) {
@@ -168,7 +191,7 @@ public class Narudzbina implements Serializable {
         }
     }
 
-    //Racuna popust od poena 
+    //Setuje popust, racuna i setuje ukupnu cenu sa popustom objekta nad kojim je pozvana.
     public void izracunajPopust(int poeni) {
         if (poeni > 0) {
             this.setPopust(poeni * 10);

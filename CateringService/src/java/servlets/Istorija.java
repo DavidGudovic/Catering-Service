@@ -22,22 +22,47 @@ import javax.servlet.http.HttpSession;
  */
 public class Istorija extends HttpServlet {
 
+    // Hendluje pozive za prikaz istorije, otkazivanje narucene narudzbine i ponavljanje stare narudzbine
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        HttpSession session = request.getSession();
-        
-        try{       
-            List<Narudzbina> narudzbine = Narudzbina.prikazNarudzbiKorisnika(new Korisnik(session.getAttribute("User").toString()));
-            Collections.reverse(narudzbine);
-            request.setAttribute("Narudzbine", narudzbine);
-            request.getRequestDispatcher("istorija.jsp").forward(request,response);
-        }catch(SQLException sqle){
-            response.sendRedirect(sqle.getMessage());
-        }
-        
 
+        HttpSession session = request.getSession();
+        if (session.getAttribute("User") == null || request.getParameter("Zahtev") == null) {
+            //Invalidan poziv
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        }
+
+        switch (request.getParameter("Zahtev")) {
+            case "Otkazi":
+                // Otkazivanje narudzbine sa statusom U Pripremi
+                break;
+            case "Ponovi":
+                // Kopiranje stare narudzbe u korpu
+                Narudzbina zaPonavljanje = new Narudzbina();
+                try {
+                    zaPonavljanje.ponoviNarudzbu(Integer.valueOf(request.getParameter("Narudzba")));
+                    session.setAttribute("Narudzbina", zaPonavljanje);
+                    response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Korpa");
+                } catch (SQLException sqle) {
+                    request.setAttribute("msg", sqle.getMessage());
+                    request.getRequestDispatcher("istorija.jsp").forward(request, response);
+                }
+
+                break;
+            case "Pregled":
+                 // Prikaz istorije
+            try {
+                List<Narudzbina> narudzbine = Narudzbina.prikazNarudzbiKorisnika(new Korisnik(session.getAttribute("User").toString()));
+                Collections.reverse(narudzbine);
+                request.setAttribute("Narudzbine", narudzbine);
+                request.getRequestDispatcher("istorija.jsp").forward(request, response);
+            } catch (SQLException sqle) {
+                request.setAttribute("msg", sqle.getMessage());
+                request.getRequestDispatcher("istorija.jsp").forward(request, response);
+            }
+            break;
+        }
     }
 
     @Override

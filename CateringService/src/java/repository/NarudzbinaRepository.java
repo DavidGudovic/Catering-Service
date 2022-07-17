@@ -20,7 +20,7 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
     @Override
     public void dodaj(Narudzbina zaDodavanje) throws SQLException {
         Connection con = ConnectionManager.getConnection();
-        String sqlNarudzbina = "INSERT INTO `narudzbine`( `KorisnickoIme`, `DatumKreiranja`, `DatumOstvarivanja`, `Ostvarena`, `UkupnaCena`, `Popust`) "
+        String sqlNarudzbina = "INSERT INTO `narudzbine`( `KorisnickoIme`, `DatumKreiranja`, `DatumOstvarivanja`, `Status`, `UkupnaCena`, `Popust`) "
                 + "VALUES (?,?,?,?,?,?)";
         String sqlStavke = "INSERT INTO `stavkenarudzbine`(`ProizvodID`, `NarudzbinaID`, `Kolicina`)"
                 + " VALUES (?,?,?)";
@@ -62,7 +62,7 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
 
     public List<Narudzbina> getSveOdKorisnika(Korisnik korisnik) throws SQLException {
         Connection con = ConnectionManager.getConnection();
-        String sqlNarudzba = "SELECT `NarudzbinaID`,`DatumKreiranja`, `DatumOstvarivanja`, `UkupnaCena`, `Popust` "
+        String sqlNarudzba = "SELECT `NarudzbinaID`,`DatumKreiranja`, `DatumOstvarivanja`,`Status`, `UkupnaCena`, `Popust` "
                 + "FROM `narudzbine` WHERE KorisnickoIme = ?";
         String sqlStavke = "SELECT `proizvodi`.`ProizvodID`, `Kolicina`, `NazivProizvoda`, `CenaPoPorciji`"
                 + "FROM `stavkenarudzbine` "
@@ -70,7 +70,6 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
                 + "WHERE `NarudzbinaID` = ?";
         List<Narudzbina> rezultat = new ArrayList<>();
 
-        
         // Puni listu narudzbi
         try ( PreparedStatement stmt = con.prepareStatement(sqlNarudzba)) {
             stmt.setString(1, korisnik.getKorisnickoIme());
@@ -84,6 +83,7 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
                 }
                 Narudzbina nar = new Narudzbina(rs.getDate("DatumKreiranja").toString(),
                         datumOstvarivanja,
+                        rs.getInt("Status"),
                         korisnik,
                         rs.getInt("NarudzbinaID"),
                         rs.getInt("Popust"),
@@ -136,9 +136,62 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
         throw new UnsupportedOperationException();
     }
 
+    // Vraca puni objekat narudzbine iz baze po ID-u trazenog.
     @Override
     public Narudzbina getJedan(Narudzbina trazeni) throws SQLException {
-        throw new UnsupportedOperationException();
+        Connection con = ConnectionManager.getConnection();
+        String sql = "SELECT `NarudzbinaID`, `KorisnickoIme`, `DatumKreiranja`, `DatumOstvarivanja`, `Status`, `UkupnaCena`, `Popust` "
+                + "FROM `narudzbine` WHERE `NarudzbinaID` = ?";
+        String sqlStavke = "SELECT `proizvodi`.`ProizvodID`, `Kolicina`, `NazivProizvoda`, `CenaPoPorciji`"
+                + "FROM `stavkenarudzbine` "
+                + "INNER JOIN `proizvodi` ON `stavkenarudzbine`.`ProizvodID` = `proizvodi`.`ProizvodID` "
+                + "WHERE `NarudzbinaID` = ?";
+        Narudzbina rezultat = null;
+
+        // Puni narudzbinu
+        try ( PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, trazeni.getNarudzbinaID());
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String datumOstvarivanja;
+                if (rs.getDate("DatumOstvarivanja") == null) {
+                    datumOstvarivanja = "";
+                } else {
+                    datumOstvarivanja = rs.getDate("DatumOstvarivanja").toString();
+                }
+                rezultat = new Narudzbina(rs.getDate("DatumKreiranja").toString(),
+                        datumOstvarivanja,
+                        rs.getInt("Status"),
+                        new Korisnik(rs.getString("KorisnickoIme")),
+                        rs.getInt("NarudzbinaID"),
+                        rs.getInt("Popust"),
+                        rs.getInt("UkupnaCena"),
+                        new HashMap<Proizvod, Integer>());
+            }
+            rs.close();
+        } catch (SQLException sqle) {
+            con.close();
+            throw sqle;
+        }
+
+        //Puni stavke
+        try ( PreparedStatement stmt = con.prepareStatement(sqlStavke)) {
+            stmt.setInt(1, rezultat.getNarudzbinaID());
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Proizvod prod = new Proizvod(rs.getInt("ProizvodID"));
+                prod.setCenaPoPorciji(rs.getInt("CenaPoPorciji"));
+                prod.setNazivProizvoda(rs.getString("NazivProizvoda"));
+                rezultat.dodajProizvod(prod, rs.getInt("Kolicina"));
+            }
+            rs.close();
+        } catch (SQLException sqle) {
+            con.close();
+            throw sqle;
+        }
+        
+        con.close();
+        return rezultat;
     }
 
 }
