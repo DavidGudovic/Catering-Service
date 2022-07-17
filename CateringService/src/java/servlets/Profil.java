@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class Profil extends HttpServlet {
-
+//Hendluje pozive za prikaz i izmenu informacija i brisanja profila
+//Refresuje stranice koje se prikazuju na profil.jsp, a ne hendluju u ovom kontroleru, npr. "korpa.jsp"(View=Korpa; Korpa Controller)
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,9 +38,6 @@ public class Profil extends HttpServlet {
                         request.setAttribute("msg", "Došlo je do greške");
                         request.getRequestDispatcher("profil.jsp").forward(request, response);
                     }
-                    break;
-                case "Istorija":  // Prikaz istorije trgovine TODO
-                    request.getRequestDispatcher("profil.jsp").forward(request, response);
                     break;
                 case "Korpa":
                     request.getRequestDispatcher("profil.jsp").forward(request, response);
