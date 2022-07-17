@@ -68,7 +68,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfil">
                             <li><a class="dropdown-item" href="Profil?User=${User}&View=Profil">Profil</a></li>
-                            <li><a class="dropdown-item" href="Istorija">Narudžbine</a></li>
+                            <li><a class="dropdown-item" href="Istorija?Zahtev=Pregled"">Narudžbine</a></li>
                             <li><a class="dropdown-item" href="Authenticate">Logout</a></li>
                         </ul>
                     </li>               

@@ -488,33 +488,10 @@ proizvod-body > p{
     overflow: auto;
     padding: 1rem;
 }
-.istorija-stavke{
-    overflow:auto;
-    max-height: 100%;
-}
-.istorija-stavka{
-    display: inline-flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-right: 2rem;
-    padding-top:1rem;
-    width: 100%;
 
-    border-bottom: solid 2px #023047;
-}
-.istorija-stavka >p:nth-child(2){
-    text-align: end;
-}
-.istorija-footer{
-    padding-top: 1rem;
-}
-.istorija-footer > p{
-    font-weight: bold;
-    margin-bottom: 0;
-    padding-top: 1rem;
-}
-.narudzbina{
-    border: solid 3px green;
+ /* Stil za individualne narudzbine */
+ 
+ .narudzbina{
     -webkit-box-shadow: -6px 10px 19px 0px rgba(0,0,0,0.35);
     box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.35);
     background-color: #fff;
@@ -526,4 +503,51 @@ proizvod-body > p{
     min-height: 390px;
     padding: 1rem;
 }
+
+.narudzbina-stavke{
+    overflow:auto;
+    max-height: 100%;
+}
+
+.narudzbina-stavka{  
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 2rem;
+    padding-top:1rem;
+    width: 100%;
+
+    border-bottom: solid 2px #023047;
+}
+.narudzbina-stavka >p:nth-child(2){
+    text-align: end;
+}
+.narudzbina-footer{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 2fr 1fr;
+    padding-top: 1rem;
+}
+.narudzbina-footer > div > p{
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-top: 1rem;
+}
+.narudzbina-footer > a{
+    display:grid;
+    place-content: center;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.status0{  /* Priprema*/
+        border: solid 3px yellow;
+}
+.status1{ /* Ostvarena */
+        border: solid 3px green;
+}
+.status2{ /* Otkazana */
+        border: solid 3px red;
+}
+ /* Kraj Stila za individualne narudzbine */
 /* KRAJ CSSA ZA ISTORIJU */

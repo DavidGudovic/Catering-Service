@@ -21,7 +21,7 @@
                         <img src="./img/svg/posluzaonik-cropped.svg" alt="Posluzaonik"/>
                         <h2><a class="profil-link" href="Profil?User=${User}&View=Profil">Informacije</a></h2>
                         <h2><a class="profil-link" href="Profil?User=${User}&View=Korpa">Korpa</a></h2>
-                        <h2><a class="profil-link" href="Istorija">Istorija</a></h2>
+                        <h2><a class="profil-link" href="Istorija?Zahtev=Pregled">Istorija</a></h2>
                         <h2><a class="profil-link" href="Profil?User=${User}&View=Izbrisi">Izbriši profil</a></h2>
                         <img src="./img/svg/tacna-cropped.svg" alt="ruka"/>
                     </div>

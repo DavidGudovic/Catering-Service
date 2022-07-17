@@ -25,13 +25,23 @@
                         <h2><a class="profil-link" href="Profil?User=${User}&View=Izbrisi">Izbriši profil</a></h2>
                         <img src="./img/svg/tacna-cropped.svg" alt="ruka"/>
                     </div>
+                        
+                    <c:if test="${requestScope.Narudzbine.isEmpty()}">
+                        <div class="prazna-korpa">
+                            <p>Nemate narudzbina!<br><a href="Pocetna" class="btn btn-dark">Pogledajte ponudu!</a></p>
+                        </div>
+                    </c:if>
+                        
+                    <c:if test="${!requestScope.Narudzbine.isEmpty()}">
                         <!-- PRIKAZ NARUDZBINA -->
-                    <div class="istorija-prikaz">
-                        <c:forEach var="narudzbina" items="${requestScope.Narudzbine}">
-                            <%@include file="includes/narudzbina.jsp"%>
-                        </c:forEach>
-                    </div>
+                        <div class="istorija-prikaz">
+                            <c:forEach var="narudzbina" items="${requestScope.Narudzbine}">
+                                <%@include file="includes/narudzbina.jsp"%>
+                            </c:forEach>
+                        </div>
                         <!-- KRAJ NARUDZBINA -->
+                    </c:if>
+
                 </div>
             </section>
             <%@include file="includes/footer.jsp"%>
