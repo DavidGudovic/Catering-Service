@@ -13,7 +13,7 @@
     font-weight: bold;
 }
 .poruka > p{
-     text-align:center;  
+    text-align:center;
 }
 
 .Info-uspeh{
@@ -392,7 +392,7 @@ proizvod-body > p{
     padding: 1rem;
     padding-top: 0;
     text-align:center;
-    
+
 }
 .prazna-korpa{
     display: grid;
@@ -404,7 +404,7 @@ proizvod-body > p{
     text-align: center;
     font-size: 30px;
     font-weight: bold;
-    
+
 }
 .korpa-prikaz > h3{
     padding: 3rem;
@@ -420,7 +420,7 @@ proizvod-body > p{
     width:100%;
     place-items: center;
 
-    
+
 }
 .korpa-stavka{
     display: grid;
@@ -451,10 +451,10 @@ proizvod-body > p{
     font-size: 20px;
 }
 .btn-korpa{
-   margin-bottom: 1rem;
-   margin-right: 2rem;
-   max-height: 3rem;
-   text-align: end;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+    max-height: 3rem;
+    text-align: end;
 }
 .poeni-korpa{
     width: 12rem;
@@ -469,16 +469,61 @@ proizvod-body > p{
     font-size: 2rem;
     padding-top: 1rem;
     height: max-content;
-    justify-content: space-between;  
+    justify-content: space-between;
 }
 .korpa-footer > input{
     margin-top: 1rem;
 }
 /* KRAJ CSSA ZA KORPU */
+
+/* CSS ZA ISTORIJU */
+
 .istorija-prikaz{
-    display: grid;
-    place-items: center;
     background-color: #219ebc;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 32%));
+    grid-template-rows: repeat(auto-fit, minmax(24.375rem, 24.375rem));
+    gap: 1rem 1rem;
+    justify-content: space-evenly;
+    overflow: auto;
+    padding: 1rem;
 }
-/* CSS ZA ISTORIJU */ 
+.istorija-stavke{
+    overflow:auto;
+    max-height: 100%;
+}
+.istorija-stavka{
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 2rem;
+    padding-top:1rem;
+    width: 100%;
+
+    border-bottom: solid 2px #023047;
+}
+.istorija-stavka >p:nth-child(2){
+    text-align: end;
+}
+.istorija-footer{
+    padding-top: 1rem;
+}
+.istorija-footer > p{
+    font-weight: bold;
+    margin-bottom: 0;
+    padding-top: 1rem;
+}
+.narudzbina{
+    border: solid 3px green;
+    -webkit-box-shadow: -6px 10px 19px 0px rgba(0,0,0,0.35);
+    box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.35);
+    background-color: #fff;
+    border-radius: 0.5rem;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+    min-height: 390px;
+    padding: 1rem;
+}
 /* KRAJ CSSA ZA ISTORIJU */
