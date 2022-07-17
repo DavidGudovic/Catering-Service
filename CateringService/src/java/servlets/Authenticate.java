@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 
 public class Authenticate extends HttpServlet {
     
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) // logout request
+    @Override //  Hendluje logout request
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
@@ -24,11 +24,10 @@ public class Authenticate extends HttpServlet {
         request.getRequestDispatcher("Pocetna").forward(request, response);
     }
     
-    @Override
+    @Override  // Hendluje register i login request
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+                
         if (request.getParameter("loginKorisnicko") == null) {  //register request;  kreira korisnika i poziva registruj() nad njim 
             try {
                 Korisnik noviKorisnik = new Korisnik(request.getParameter("adresa"),

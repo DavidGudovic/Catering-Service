@@ -17,6 +17,10 @@ import java.util.List;
 
 public class NarudzbinaRepository implements IRepository<Narudzbina> {
 
+    /*
+    Dodaje predatu narudzbinu u bazu.
+    Radi Batch insert u StavkeNarudzbine svih entrija iz hashmape
+    */
     @Override
     public void dodaj(Narudzbina zaDodavanje) throws SQLException {
         Connection con = ConnectionManager.getConnection();
@@ -60,6 +64,12 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
 
     }
 
+    /* 
+      Metoda nije deo IRepository implementacije!
+    
+      Vraca listu objekata narudzbine, sa napunjenom hash mapom relevantnim proizvodima 
+      svih narudzbina iz baze koje je napravio predati korisnik(FK KorisnickoIme) 
+    */
     public List<Narudzbina> getSveOdKorisnika(Korisnik korisnik) throws SQLException {
         Connection con = ConnectionManager.getConnection();
         String sqlNarudzba = "SELECT `NarudzbinaID`,`DatumKreiranja`, `DatumOstvarivanja`,`Status`, `UkupnaCena`, `Popust` "
@@ -125,7 +135,12 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
         throw new UnsupportedOperationException();
         // Fill Stavke
     }
-
+    
+    /* 
+      Menja stariT row u bazi zadatim noviT
+      Ne radi update `stavkenarudzbina`, 
+      ukoliko dodje do menjanja NarudzbinaID FK u bazi je OnUpdate Cascade pa se promena vrsi na nivou baze
+    */
     @Override
     public void izmeni(Narudzbina stariT, Narudzbina noviT) throws SQLException{
         Connection con = ConnectionManager.getConnection();

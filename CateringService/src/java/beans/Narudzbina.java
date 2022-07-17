@@ -41,7 +41,6 @@ public class Narudzbina implements Serializable {
         this.stavkeNarudzbine = stavkeNarudzbine;
     }
 
-    //getters and setters
     public String getDatumKreiranja() {
         return datumKreiranja;
     }
@@ -108,6 +107,8 @@ public class Narudzbina implements Serializable {
 
     // Sistemske operacije
     //STATIC metode
+    
+    // Vraca listu punih objekata Narudzbina predatog korisnika
     public static List<Narudzbina> prikazNarudzbiKorisnika(Korisnik korisnik) throws SQLException {
         NarudzbinaRepository narudzbinaRepository = new NarudzbinaRepository();
         List<Narudzbina> rezultat = new ArrayList<>();
@@ -120,7 +121,7 @@ public class Narudzbina implements Serializable {
     }
 
     // NON-STATIC metode
-    //Dobija i setuje podatke iz baze potrebne da se stavki kopija narudzbe u trenutnu korpu korisnika
+    //Dobija i setuje podatke iz baze potrebne da se kopija narudzbe stavi u trenutnu korpu korisnika
     public void ponoviNarudzbu(int NarudzbinaID) throws SQLException {
         NarudzbinaRepository repository = new NarudzbinaRepository();
         try {
@@ -133,6 +134,12 @@ public class Narudzbina implements Serializable {
         }
     }
 
+    
+    /*
+    Uzima iz baze narudzbinu sa predatim ID-jem,
+    Menja joj status na 2(Otkazana),
+    Izmenjenu narudzbu predaje repository.izmeni metodi 
+    */
     public void otkaziNarudzbinu(int NarudzbinaID) throws SQLException {
         NarudzbinaRepository repository = new NarudzbinaRepository();
         try {
@@ -162,7 +169,7 @@ public class Narudzbina implements Serializable {
         }
     }
 
-    // Menja kolicinu zadatog proizvoda  po ID-u
+    // Menja kolicinu (value u hash mapi) zadatog proizvoda(key u hashmapi) po ID-u 
     public void izmeniKolicinu(int proizvodID, int novaKolicina) {
         for (Proizvod prod : stavkeNarudzbine.keySet()) {
             if (prod.getProizvodID() == proizvodID) {
@@ -191,7 +198,10 @@ public class Narudzbina implements Serializable {
         return ukupno;
     }
 
-    //Predaje this repositoriju za dodavanje narudzbe u bazu i poziva dodavanje ostvarenih poena nad korisnikom koji je narucio 
+    /* Predaje this repositoriju za dodavanje narudzbe u bazu
+    poziva dodavanje ostvarenih poena nad korisnikom koji je narucio 
+    TODO Maci ostvarivanje poena na narudzbina.ostvari() nakon implementacije
+    */
     public void naruci() throws SQLException {
         NarudzbinaRepository repository = new NarudzbinaRepository();
         try {

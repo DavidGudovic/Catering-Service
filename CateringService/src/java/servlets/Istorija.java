@@ -63,7 +63,7 @@ public class Istorija extends HttpServlet {
                  // Prikaz istorije
             try {
                 List<Narudzbina> narudzbine = Narudzbina.prikazNarudzbiKorisnika(new Korisnik(session.getAttribute("User").toString()));
-                Collections.reverse(narudzbine);
+                Collections.reverse(narudzbine);  // Umesto OrderBy
                 request.setAttribute("Narudzbine", narudzbine);
                 request.getRequestDispatcher("istorija.jsp").forward(request, response);
             } catch (SQLException sqle) {
@@ -88,7 +88,7 @@ public class Istorija extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Hendluje pozive za prikaz istorije, otkazivanje narucene narudzbine i ponavljanje stare narudzbine";
     }
 
 }

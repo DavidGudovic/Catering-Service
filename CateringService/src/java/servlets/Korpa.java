@@ -23,7 +23,7 @@ public class Korpa extends HttpServlet {
             case "Izbrisi":  // Brise stavku
                 narudzbina.ukloniProizvod(Integer.valueOf(request.getParameter("Proizvod")));
                 break;       
-            default:
+            default: // Prikazuje korpu
                 response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Korpa");
                 return;               
         }
@@ -33,6 +33,7 @@ public class Korpa extends HttpServlet {
         } else{
             session.removeAttribute("Narudzbina");
         } 
+        
         response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Korpa");
     }
 
@@ -45,7 +46,7 @@ public class Korpa extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Hendluje zahteve vezane za stavke narudzbine";
     }
 
 }

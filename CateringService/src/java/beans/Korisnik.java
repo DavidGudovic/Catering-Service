@@ -106,8 +106,10 @@ public class Korisnik implements Serializable {
     }
 
     //Sistemske operacije
-    // proverava da li se predata sifra podudara sa korisnikom u bazi koji dodaje repozitory
-    // ako se podudara, puni objekat podacima iz baze i vraca true(uspeh);
+    /*
+     Proverava da li se predata sifra podudara sa korisnikom u bazi koji dodaje repozitory
+     ako se podudara, puni objekat podacima iz baze i vraca true(uspeh); \
+    */
     public boolean login() throws SQLException {
         KorisnikRepository repositorij = new KorisnikRepository();
         try {
@@ -157,8 +159,10 @@ public class Korisnik implements Serializable {
         this.poeni = puni.poeni;
     }
 
-    //Proverava da li je korisnik uneo tacnu sifru,
-    //ako jeste salje izmenjene podatke repositoriju za promenu u bazi
+    /*
+    Proverava da li je korisnik uneo tacnu sifru,
+    ako jeste salje izmenjene podatke repositoriju za promenu u bazi
+    */
     public boolean izmeniInformacije(Korisnik izmene) throws SQLException {
         KorisnikRepository repository = new KorisnikRepository();
         Korisnik originalniKorisnik;
@@ -168,7 +172,7 @@ public class Korisnik implements Serializable {
                 if (izmene.getRola() == null) { // if true - Korisnik je izmenio podatke
                     izmene.setRola(originalniKorisnik.getRola());
                     izmene.setPoeni(originalniKorisnik.getPoeni());
-                }  // else - Administrator je izmenio podatke
+                }  // else - Administrator je izmenio podatke TODO
 
                 originalniKorisnik.setPasswordHash(izmene.getPassword());
                 originalniKorisnik.napuniPodatke(izmene);
@@ -182,7 +186,12 @@ public class Korisnik implements Serializable {
             throw sqle;
         }
     }
-
+    
+    /*
+     Poredi uneti password hash (this.password) sa hashom iz baze
+     Ako je tacan predaje korisnika za brisanje iz baze (repository.izbrisi) i vraca true
+     Ako nije tacan ili je bacen SQLexception vraca false
+    */
     public boolean izbrisiProfil() {
         KorisnikRepository repository = new KorisnikRepository();
         try {
@@ -197,6 +206,13 @@ public class Korisnik implements Serializable {
         }
     }
 
+    /*
+    Uzima korisnika iz baze od repositorija,
+    dodaje poene iz parametra i predaje nazad repositoriju na izmenu (repository.izmeni)
+    
+    Moze oduzeti poene ako je parametar negativan ( za otkazane narudzbe )
+    TODO ? promeniti ime u izmeniPoene
+    */
     void dodajPoene(int poeni) throws SQLException {
         KorisnikRepository repository = new KorisnikRepository();
         try {

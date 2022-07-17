@@ -68,7 +68,7 @@ public class KorisnikRepository implements IRepository<Korisnik> {
 
     @Override
     public List<Korisnik> getSve() {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     // Menja red u bazi sa stariT.KorisnickoIme informacijama iz noviT

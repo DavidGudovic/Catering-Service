@@ -16,7 +16,11 @@ import javax.servlet.http.HttpServletResponse;
 import repository.KategorijaRepository;
 import repository.ProizvodRepository;
 
-// Zove Kategorija i Proizvod repository da napune liste iz baze i predaje ih index.jsp-u za prikaz;
+/* 
+ Zove Kategorija i Proizvod repository.
+ Hendluje prikaz i filtriranje prikaza ponude i kategorija na naslovnoj strani
+ konfigurisan je kao welcome page u web.xml-u
+*/
 public class Pocetna extends HttpServlet {  
 
     @Override
@@ -60,7 +64,7 @@ public class Pocetna extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+            //Do nothing
     }
 
     @Override

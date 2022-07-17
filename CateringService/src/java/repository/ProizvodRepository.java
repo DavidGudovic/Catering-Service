@@ -47,12 +47,15 @@ public class ProizvodRepository implements IRepository<Proizvod> {
 
     @Override
     public void izmeni(Proizvod stariT, Proizvod noviT) {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public void izbrisi(Proizvod zaBrisanje) {
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
+    //Vraca korisnik row iz baze po predatom trazeni.KorisnickoIme
     @Override
     public Proizvod getJedan(Proizvod trazeni) throws SQLException {
         Connection con = ConnectionManager.getConnection();

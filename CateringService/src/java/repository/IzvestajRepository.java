@@ -5,29 +5,31 @@ import interfaces.IRepository;
 import java.sql.SQLException;
 import java.util.List;
 
-
-public class IzvestajRepository implements IRepository<Izvestaj>{
+public class IzvestajRepository implements IRepository<Izvestaj> {
 
     @Override
     public void dodaj(Izvestaj zaDodavanje) {
-        }
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     @Override
     public List<Izvestaj> getSve() {
-        return null;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void izmeni(Izvestaj stariT, Izvestaj noviT) {
-        }
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     @Override
     public void izbrisi(Izvestaj zaBrisanje) {
-        }
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     @Override
     public Izvestaj getJedan(Izvestaj trazeni) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
 }

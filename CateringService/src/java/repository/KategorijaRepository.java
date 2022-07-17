@@ -15,9 +15,10 @@ public class KategorijaRepository implements IRepository<Kategorija> {
 
     @Override
     public void dodaj(Kategorija zaDodavanje) {
-        
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
+    //Vraca listu kategorija iz baze
     @Override
     public List<Kategorija> getSve() throws SQLException{
         Connection con = ConnectionManager.getConnection();
@@ -39,17 +40,17 @@ public class KategorijaRepository implements IRepository<Kategorija> {
 
     @Override
     public void izmeni(Kategorija stariT, Kategorija noviT) {
-        
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public void izbrisi(Kategorija zaBrisanje) {
-        
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
     public Kategorija getJedan(Kategorija trazeni) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     

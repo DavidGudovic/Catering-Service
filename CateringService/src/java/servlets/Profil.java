@@ -39,7 +39,7 @@ public class Profil extends HttpServlet {
                         request.getRequestDispatcher("profil.jsp").forward(request, response);
                     }
                     break;
-                case "Korpa":
+                case "Korpa":  //Prikaz korpe
                     request.getRequestDispatcher("profil.jsp").forward(request, response);
                     break;
                 case "Izbrisi":  // Prikaz strane za brisanje
@@ -63,6 +63,7 @@ public class Profil extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         String status;  //Koristi se ispis poruke o uspesnosti radnje
+        
         if (request.getParameter("zahtev").equals("Izmeni")) {  // Izmena
             Korisnik trenutni = new Korisnik(session.getAttribute("User").toString(),
                     request.getParameter("password"));

@@ -17,9 +17,10 @@ public class Narucivanje extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        // Do nothing
     }
 
-    @Override
+    @Override  //Hendluje pozive za dodavanje u korpu, Narucivanje narudzbine iz korpe i Otkazivanje narudzbine iz korpe.
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

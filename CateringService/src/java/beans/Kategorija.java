@@ -4,7 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Kategorija implements Serializable{
+public class Kategorija implements Serializable {
+
     private String program;
     private String nazivKategorije;
     private int kategorijaID;
@@ -41,10 +42,11 @@ public class Kategorija implements Serializable{
     public void setKategorijaID(int kategorijaID) {
         this.kategorijaID = kategorijaID;
     }
+
+    //Static metode
     
-        //Static metode
-        // Vraca listu kategorija po zadatom kriterijumu ( in 'slatki', 'slani' )
-    public static List<Kategorija> filterKategorije(List<Kategorija> sveKat,String kriterijum) {
+    // Vraca listu kategorija po zadatom kriterijumu ( in 'slatki', 'slani' )
+    public static List<Kategorija> filterKategorije(List<Kategorija> sveKat, String kriterijum) {
         List<Kategorija> filtriraneKategorije = new ArrayList<>();
         for (Kategorija k : sveKat) {
             if (k.getProgram().equals(kriterijum)) {
@@ -53,5 +55,5 @@ public class Kategorija implements Serializable{
         }
         return filtriraneKategorije;
     }
-    
+
 }

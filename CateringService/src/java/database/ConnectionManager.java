@@ -23,7 +23,7 @@ public class ConnectionManager {
                 System.out.println("Greska pri kreiranju konekcije"); 
             }
         } catch (ClassNotFoundException ex) {
-            System.out.println("Driver not found."); 
+            System.out.println("Driver nije pronadjen"); 
         }
          return con;
     }
