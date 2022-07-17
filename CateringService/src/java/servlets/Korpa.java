@@ -27,6 +27,7 @@ public class Korpa extends HttpServlet {
                 response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Korpa");
                 return;               
         }
+        
         if(!narudzbina.getStavkeNarudzbine().isEmpty()){
             session.setAttribute("Narudzbina", narudzbina);
         } else{
@@ -37,9 +38,9 @@ public class Korpa extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+            throws ServletException, IOException {         
         response.setContentType("text/html;charset=UTF-8");
+        //do nothing
     }
 
     @Override

@@ -15,6 +15,7 @@ public class Proizvod implements Serializable{
 
     public Proizvod() {
     }
+    
     public Proizvod(int proizvodID) {  //Konstruktor za pretrage
         this.proizvodID = proizvodID;
     }

@@ -2,8 +2,10 @@ package beans;
 
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Date;
+import java.util.List;
 import repository.NarudzbinaRepository;
 import repository.ProizvodRepository;
 
@@ -95,6 +97,20 @@ public class Narudzbina implements Serializable {
     }
 
     // Sistemske operacije
+    
+    //STATIC metode
+    
+    public static List<Narudzbina> prikazNarudzbiKorisnika(Korisnik korisnik) throws SQLException{
+        NarudzbinaRepository narudzbinaRepository = new NarudzbinaRepository();
+        List<Narudzbina> rezultat = new ArrayList<>();
+        try{
+            rezultat = narudzbinaRepository.getSveOdKorisnika(korisnik);                        
+        }catch(SQLException sqle){
+            throw sqle;
+        }
+        return rezultat;
+    }
+    
     // Dodaje proizvod u hashmapu
     public void dodajProizvod(Proizvod p, int kolicina) throws SQLException {
         for (Proizvod prod : stavkeNarudzbine.keySet()) {
