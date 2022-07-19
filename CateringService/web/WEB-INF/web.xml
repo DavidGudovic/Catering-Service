@@ -24,6 +24,10 @@
         <servlet-name>Istorija</servlet-name>
         <servlet-class>servlets.Istorija</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Administracija</servlet-name>
+        <servlet-class>servlets.Administracija</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authenticate</servlet-name>
         <url-pattern>/Authenticate</url-pattern>
@@ -50,6 +54,10 @@
     <servlet-mapping>
         <servlet-name>Istorija</servlet-name>
         <url-pattern>/Istorija</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Administracija</servlet-name>
+        <url-pattern>/Administracija</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
