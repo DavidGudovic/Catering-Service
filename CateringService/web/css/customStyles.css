@@ -66,7 +66,7 @@
     text-align:center;
 }
 /* Kraj utility-a */
-/** CSS ZA FOOTER, color, fiksiran, justify levo i desno elemente **/
+/** CSS ZA FOOTER **/
 #footer{
     position: fixed;
     bottom: 0;
@@ -118,7 +118,7 @@
 }
 
 /** KRAJ CSSA ZA REGISTER**/
-/** CSS ZA LOGIN BOX, centriran i shadow **/
+/** CSS ZA LOGIN  **/
 
 .login-form{
     display: flex;
@@ -163,7 +163,7 @@
     /* background:#b7e4c7; */
     background: #219ebc;
     /* background: #8ecae6; */ /* Jaca plava */
-    padding: 1em;
+    padding: 1rem;
 }
 .wrapper > div:nth-child(odd){  /** prikaz **/
     /* background:#57cc99; */
@@ -230,6 +230,7 @@ proizvod-body > p{
     max-width: 100%;
 }
 /** KRAJ PROIZVOD CSS-a**/
+/** KRAJ Pocetna CSS-a**/
 
 /** CSS ZA KATEGORIJE **/
 
@@ -273,10 +274,15 @@ proizvod-body > p{
     display: inline-flex;
     flex-direction: column;
 }
-.bold{
-    font-size: 30px;
+
+.program{
+    font-weight: bold;
+    padding-top: 2rem;
+    color : #bc3f21; 
 }
+
 .kategorije > h5{
+    padding-top: 1rem;
     color : #bc3f21;
 }
 .kategorije > a{
@@ -288,6 +294,7 @@ proizvod-body > p{
     color: #f6bd60;
 
 }
+
 /* KRAJ CSSA ZA KATEGORIJE */
 /* CSS ZA PROFIL */
 
@@ -302,7 +309,7 @@ proizvod-body > p{
     display: flex;
     flex-direction: column;
     background-color: #8ecae6;
-    padding-top: 1rem;
+    padding-top: 2rem;
 }
 .profil-linkovi > h2{
     padding-top: 1rem;
@@ -351,7 +358,7 @@ proizvod-body > p{
 
 /* KRAJ CCSSA ZA PROFIL */
 /* CSS ZA FORMU BRISANJA */
-.upozorenje{
+.brisanje{
     background: #219ebc; /* #bc3f21; */
     display: grid;
     place-items: center;
@@ -489,9 +496,9 @@ proizvod-body > p{
     padding: 1rem;
 }
 
- /* Stil za individualne narudzbine */
- 
- .narudzbina{
+/* Stil za individualne narudzbine */
+
+.narudzbina{
     -webkit-box-shadow: -6px 10px 19px 0px rgba(0,0,0,0.35);
     box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.35);
     background-color: #fff;
@@ -509,7 +516,7 @@ proizvod-body > p{
     max-height: 100%;
 }
 
-.narudzbina-stavka{  
+.narudzbina-stavka{
     display: inline-flex;
     flex-direction: row;
     justify-content: space-between;
@@ -541,13 +548,57 @@ proizvod-body > p{
 }
 
 .status0{  /* Priprema*/
-        border: solid 3px yellow;
+    border: solid 3px yellow;
 }
 .status1{ /* Ostvarena */
-        border: solid 3px green;
+    border: solid 3px green;
 }
 .status2{ /* Otkazana */
-        border: solid 3px red;
+    border: solid 3px red;
 }
- /* Kraj Stila za individualne narudzbine */
+/* Kraj Stila za individualne narudzbine */
 /* KRAJ CSSA ZA ISTORIJU */
+
+/* CSS ZA ADMIN PANEL */
+/* KRAJ CSSA ZA ADMIN PANEL */
+.administracija{
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap:2px;
+}
+.administracija-linkovi{
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: inline-flex;
+    flex-direction: column;
+    background-color: #8ecae6;
+}
+.administracija-link{
+    margin: 1rem;
+    color: #023047;
+    font-weight: bold;
+    font-size: 30px;
+    text-decoration: none;
+}
+.administracija-link:hover{
+    color: #f6bd60;
+}
+.administracija-rola{
+    color: #bc3f21;
+    padding-top: 2rem;
+    padding-left: 1rem;
+    padding-bottom: 0;
+
+}
+.panel{
+    background-color: #219ebc;
+}
+
+/* CSS ZA UPRAVLJANJE NARUDZBAMA */
+
+.naslov{
+    margin: 2rem;
+    padding-bottom: 2rem;
+    text-align: center;
+    border-bottom: solid 2px white;
+}

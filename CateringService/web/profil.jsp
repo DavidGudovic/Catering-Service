@@ -37,7 +37,7 @@
                     <c:if test = "${param.View == 'Poruka'}">
                         <%@include file="includes/poruka.jsp"%>
                     </c:if>
-                        
+                </div>       
             </section>
             <%@include file="includes/footer.jsp"%>
         </div>

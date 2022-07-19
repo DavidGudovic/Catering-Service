@@ -32,12 +32,12 @@
         
         <!-- Footer narudzbine -->
         <div class="korpa-footer">
-            <input class="btn btn-light poeni-korpa" type="number" min="0" onchange='popust(this)' max="<c:if test="${sessionScope.Poeni>2}">2</c:if><c:if test="${sessionScope.Poeni<=2}">${sessionScope.Poeni}</c:if>" name="poeni" placeholder="Poeni za popust">
+            <input class="btn btn-light poeni-korpa" type="number" min="0" id="poeni" onchange='popust(this)' max="<c:if test="${sessionScope.Poeni>2}">2</c:if><c:if test="${sessionScope.Poeni<=2}">${sessionScope.Poeni}</c:if>" name="poeni" placeholder="Poeni za popust">
                 <input class="btn btn-danger btn-korpa" type="submit" name="zahtev" value="Otkaži">
                 <input class="btn btn-dark btn-korpa" type="submit" name="zahtev" value="Naruči">
                 <div class="total">
                         <p>Sub Total: <span id="subtotal">${Narudzbina.getTotalBezPopusta()}</span> RSD</p>
-                <p>Sub Total: <span id="total">${Narudzbina.getTotalBezPopusta()}</span> RSD</p>
+                <p>Total: <span id="total">${Narudzbina.getTotalBezPopusta()}</span> RSD</p>
 
             </div>
         </div>

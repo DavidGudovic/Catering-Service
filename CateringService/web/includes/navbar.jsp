@@ -17,9 +17,6 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="Pocetna">POČETNA</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">KONTAKT</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         PONUDA
@@ -29,6 +26,12 @@
                         <li><a class="dropdown-item" href="Pocetna?program=slani">Slani program</a></li>
                     </ul>
                 </li>
+                <c:if test="${UserRola < 3}">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Administracija?Zahtev=Narudzbine">Administracija</a>
+                    </li>
+                </c:if>
+
             </ul>
             <!-- KRAJ LEVOG NAV -->
             <!-- DESNI NAV -->
@@ -46,6 +49,7 @@
                         <a class="nav-link" href="registracija.jsp">Registracija</a>
                     </li>
                 </c:if>
+
                 <c:if test = "${User != null}">
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Poeni: ${sessionScope.Poeni}</a>

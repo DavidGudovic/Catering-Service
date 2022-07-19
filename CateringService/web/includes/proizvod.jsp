@@ -1,4 +1,3 @@
-<!-- PRIKAZUJE CARD ZA PRIKAZ INDIVIDUALNIH PROIZVODA -->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="proizvod">
     <img class="proizvod-slika" src="${proizvod.getSlika()}" onerror="this.src='./img/svg/minilogo.svg';"  alt="...">

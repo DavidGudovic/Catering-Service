@@ -4,7 +4,6 @@
 
 
 <div class="narudzbina status${narudzbina.getStatus()}">
-
     <div class='istorija-heading'>
         <h4> Narucena: ${narudzbina.getDatumKreiranja()} </h4>
         <p> Status: <c:if test="${narudzbina.getStatus() == 0}">Priprema se</c:if><c:if test="${narudzbina.getStatus() == 1}">Ostvarena</c:if><c:if test="${narudzbina.getStatus() == 2}">Otkazana</c:if></p>
@@ -31,8 +30,6 @@
             <a href="Istorija?Zahtev=Otkazi&Narudzba=${narudzbina.getNarudzbinaID()}" class="btn btn-dark" >Otkazi</a>
         </c:if>
     </div>
-
-
 </div> 
 
 

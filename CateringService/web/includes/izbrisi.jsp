@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 
-<div class="upozorenje">
+<div class="brisanje">
     <form class="form-brisanje" action="Profil" method="post">
         <p id="hvala">Hvala što ste koristili naše usluge!</p>
         <input type="text" placeholder="Unesite šifru" name="password">
