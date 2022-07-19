@@ -40,11 +40,7 @@ public class Profil extends HttpServlet {
                     }
                     break;
                 case "Korpa":  //Prikaz korpe
-                    request.getRequestDispatcher("profil.jsp").forward(request, response);
-                    break;
                 case "Izbrisi":  // Prikaz strane za brisanje
-                    request.getRequestDispatcher("profil.jsp").forward(request, response);
-                    break;
                 case "Poruka":  // Prikaz poruke o ostvarenoj narudzbi i poenima
                     request.getRequestDispatcher("profil.jsp").forward(request, response);
                     break;

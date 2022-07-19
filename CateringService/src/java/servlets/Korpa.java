@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 public class Korpa extends HttpServlet {
 
-    @Override    // Hendluje zahteve vezane za stavke narudzbine
+    @Override    // Hendluje zahteve vezane za stavke narudzbine 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

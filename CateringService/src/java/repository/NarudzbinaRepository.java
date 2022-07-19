@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -79,6 +80,7 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
                 + "INNER JOIN `proizvodi` ON `stavkenarudzbine`.`ProizvodID` = `proizvodi`.`ProizvodID` "
                 + "WHERE `NarudzbinaID` = ?";
         List<Narudzbina> rezultat = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         // Puni listu narudzbi
         try ( PreparedStatement stmt = con.prepareStatement(sqlNarudzba)) {
@@ -89,9 +91,9 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
                 if (rs.getDate("DatumOstvarivanja") == null) {
                     datumOstvarivanja = "";
                 } else {
-                    datumOstvarivanja = rs.getDate("DatumOstvarivanja").toString();
+                    datumOstvarivanja = dateFormat.format(rs.getDate("DatumOstvarivanja"));
                 }
-                Narudzbina nar = new Narudzbina(rs.getDate("DatumKreiranja").toString(),
+                Narudzbina nar = new Narudzbina(dateFormat.format(rs.getDate("DatumKreiranja")),
                         datumOstvarivanja,
                         rs.getInt("Status"),
                         korisnik,

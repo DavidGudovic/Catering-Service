@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package servlets;
 
 import beans.Kategorija;
@@ -38,7 +34,7 @@ public class Pocetna extends HttpServlet {
             proizvodi = proizvodRepository.getSve();
         } catch (SQLException sqle) {
             request.setAttribute("msg", sqle + " GRESKA");
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            request.getRequestDispatcher("/pocetna.jsp").forward(request, response);
         }   // puni listu svih proizvoda i svih kategorija iz baze 
 
         if (request.getParameter("kategorija") == null) {  //Obican poziv pocetne - predaje nefiltrirane liste
@@ -58,7 +54,7 @@ public class Pocetna extends HttpServlet {
         request.setAttribute("slaneKategorije", slaneKategorije);
         request.setAttribute("slatkeKategorije", slatkeKategorije);
         
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/pocetna.jsp").forward(request, response);
     }  
 
     @Override

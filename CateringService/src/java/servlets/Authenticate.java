@@ -40,9 +40,11 @@ public class Authenticate extends HttpServlet {
             } catch (SQLIntegrityConstraintViolationException sql) {
                 request.setAttribute("msg", "Korisničko ime već postoji!");
                 request.getRequestDispatcher("registracija.jsp").forward(request, response);
+                return;
             } catch(SQLException sqle){
                 request.setAttribute("msg", "Greška pri konekciji, pokušajte ponovo");
                 request.getRequestDispatcher("registracija.jsp").forward(request, response);
+                return;
             }
             request.setAttribute("msgTip", "uspeh");
             request.setAttribute("msg", "Uspesna registracija, ulogujte se!");
