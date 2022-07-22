@@ -46,13 +46,40 @@ public class ProizvodRepository implements IRepository<Proizvod> {
     }
 
     @Override
-    public void izmeni(Proizvod stariT, Proizvod noviT) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void izmeni(Proizvod stariT, Proizvod noviT) throws SQLException{
+        Connection con = ConnectionManager.getConnection();
+        String sql = "UPDATE `proizvodi` SET `ProizvodID`=?,`NazivProizvoda`=?,`Opis`=?,`Slika`=?,`CenaPoPorciji`=?,`KategorijaID`=? "
+                    + "WHERE `ProizvodID` = ?";
+        try(PreparedStatement stmt = con.prepareStatement(sql)){
+            stmt.setInt(1, noviT.getProizvodID());
+            stmt.setString(2, noviT.getNazivProizvoda());
+            stmt.setString(3, noviT.getOpis());
+            stmt.setString(4, noviT.getSlika());
+            stmt.setInt(5, noviT.getCenaPoPorciji());
+            stmt.setInt(6, noviT.getKategorija().getKategorijaID());
+            
+            stmt.setInt(7, stariT.getProizvodID());
+            
+            stmt.executeUpdate();
+        }catch(SQLException sqle){
+            throw sqle;
+        }finally{
+            con.close();
+        }
     }
 
     @Override
-    public void izbrisi(Proizvod zaBrisanje) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void izbrisi(Proizvod zaBrisanje) throws SQLException{
+        Connection con = ConnectionManager.getConnection();
+        String sql = "DELETE FROM `proizvodi` WHERE `ProizvodID` = ?";
+        try(PreparedStatement stmt = con.prepareStatement(sql)){
+            stmt.setInt(1, zaBrisanje.getProizvodID());            
+            stmt.executeUpdate();
+        }catch(SQLException sqle){
+            throw sqle;
+        }finally{
+            con.close();
+        }             
     }
 
     //Vraca korisnik row iz baze po predatom trazeni.KorisnickoIme

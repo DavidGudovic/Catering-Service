@@ -65,16 +65,14 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
 
     }
 
-    /* 
-      Metoda nije deo IRepository implementacije!
-    
-      Vraca listu objekata narudzbine, sa napunjenom hash mapom relevantnim proizvodima 
-      svih narudzbina iz baze koje je napravio predati korisnik(FK KorisnickoIme) 
+    /*
+    Vraca sve redove narudzbina iz baze
     */
-    public List<Narudzbina> getSveOdKorisnika(Korisnik korisnik) throws SQLException {
-        Connection con = ConnectionManager.getConnection();
-        String sqlNarudzba = "SELECT `NarudzbinaID`,`DatumKreiranja`, `DatumOstvarivanja`,`Status`, `UkupnaCena`, `Popust` "
-                + "FROM `narudzbine` WHERE KorisnickoIme = ?";
+    @Override
+    public List<Narudzbina> getSve() throws SQLException{
+               Connection con = ConnectionManager.getConnection();
+        String sqlNarudzba = "SELECT `NarudzbinaID`,`KorisnickoIme`,`DatumKreiranja`, `DatumOstvarivanja`,`Status`, `UkupnaCena`, `Popust` "
+                + "FROM `narudzbine` WHERE 1";
         String sqlStavke = "SELECT `proizvodi`.`ProizvodID`, `Kolicina`, `NazivProizvoda`, `CenaPoPorciji`"
                 + "FROM `stavkenarudzbine` "
                 + "INNER JOIN `proizvodi` ON `stavkenarudzbine`.`ProizvodID` = `proizvodi`.`ProizvodID` "
@@ -84,7 +82,6 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
 
         // Puni listu narudzbi
         try ( PreparedStatement stmt = con.prepareStatement(sqlNarudzba)) {
-            stmt.setString(1, korisnik.getKorisnickoIme());
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 String datumOstvarivanja;
@@ -96,7 +93,7 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
                 Narudzbina nar = new Narudzbina(dateFormat.format(rs.getDate("DatumKreiranja")),
                         datumOstvarivanja,
                         rs.getInt("Status"),
-                        korisnik,
+                        new Korisnik(rs.getString("KorisnickoIme")),
                         rs.getInt("NarudzbinaID"),
                         rs.getInt("Popust"),
                         rs.getInt("UkupnaCena"),
@@ -129,13 +126,6 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
 
         con.close();
         return rezultat;
-    }
-
-    @Override
-    public List<Narudzbina> getSve() {
-        // Fill Listu narudzbi
-        throw new UnsupportedOperationException();
-        // Fill Stavke
     }
     
     /* 
@@ -237,4 +227,72 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
         return rezultat;
     }
 
+    
+    /* 
+      Metoda nije deo IRepository implementacije
+    
+      Vraca listu objekata narudzbine, sa napunjenom hash mapom relevantnim proizvodima 
+      svih narudzbina iz baze koje je napravio predati korisnik(FK KorisnickoIme) 
+    */
+    public List<Narudzbina> getSveOdKorisnika(Korisnik korisnik) throws SQLException {
+        Connection con = ConnectionManager.getConnection();
+        String sqlNarudzba = "SELECT `NarudzbinaID`,`DatumKreiranja`, `DatumOstvarivanja`,`Status`, `UkupnaCena`, `Popust` "
+                + "FROM `narudzbine` WHERE KorisnickoIme = ?";
+        String sqlStavke = "SELECT `proizvodi`.`ProizvodID`, `Kolicina`, `NazivProizvoda`, `CenaPoPorciji`"
+                + "FROM `stavkenarudzbine` "
+                + "INNER JOIN `proizvodi` ON `stavkenarudzbine`.`ProizvodID` = `proizvodi`.`ProizvodID` "
+                + "WHERE `NarudzbinaID` = ?";
+        List<Narudzbina> rezultat = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        // Puni listu narudzbi
+        try ( PreparedStatement stmt = con.prepareStatement(sqlNarudzba)) {
+            stmt.setString(1, korisnik.getKorisnickoIme());
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                String datumOstvarivanja;
+                if (rs.getDate("DatumOstvarivanja") == null) {
+                    datumOstvarivanja = "";
+                } else {
+                    datumOstvarivanja = dateFormat.format(rs.getDate("DatumOstvarivanja"));
+                }
+                Narudzbina nar = new Narudzbina(dateFormat.format(rs.getDate("DatumKreiranja")),
+                        datumOstvarivanja,
+                        rs.getInt("Status"),
+                        korisnik,
+                        rs.getInt("NarudzbinaID"),
+                        rs.getInt("Popust"),
+                        rs.getInt("UkupnaCena"),
+                        new HashMap<Proizvod, Integer>());
+                rezultat.add(nar);
+            }
+            rs.close();
+        } catch (SQLException sqle) {
+            con.close();
+            throw sqle;
+        }
+
+        //puni hash mapu svake narudzbe
+        for (Narudzbina nar : rezultat) {
+            try ( PreparedStatement stmt = con.prepareStatement(sqlStavke)) {
+                stmt.setInt(1, nar.getNarudzbinaID());
+                ResultSet rs = stmt.executeQuery();
+                while (rs.next()) {
+                    Proizvod prod = new Proizvod(rs.getInt("ProizvodID"));
+                    prod.setCenaPoPorciji(rs.getInt("CenaPoPorciji"));
+                    prod.setNazivProizvoda(rs.getString("NazivProizvoda"));
+                    nar.dodajProizvod(prod, rs.getInt("Kolicina"));
+                }
+                rs.close();
+            } catch (SQLException sqle) {
+                con.close();
+                throw sqle;
+            }
+        }
+
+        con.close();
+        return rezultat;
+    }
 }
+
+
