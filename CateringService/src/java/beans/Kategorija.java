@@ -1,8 +1,10 @@
 package beans;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import repository.KategorijaRepository;
 
 public class Kategorija implements Serializable {
 
@@ -11,6 +13,10 @@ public class Kategorija implements Serializable {
     private int kategorijaID;
 
     public Kategorija() {
+    }
+
+    public Kategorija(int kategorijaID) {
+        this.kategorijaID = kategorijaID;
     }
 
     public Kategorija(String program, String nazivKategorije, int kategorijaID) {
@@ -44,7 +50,6 @@ public class Kategorija implements Serializable {
     }
 
     //Static metode
-    
     // Vraca listu kategorija po zadatom kriterijumu ( in 'slatki', 'slani' )
     public static List<Kategorija> filterKategorije(List<Kategorija> sveKat, String kriterijum) {
         List<Kategorija> filtriraneKategorije = new ArrayList<>();
@@ -54,6 +59,15 @@ public class Kategorija implements Serializable {
             }
         }
         return filtriraneKategorije;
+    }
+
+    public static List<Kategorija> sveKategorije() throws SQLException {
+        KategorijaRepository repository = new KategorijaRepository();
+        try {
+            return repository.getSve();
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
     }
 
 }

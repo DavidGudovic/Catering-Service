@@ -25,6 +25,11 @@ public class Narudzbina implements Serializable {
         stavkeNarudzbine = new HashMap<>();
     }
 
+    public Narudzbina(int NarudzbinaID) {
+        this.narudzbinaID = NarudzbinaID;
+        stavkeNarudzbine = new HashMap<>();
+    }
+
     public Narudzbina(String datumKreiranja, String datumOstvarivanja, int status, Korisnik korisnik, int narudzbinaID, int popust, int UkupnaCena, HashMap<Proizvod, Integer> stavkeNarudzbine) {
         if (datumKreiranja.equals("sada")) {
             Date d = new Date();
@@ -107,7 +112,6 @@ public class Narudzbina implements Serializable {
 
     // Sistemske operacije
     //STATIC metode
-    
     // Vraca listu punih objekata Narudzbina predatog korisnika
     public static List<Narudzbina> prikazNarudzbiKorisnika(Korisnik korisnik) throws SQLException {
         NarudzbinaRepository narudzbinaRepository = new NarudzbinaRepository();
@@ -120,12 +124,42 @@ public class Narudzbina implements Serializable {
         return rezultat;
     }
 
+    //Vraca listu neostvarenih narudzbina svih korisnika    
+    public static List<Narudzbina> prikazNeostvarenih() throws SQLException {
+        NarudzbinaRepository narudzbinaRepository = new NarudzbinaRepository();
+        List<Narudzbina> rezultat = new ArrayList<>();
+        try {
+            for (Narudzbina nar : narudzbinaRepository.getSve()) {
+                if (nar.getStatus() == 0) {
+                    rezultat.add(nar);
+                }
+            }
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
+        return rezultat;
+    }
+
     // NON-STATIC metode
-    //Dobija i setuje podatke iz baze potrebne da se kopija narudzbe stavi u trenutnu korpu korisnika
-    public void ponoviNarudzbu(int NarudzbinaID) throws SQLException {
+    /* 
+    Predaje this repositoriju za dodavanje narudzbe u bazu
+    poziva dodavanje ostvarenih poena nad korisnikom koji je narucio 
+    Oduzima potrosene poene
+     */
+    public void naruci() throws SQLException {
         NarudzbinaRepository repository = new NarudzbinaRepository();
         try {
-            this.setNarudzbinaID(NarudzbinaID);
+            repository.dodaj(this);
+            this.getKorisnik().dodajPoene(this.popust / 10 * -1);
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
+    }
+
+    //Dobija i setuje podatke iz baze potrebne da se kopija narudzbe stavi u trenutnu korpu korisnika
+    public void ponoviNarudzbu() throws SQLException {
+        NarudzbinaRepository repository = new NarudzbinaRepository();
+        try {
             Narudzbina zaPonavljanje = repository.getJedan(this);
             this.stavkeNarudzbine = zaPonavljanje.getStavkeNarudzbine();
             this.korisnik = zaPonavljanje.getKorisnik();
@@ -134,19 +168,37 @@ public class Narudzbina implements Serializable {
         }
     }
 
-    
     /*
-    Uzima iz baze narudzbinu sa predatim ID-jem,
-    Menja joj status na 2(Otkazana),
+    Menja status na 2(Otkazana),
     Izmenjenu narudzbu predaje repository.izmeni metodi 
-    */
-    public void otkaziNarudzbinu(int NarudzbinaID) throws SQLException {
+    vraca korisniku iskoristene poene
+     */
+    public void otkaziNarudzbinu() throws SQLException {
         NarudzbinaRepository repository = new NarudzbinaRepository();
         try {
-            this.setNarudzbinaID(NarudzbinaID);
             Narudzbina zaIzmenu = repository.getJedan(this);
             zaIzmenu.setStatus(2);
             repository.izmeni(this, zaIzmenu);
+            zaIzmenu.getKorisnik().dodajPoene(zaIzmenu.getPopust() / 10);
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
+    }
+
+    /*
+    Menja status na 1(Ostvarena),
+    Izmenjenu narudzbu predaje repository.izmeni metodi
+    Dodaje poene korisniku
+     */
+    public void ostvariNarudzbinu() throws SQLException {
+        NarudzbinaRepository repository = new NarudzbinaRepository();
+        
+        try {
+            Narudzbina zaIzmenu = repository.getJedan(this);
+            zaIzmenu.setStatus(1);
+            zaIzmenu.setDatumOstvarivanja(new java.sql.Date(System.currentTimeMillis()).toString());
+            repository.izmeni(this, zaIzmenu);
+            zaIzmenu.getKorisnik().dodajPoene(Math.round(zaIzmenu.ukupnaCena) / 1000);
         } catch (SQLException sqle) {
             throw sqle;
         }
@@ -196,20 +248,6 @@ public class Narudzbina implements Serializable {
             ukupno += (stavka.getCenaPoPorciji() * stavkeNarudzbine.get(stavka));
         }
         return ukupno;
-    }
-
-    /* Predaje this repositoriju za dodavanje narudzbe u bazu
-    poziva dodavanje ostvarenih poena nad korisnikom koji je narucio 
-    TODO Maci ostvarivanje poena na narudzbina.ostvari() nakon implementacije
-    */
-    public void naruci() throws SQLException {
-        NarudzbinaRepository repository = new NarudzbinaRepository();
-        try {
-            repository.dodaj(this);
-            this.korisnik.dodajPoene(Math.round(this.ukupnaCena) / 2000);
-        } catch (SQLException sqle) {
-            throw sqle;
-        }
     }
 
     //Setuje popust, racuna i setuje ukupnu cenu sa popustom objekta nad kojim je pozvana.

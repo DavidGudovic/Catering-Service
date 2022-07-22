@@ -1,10 +1,12 @@
 package beans;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import repository.ProizvodRepository;
 
-public class Proizvod implements Serializable{
+public class Proizvod implements Serializable {
 
     private int proizvodID;
     private int cenaPoPorciji;
@@ -15,7 +17,7 @@ public class Proizvod implements Serializable{
 
     public Proizvod() {
     }
-    
+
     public Proizvod(int proizvodID) {  //Konstruktor za pretrage
         this.proizvodID = proizvodID;
     }
@@ -26,7 +28,7 @@ public class Proizvod implements Serializable{
         this.kategorija = kategorija;
         this.nazivProizvoda = nazivProizvoda;
         this.opis = opis;
-        this.slika = "./img/" + slika + ".jpg";
+        this.slika = slika;
     }
 
     public int getProizvodID() {
@@ -72,17 +74,23 @@ public class Proizvod implements Serializable{
     public String getSlika() {
         return slika;
     }
-
-    public void setSlika(String slika) {
-        this.slika = "./img/" + slika + ".jpg";
+    public String getSlikaPath(){
+        return "./img/" + slika + ".jpg";
     }
 
-    // Sistemske operacije
-    
-    // Vraca listu proizvoda filtriranih po kategoriji ili po programu (in 'slani' 'slatki')
-    // Ako se pretrazuje po programu( != null ) kategorija ce biti ignorisana, u pozivima sam stavljao vrednost -1 simbolicno
-    public static List<Proizvod> filtrirajPonudu(List<Proizvod> proizvodi, String trazeniProgram, int trazenaKategorija) {
+    public void setSlika(String slika) {
+        this.slika = slika;
+    }    
 
+    // Sistemske operacije
+     
+    //  Static metode
+    
+    /* 
+     Vraca listu proizvoda filtriranih po kategoriji ili po programu (in 'slani' 'slatki')
+     Ako se pretrazuje po programu( != null ) kategorija ce biti ignorisana, u pozivima sam stavljao vrednost -1 simbolicno
+    */
+    public static List<Proizvod> filtrirajPonudu(List<Proizvod> proizvodi, String trazeniProgram, int trazenaKategorija) {
         List<Proizvod> filtriraniProizvodi = new ArrayList<>();
         if (trazeniProgram == null) {   // filtriranje je po kategoriji
             for (Proizvod p : proizvodi) {
@@ -99,5 +107,46 @@ public class Proizvod implements Serializable{
             }
         }
         return filtriraniProizvodi;
+    }
+    /*
+    Vraca listu svih proizvoda iz baze
+    */
+    public static List<Proizvod> celaPonuda() throws SQLException {
+        ProizvodRepository repository = new ProizvodRepository();
+        try {
+            return repository.getSve();
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
+    }
+    
+    // NonStatic metode
+    
+    /*
+     Predaje izmene repositoriju za promenu u bazi
+     proizvoda sa this.proizvodID
+    */
+    public void izmeniProizvod(Proizvod izmene)throws SQLException{
+        ProizvodRepository repository = new ProizvodRepository();
+        try{
+            Proizvod izBaze = repository.getJedan(this);
+            izBaze.cenaPoPorciji = izmene.cenaPoPorciji;
+            izBaze.opis = izmene.opis;
+            izBaze.nazivProizvoda = izmene.nazivProizvoda;
+            izBaze.kategorija = izmene.kategorija;
+            repository.izmeni(this, izBaze);         
+        }catch(SQLException sqle){
+            throw sqle;
+        }
+    }    
+
+    // predaje this repositoriju na brisanje
+    public void izbrisiProizvod() throws SQLException{
+        ProizvodRepository repository = new ProizvodRepository();
+        try{
+            repository.izbrisi(this);
+        }catch(SQLException sqle){
+            throw sqle;
+        }
     }
 }
