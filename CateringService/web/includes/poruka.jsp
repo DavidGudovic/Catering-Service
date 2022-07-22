@@ -3,7 +3,7 @@
 
 <c:if test="${param.Status == 'uspeh'}">
     <div class="poruka">
-        <p id="hvala">Hvala što ste koristili naše usluge!<br>Ostvarili ste ${param.Poeni} poena!</p>
+        <p id="hvala">Hvala što ste koristili naše usluge!<br>Nakon ostvarenja osvojićete ${param.Poeni} poena!</p>
     </form>
 </div>
 </c:if>
