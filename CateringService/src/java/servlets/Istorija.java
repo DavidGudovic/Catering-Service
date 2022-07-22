@@ -36,9 +36,9 @@ public class Istorija extends HttpServlet {
         switch (request.getParameter("Zahtev")) {
             case "Otkazi":
                 // Otkazivanje narudzbine sa statusom U Pripremi
-                Narudzbina zaOtkazivanje = new Narudzbina();
+                Narudzbina zaOtkazivanje = new Narudzbina(Integer.valueOf(request.getParameter("Narudzba")));
                 try{
-                    zaOtkazivanje.otkaziNarudzbinu(Integer.valueOf(request.getParameter("Narudzba")));
+                    zaOtkazivanje.otkaziNarudzbinu();
                     response.sendRedirect("Istorija?Zahtev=Pregled");
                 } catch(SQLException sqle){
                     request.setAttribute("msg", sqle.getMessage());
@@ -48,9 +48,9 @@ public class Istorija extends HttpServlet {
                 break;
             case "Ponovi":
                 // Kopiranje stare narudzbe u korpu
-                Narudzbina zaPonavljanje = new Narudzbina();
+                Narudzbina zaPonavljanje = new Narudzbina(Integer.valueOf(request.getParameter("Narudzba")));
                 try {
-                    zaPonavljanje.ponoviNarudzbu(Integer.valueOf(request.getParameter("Narudzba")));
+                    zaPonavljanje.ponoviNarudzbu();
                     session.setAttribute("Narudzbina", zaPonavljanje);
                     response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Korpa");
                 } catch (SQLException sqle) {
@@ -63,7 +63,7 @@ public class Istorija extends HttpServlet {
                  // Prikaz istorije
             try {
                 List<Narudzbina> narudzbine = Narudzbina.prikazNarudzbiKorisnika(new Korisnik(session.getAttribute("User").toString()));
-                Collections.reverse(narudzbine);  // Umesto OrderBy
+                Collections.reverse(narudzbine);
                 request.setAttribute("Narudzbine", narudzbine);
                 request.getRequestDispatcher("istorija.jsp").forward(request, response);
             } catch (SQLException sqle) {

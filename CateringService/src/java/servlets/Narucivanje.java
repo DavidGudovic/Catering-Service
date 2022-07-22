@@ -69,9 +69,9 @@ public class Narucivanje extends HttpServlet {
                     response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Poruka&Status=greska&");
                     return;
                 }
-                int dobijeniPoeni = (int) (narudzbina.getUkupnaCena() / 1000);
+                
                 session.removeAttribute("Narudzbina");
-                session.setAttribute("Poeni", (int)session.getAttribute("Poeni") + dobijeniPoeni);
+                int dobijeniPoeni = (int) (narudzbina.getUkupnaCena() / 1000);
                 response.sendRedirect("Profil?User=" + session.getAttribute("User").toString() + "&View=Poruka&Status=uspeh&Poeni=" + Integer.toString(dobijeniPoeni));
                 break;
 

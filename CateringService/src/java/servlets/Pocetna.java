@@ -9,11 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import repository.KategorijaRepository;
-import repository.ProizvodRepository;
 
 /* 
- Zove Kategorija i Proizvod repository.
  Hendluje prikaz i filtriranje prikaza ponude i kategorija na naslovnoj strani
  konfigurisan je kao welcome page u web.xml-u
 */
@@ -24,14 +21,12 @@ public class Pocetna extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        ProizvodRepository proizvodRepository = new ProizvodRepository();
-        KategorijaRepository kategorijaRepository = new KategorijaRepository();
-        List<Proizvod> proizvodi = null;
+        
         List<Kategorija> kategorije = null;
-
+        List<Proizvod> proizvodi = null;
         try {
-            kategorije = kategorijaRepository.getSve();
-            proizvodi = proizvodRepository.getSve();
+            kategorije = Kategorija.sveKategorije();
+            proizvodi = Proizvod.celaPonuda();
         } catch (SQLException sqle) {
             request.setAttribute("msg", sqle + " GRESKA");
             request.getRequestDispatcher("/pocetna.jsp").forward(request, response);
