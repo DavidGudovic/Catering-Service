@@ -208,10 +208,7 @@ public class Korisnik implements Serializable {
 
     /*
     Uzima korisnika iz baze od repositorija,
-    dodaje poene iz parametra i predaje nazad repositoriju na izmenu (repository.izmeni)
-    
-    Moze oduzeti poene ako je parametar negativan ( za otkazane narudzbe )
-    TODO ? promeniti ime u izmeniPoene
+    dodaje poene iz parametra i predaje nazad repositoriju na izmenu (repository.izmeni)    
     */
     void dodajPoene(int poeni) throws SQLException {
         KorisnikRepository repository = new KorisnikRepository();
