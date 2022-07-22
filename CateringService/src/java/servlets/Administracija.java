@@ -1,6 +1,12 @@
 package servlets;
 
+import beans.Kategorija;
+import beans.Narudzbina;
+import beans.Proizvod;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,14 +24,14 @@ public class Administracija extends HttpServlet {
         HttpSession session = request.getSession();
         String zahtev;
         int rola;
-        
+
         if (session.getAttribute("UserRola") != null && request.getParameter("Zahtev") != null) {
             zahtev = request.getParameter("Zahtev");
             rola = Integer.valueOf(session.getAttribute("UserRola").toString());
         } else {
             return false;
         }
-        
+
         return !(rola > 2 || (rola > 1 && zahtev.equals("Korisnici")));
     }
 
@@ -38,10 +44,27 @@ public class Administracija extends HttpServlet {
         }
 
         switch (request.getParameter("Zahtev")) {
-            case "Narudzbine":
-                break;
+            case "Narudzbine":                
+                try {
+                List<Narudzbina> narudzbine = Narudzbina.prikazNeostvarenih();
+                Collections.reverse(narudzbine);
+                request.setAttribute("Narudzbine", narudzbine);
+            } catch (SQLException sqle) {
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+                return;
+            }
+            break;
             case "Proizvodi":
-                break;
+                try {
+                List<Proizvod> proizvodi = Proizvod.celaPonuda();
+                List<Kategorija> kategorije = Kategorija.sveKategorije();
+                request.setAttribute("proizvodi", proizvodi);
+                request.setAttribute("kategorije", kategorije);
+            } catch (SQLException sqle) {
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+                return;
+            }
+            break;
             case "Izvestaji":
                 break;
             case "Korisnici":

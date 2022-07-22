@@ -28,6 +28,22 @@
         <servlet-name>Administracija</servlet-name>
         <servlet-class>servlets.Administracija</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Narudzbe</servlet-name>
+        <servlet-class>servlets.Narudzbe</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Proizvodi</servlet-name>
+        <servlet-class>servlets.Proizvodi</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Izvestaji</servlet-name>
+        <servlet-class>servlets.Izvestaji</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Korisnici</servlet-name>
+        <servlet-class>servlets.Korisnici</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Authenticate</servlet-name>
         <url-pattern>/Authenticate</url-pattern>
@@ -58,6 +74,22 @@
     <servlet-mapping>
         <servlet-name>Administracija</servlet-name>
         <url-pattern>/Administracija</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Narudzbe</servlet-name>
+        <url-pattern>/Narudzbe</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Proizvodi</servlet-name>
+        <url-pattern>/Proizvodi</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Izvestaji</servlet-name>
+        <url-pattern>/Izvestaji</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Korisnici</servlet-name>
+        <url-pattern>/Korisnici</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
