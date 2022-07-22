@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="proizvod">
-    <img class="proizvod-slika" src="${proizvod.getSlika()}" onerror="this.src='./img/svg/minilogo.svg';"  alt="...">
+    <img class="proizvod-slika" src="${proizvod.getSlikaPath()}" onerror="this.src='./img/svg/minilogo.svg';"  alt="...">
     <div class="proizvod-body">
         <h5 class="">${proizvod.getNazivProizvoda()}</h5>
         <p class="proizvod-opis">${proizvod.getOpis()}</p>

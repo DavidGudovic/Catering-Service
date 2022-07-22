@@ -65,6 +65,9 @@
     font-weight: bold;
     text-align:center;
 }
+.bold{
+    font-weight: bold;
+}
 /* Kraj utility-a */
 /** CSS ZA FOOTER **/
 #footer{
@@ -278,7 +281,7 @@ proizvod-body > p{
 .program{
     font-weight: bold;
     padding-top: 2rem;
-    color : #bc3f21; 
+    color : #bc3f21;
 }
 
 .kategorije > h5{
@@ -508,6 +511,7 @@ proizvod-body > p{
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 2fr 1fr;
     min-height: 390px;
+    max-height: 400px;
     padding: 1rem;
 }
 
@@ -560,7 +564,6 @@ proizvod-body > p{
 /* KRAJ CSSA ZA ISTORIJU */
 
 /* CSS ZA ADMIN PANEL */
-/* KRAJ CSSA ZA ADMIN PANEL */
 .administracija{
     display: grid;
     grid-template-columns: 1fr 4fr;
@@ -593,12 +596,143 @@ proizvod-body > p{
 .panel{
     background-color: #219ebc;
 }
-
-/* CSS ZA UPRAVLJANJE NARUDZBAMA */
-
 .naslov{
     margin: 2rem;
     padding-bottom: 2rem;
     text-align: center;
     border-bottom: solid 2px white;
 }
+/* CSS ZA UPRAVLJANJE NARUDZBAMA */
+
+.prikaz-neostvarenih{
+    background-color: #219ebc;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 32%));
+    grid-template-rows: repeat(auto-fit, minmax(24.375rem, 24.375rem));
+    gap: 1rem 1rem;
+    justify-content: space-evenly;
+    overflow: auto;
+    padding: 1rem;
+}
+
+.btn-narudzbina{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-narudzbina > a{
+    margin: 2px;
+}
+/* KRAJ ZA UPRAVLJANJE NARUDZBAMA */
+/* CSS ZA UPRAVLJANJE PROIZVODIMA I KATEGORIJAMA */
+
+.edit-ponude{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.lista-naslov{
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 3fr 0.7fr 0.8fr 1.2fr;
+    gap:1rem;
+}
+.lista{
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-rows: repeat(auto-fit, minmax(4rem,4rem));
+    grid-template-columns: 1fr;
+    overflow: auto;
+    gap: 0.2rem;
+}
+.lista-stavka{
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 3fr 0.7fr 0.8fr 1.2fr;
+    gap:1rem;
+    height: 4rem;
+    padding-left: 0.5rem;
+    background-color: #FAEBD7;
+}
+.lista-stavka > p{
+    margin: auto;
+    margin-left: 0;
+}
+.lista-stavka > select{
+   height: 2rem;
+   margin-top: 1rem;
+}
+
+.lista-btn{
+    margin: auto;
+}
+/* Donji dio ponude */
+.ponuda-dole{
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+}
+.nov-proizvod{
+    -webkit-box-shadow: -6px 10px 19px 0px rgba(0,0,0,0.35);
+    box-shadow: -6px 11px 19px 0px rgba(0,0,0,0.35);
+    background-color: #fff;
+    border-radius: 0.5rem;
+    display: grid;
+    padding: 1rem;
+
+
+}
+.nov-proizvod > form{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fit, minmax(2rem, 4rem));
+    gap:1rem;
+}
+
+.prikaz-kategorija{
+    display: grid;
+    grid-template-rows: 1fr 8fr;
+    border: solid 2px #fff;
+    margin-right: 1rem;
+}
+
+.prikaz-kategorija > p{
+    display: grid;
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom: solid 2px #fff;
+    place-content: center;
+    height: 100%;
+}
+
+.prikaz-kategorija > div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.slatke-kategorije{
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.slane-kategorije{
+    border-left: solid 2px #fff;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.slane-kategorije > p{
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.slatke-kategorije > p{
+    font-weight: bold;
+    text-align: center;
+}
+/* KRAJ PROIZ/KAT */
+
+/* KRAJ CSSA ZA ADMIN PANEL */

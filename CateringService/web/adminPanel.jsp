@@ -8,9 +8,10 @@
         <link rel="icon" href="./img/svg/minilogo.svg" type="image/icon type">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="./css/customStyles.css"/>
-
+        <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/scripts.js"></script>
+
     </head>
     <body>
         <div class="container-md">
@@ -28,9 +29,6 @@
                         <br>
                         <span class="pola-bordera"></span>
                     </c:if>
-                    
-                    </br>
-
                     <a class="administracija-link" href="Administracija?Zahtev=Narudzbine">Narudžbine</a>
                     <a class="administracija-link" href="Administracija?Zahtev=Proizvodi">Proizvodi</a>
                     <a class="administracija-link" href="Administracija?Zahtev=Izvestaji">Izveštaji</a>
@@ -51,7 +49,7 @@
                 <c:if test = "${param.Zahtev == 'Izvestaji'}">
                     <%@include file="includes/izvestaji.jsp"%>
                 </c:if>
-                 <c:if test = "${param.Zahtev == 'Korisnici'}">
+                <c:if test = "${param.Zahtev == 'Korisnici'}">
                     <%@include file="includes/korisnici.jsp"%>
                 </c:if>
             </div>
