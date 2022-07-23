@@ -3,6 +3,7 @@
 
 <div class='panel edit-ponude'>
 
+    <!-- LISTA PROIZVODA ZA EDIT -->
     <div>
         <div class="lista-naslov">
             <p>Proizvod</p>
@@ -12,6 +13,7 @@
             <p>Kategorija</p>
             <p>Akcije</p>
         </div>
+
         <div class="lista">
             <c:forEach var="proizvod" items="${requestScope.proizvodi}">
                 <div class="lista-stavka " >
@@ -32,8 +34,7 @@
                     </div>            
                 </div>                    
             </c:forEach>  
-
-        </div>  
+        </div>       
     </div>
 
     <div class="ponuda-dole">
@@ -41,32 +42,92 @@
         <div class="prikaz-kategorija">
             <p>Kategorije</p>
             <div>
-                <div class="slatke-kategorije">
-                    <p>Slane</p>
-                    <span><input type=text value="Naziv"> <a class="btn btn-warning" href="Proizvodi">Dodaj</a></span>
-                </div>
+                <!-- LISTA SLANIH KATEGORIJA ZA EDIT -->
                 <div class="slane-kategorije">
+                    <p>Slane</p>
+                    <form action="Kategorije" method="get">
+                        <input type="hidden" name="program" value="slani">
+                        <input type="text" name="naziv" placeholder="Naziv kategorije" required>
+                        <input type="submit" class="btn btn-warning" name="Zahtev" value="Dodaj">
+                    </form>
+                    <div class="kategorije-lista">
+                        <c:forEach var="kategorija" items="${requestScope.slaneKategorije}">
+                            <div class="kat-stavka">
+                                <div contentEditable="true" id="katNaziv${kategorija.getKategorijaID()}">${kategorija.getNazivKategorije()}</div>
+                                <select id="program${kategorija.getKategorijaID()}">
+                                    <option selected>slani</option>
+                                    <option>slatki</option>
+                                </select>
+                                <div class="kategorija-btn">
+                                    <a href="Kategorije?Zahtev=Izbrisi&Kategorija=${kategorija.getKategorijaID()}" class="btn btn-danger">X</a>
+                                    <a class="btn btn-warning kat-izmeni" id="${kategorija.getKategorijaID()}" >Izmeni</a>
+                                </div>
+                            </div>
+                        </c:forEach>
+
+
+                    </div>
+                </div>
+
+                <!-- LISTA SLATKIH KATEGORIJA ZA EDIT -->
+                <div class="slatke-kategorije">
                     <p>Slatke</p>
+                    <form action="Kategorije" method="get">
+                        <input type="hidden" name="program" value="slatki">
+                        <input type="text" name="naziv" placeholder="Naziv kategorije" required>
+                        <input type="submit" class="btn btn-warning" name="Zahtev" value="Dodaj">
+                    </form>
+                    <div class="kategorije-lista">
+                        <c:forEach var="slatKategorija" items="${requestScope.slatkeKategorije}">
+                            <div class="kat-stavka">
+                                <div contentEditable="true" id="katNaziv${slatKategorija.getKategorijaID()}">${slatKategorija.getNazivKategorije()}</div>
+                                <select id="program${slatKategorija.getKategorijaID()}">
+                                    <option selected>slatki</option>
+                                    <option>slani</option>
+                                </select>
+                                <div class="kategorija-btn">
+                                    <a href="Kategorije?Zahtev=Izbrisi&Kategorija=${slatKategorija.getKategorijaID()}" class="btn btn-danger">X</a>
+                                    <a class="btn btn-warning kat-izmeni" id="${slatKategorija.getKategorijaID()}">Izmeni</a>
+                                </div>
+                            </div>  
+                        </c:forEach>                       
+                    </div>
                 </div>                   
             </div>
         </div>
 
+        <!-- FORMA ZA NOV PROIZVOD -->
+
         <div class="nov-proizvod">
-            <form action="">
-                <input type="file" name="slika" placeholder="Izaberite fotografiju!">
-                <input type="text" name="naziv" placeholder="Naziv proizvoda">
-                <textarea maxlength="200"></textarea>
-                <select placeholder="Kategorije">
-                    <c:forEach var="kategorija" items="${requestScope.kategorije}">
-                        <option id="${kategorija.getKategorijaID()}">${kategorija.getNazivKategorije()}</option>
-                    </c:forEach>
-                </select>
-                <input type="number" naziv cena> RSD
+            <form action="Proizvodi" method='post' enctype="multipart/form-data">                
+                <input  type="hidden" name="zahtev" value='dodaj'>
+                <div>
+                    <label for="slika">Izaberite sliku</label>
+                    <input id="slika" type="file" name="slika" placeholder="Izaberite fotografiju!">
+                </div>
+                <div>
+                    <label for="naziv">Naziv</label>
+                    <input id="naziv" type="text" name="naziv" placeholder="Naziv proizvoda">
+                </div>
+                <div>
+                    <label for="opis">Opis</label>
+                    <textarea id="opis" name="opis" maxlength="200"></textarea>
+                </div>
+                <div>
+                    <label for="kategorija">Kategorija</label>
+                    <select id="kategorija" name="kategorija" placeholder="Kategorije">
+                        <c:forEach var="kategorija" items="${requestScope.kategorije}">
+                            <option id="${kategorija.getKategorijaID()}">${kategorija.getNazivKategorije()}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div>
+                    <input type="number" name="cena" min="0">  <span> RSD </span>
+                </div>
+                           
                 <input class="btn-dark" type="submit" value="Dodaj u ponudu">
             </form>
         </div>
 
-    </div>           
-
-
+    </div>        
 </div>
