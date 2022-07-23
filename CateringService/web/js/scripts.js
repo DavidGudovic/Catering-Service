@@ -42,7 +42,8 @@ $(document).ready(function () {
                     opis: $opis,
                     cena: $cena,
                     kategorija: $kategorija,
-                    kategorijaID: $kategorijaID},
+                    kategorijaID: $kategorijaID,
+                    zahtev: "izmeni"},
                 url: "/CateringService/Proizvodi",
                 success: function () {
                     alert("Proizvod je izmenjen!");
@@ -55,6 +56,29 @@ $(document).ready(function () {
             alert("Cena mora biti broj");
         }
     });
-    
-    // Async poziv za Kategorije kontroler
+
+    // Async pozivi za Kategorije kontroler za izmenu kategorija
+    $(".kat-izmeni").on("click", function () {
+        $kategorija = event.target.id;
+        $naziv = $("#katNaziv" + $kategorija).text();
+        $program = $("#program" + $kategorija + " :selected").text();
+
+            $.ajax({
+                type: "POST",
+                data: {kategorija: $kategorija,
+                    naziv: $naziv,
+                    program: $program,
+                    zahtev: "izmeni"},
+                url: "/CateringService/Kategorije",
+                success: function () {
+                    alert("Kategorija je izmenjena!");
+                },
+                error: function () {
+                    alert("Doslo je do greške");
+                }
+            });
+
+    });
+
+
 });
