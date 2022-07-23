@@ -61,11 +61,44 @@ public class Kategorija implements Serializable {
         return filtriraneKategorije;
     }
 
+    // Vraca listu svih kategorija iz baze
     public static List<Kategorija> sveKategorije() throws SQLException {
         KategorijaRepository repository = new KategorijaRepository();
         try {
             return repository.getSve();
         } catch (SQLException sqle) {
+            throw sqle;
+        }
+    }
+    
+    //NonStatic metode
+    
+    //predaje kategoriju repositoriju za promenu u bazi
+    public void izmeniKategoriju(Kategorija izmene) throws SQLException {
+        KategorijaRepository repository = new KategorijaRepository();
+        try {
+            repository.izmeni(this, izmene);
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
+    }
+
+    //predaje kategoriju repositoriju za dodavanje u bazu
+    public void dodajKategoriju() throws SQLException{
+        KategorijaRepository repository = new KategorijaRepository();
+        try{
+            repository.dodaj(this);
+        }catch(SQLException sqle){
+            throw sqle;
+        }
+    }
+
+    //predaje kategoriju repositoriju za brisanje iz baze
+    public void izbrisiKategoriju() throws SQLException{
+        KategorijaRepository repository = new KategorijaRepository();
+        try{
+            repository.izbrisi(this);
+        }catch(SQLException sqle){
             throw sqle;
         }
     }

@@ -58,8 +58,12 @@ public class Administracija extends HttpServlet {
                 try {
                 List<Proizvod> proizvodi = Proizvod.celaPonuda();
                 List<Kategorija> kategorije = Kategorija.sveKategorije();
+                List<Kategorija> slaneKategorije = Kategorija.filterKategorije(kategorije, "slani");
+                List<Kategorija> slatkeKategorije = Kategorija.filterKategorije(kategorije, "slatki");
                 request.setAttribute("proizvodi", proizvodi);
                 request.setAttribute("kategorije", kategorije);
+                request.setAttribute("slaneKategorije", slaneKategorije);
+                request.setAttribute("slatkeKategorije", slatkeKategorije);
             } catch (SQLException sqle) {
                 request.getRequestDispatcher("error.jsp").forward(request, response);
                 return;

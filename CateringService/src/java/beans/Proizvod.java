@@ -75,7 +75,7 @@ public class Proizvod implements Serializable {
         return slika;
     }
     public String getSlikaPath(){
-        return "./img/" + slika + ".jpg";
+        return "./img/" + slika;
     }
 
     public void setSlika(String slika) {
