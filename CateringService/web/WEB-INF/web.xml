@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Authenticate</servlet-name>
-        <servlet-class>servlets.Authenticate</servlet-class>
+        <servlet-class>servlets.Autentikacija</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Profil</servlet-name>
@@ -43,6 +43,10 @@
     <servlet>
         <servlet-name>Korisnici</servlet-name>
         <servlet-class>servlets.Korisnici</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Kategorije</servlet-name>
+        <servlet-class>servlets.Kategorije</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Authenticate</servlet-name>
@@ -90,6 +94,10 @@
     <servlet-mapping>
         <servlet-name>Korisnici</servlet-name>
         <url-pattern>/Korisnici</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Kategorije</servlet-name>
+        <url-pattern>/Kategorije</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
