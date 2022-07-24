@@ -15,7 +15,7 @@
             <%@include file="includes/navbar.jsp"%>
             <section>
                 <div class="container login-cent">     
-                    <form class="login-form" action="Authenticate" method="post">     
+                    <form class="login-form" action="Autentikacija" method="post">     
                         <strong class="bold"> LOGIN </strong>
                         <input type="text" placeholder="Korisnicko ime" name="loginKorisnicko" required></br>
                         <input type="password" placeholder="Password" name="password" required></br>
