@@ -14,7 +14,7 @@
         <div class="container-md">
             <%@include file="includes/navbar.jsp"%>
             <div class="reg-center">
-                        <form class="reg-form rounded" action="Autentikacija" method="post">  
+                        <form class="reg-form" action="Autentikacija" method="post">  
                             <strong class="bold">REGISTRACIJA</strong><br>
                             <label for="korisnickoIme">Korisničko ime</label> 
 
