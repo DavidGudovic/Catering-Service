@@ -21,7 +21,7 @@
                     <p id="slika${proizvod.getProizvodID()}">${proizvod.getSlikaPath()}</p>
                     <p id="opis${proizvod.getProizvodID()}" contentEditable="true" class="lista-stavka-opis">${proizvod.getOpis()}</p>
                     <p id="cena${proizvod.getProizvodID()}" contentEditable="true">${proizvod.getCenaPoPorciji()}</p>
-                    <select id="kategorija${proizvod.getProizvodID()}" placeholder="Kategorije">
+                    <select id="kategorija${proizvod.getProizvodID()}">
                         <option id="${proizvod.getKategorija().getKategorijaID()}" selected> ${proizvod.getKategorija().getNazivKategorije()} </option>
                         <option disabled>---------</option>
                         <c:forEach var="kategorija" items="${requestScope.kategorije}">
