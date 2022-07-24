@@ -2,9 +2,12 @@ package servlets;
 
 import beans.Kategorija;
 import beans.Proizvod;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -38,29 +41,44 @@ public class Proizvodi extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
-        if (request.getParameter("zahtev") != null) { // Zahtev za dodavanje proizvoda
-            
-            //Upload slike
-            Part filePart = request.getPart("slika"); // Retrieves <input type="file" name="file">
-            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-            InputStream fileContent = filePart.getInputStream();
-            response.sendRedirect(fileName);
-            
-            //Pozivanje modela 
+        switch (request.getParameter("zahtev")) { // Zahtev za dodavanje proizvoda    
+            case "dodaj":
+                Part filePart = request.getPart("slika");
+                String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+                Proizvod zaDodavanje = new Proizvod();
+                zaDodavanje.setCenaPoPorciji(Integer.valueOf(request.getParameter("cena")));
+                zaDodavanje.setKategorija(new Kategorija(Integer.valueOf(request.getParameter("kategorijaID"))));
+                zaDodavanje.setNazivProizvoda(request.getParameter("naziv"));
+                zaDodavanje.setOpis(request.getParameter("opis"));
+                zaDodavanje.setSlika(fileName);
 
-        } else {  // Ajaz poziv za izmenu proizvoda
-            Proizvod zaIzmenu = new Proizvod(Integer.valueOf(request.getParameter("proizvod")));
-            Proizvod izmene = new Proizvod();
-            izmene.setNazivProizvoda(request.getParameter("naziv"));
-            izmene.setOpis(request.getParameter("opis"));
-            izmene.setCenaPoPorciji(Integer.valueOf(request.getParameter("cena")));
-            izmene.setKategorija(new Kategorija(Integer.valueOf(request.getParameter("kategorijaID"))));
-            try {
-                zaIzmenu.izmeniProizvod(izmene);
-            } catch (SQLException sqle) {
-                response.sendError(500);
-            }
+                //TODO naci drugi nacin za filepath
+                File filePath = new File("C:\\Users\\dgudo\\OneDrive\\Desktop\\Faks\\Sesti semestar\\Internet Programerski alati\\Projekat\\CateringService\\web\\img");
+                // Upload slike se vrsi u servletu 
+                try ( InputStream fileContent = filePart.getInputStream()) {
+                    zaDodavanje.noviProizvod();
+                    File file = new File(filePath, fileName);
+                    Files.copy(fileContent, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                } catch (IOException | SQLException ie) {
+                    request.setAttribute("msg", ie.getMessage());
+                }
+                response.sendRedirect("Administracija?Zahtev=Proizvodi");
+                return;
+            case "izmeni": // Ajax poziv za izmenu proizvod   
+                Proizvod zaIzmenu = new Proizvod(Integer.valueOf(request.getParameter("proizvod")));
+                Proizvod izmene = new Proizvod();
+                izmene.setNazivProizvoda(request.getParameter("naziv"));
+                izmene.setOpis(request.getParameter("opis"));
+                izmene.setCenaPoPorciji(Integer.valueOf(request.getParameter("cena")));
+                izmene.setKategorija(new Kategorija(Integer.valueOf(request.getParameter("kategorijaID"))));
+                try {
+                    zaIzmenu.izmeniProizvod(izmene);
+                } catch (SQLException sqle) {
+                    response.sendError(500);
+                }
+                break;
         }
     }
 

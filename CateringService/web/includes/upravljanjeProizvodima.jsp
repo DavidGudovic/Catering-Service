@@ -97,29 +97,32 @@
         </div>
 
         <!-- FORMA ZA NOV PROIZVOD -->
-
         <div class="nov-proizvod">
             <form action="Proizvodi" method='post' enctype="multipart/form-data">                
                 <input  type="hidden" name="zahtev" value='dodaj'>
                 <div>
                     <label for="slika">Izaberite sliku</label>
-                    <input id="slika" type="file" name="slika" placeholder="Izaberite fotografiju!">
+                    <input id="slika" type="file" name="slika" placeholder="Izaberite fotografiju!" required>
                 </div>
                 <div>
                     <label for="naziv">Naziv</label>
-                    <input id="naziv" type="text" name="naziv" placeholder="Naziv proizvoda">
+                    <input id="naziv" type="text" name="naziv" placeholder="Naziv proizvoda" required>
                 </div>
                 <div>
                     <label for="opis">Opis</label>
-                    <textarea id="opis" name="opis" maxlength="200"></textarea>
+                    <textarea id="opis" name="opis" maxlength="200" required></textarea>
                 </div>
                 <div>
                     <label for="kategorija">Kategorija</label>
-                    <select id="kategorija" name="kategorija" placeholder="Kategorije">
+                    <!-- onchange jquery -->
+                    <select class="katSelect" id="kategorija" name="kategorija" placeholder="Kategorije">
+                        <option disabled selected>Izaberite kategoriju</option>
                         <c:forEach var="kategorija" items="${requestScope.kategorije}">
                             <option id="${kategorija.getKategorijaID()}">${kategorija.getNazivKategorije()}</option>
                         </c:forEach>
                     </select>
+                    <!-- value punjen JQuery-em -->
+                    <input type="hidden" class="katID" name="kategorijaID" value="">
                 </div>
                 <div>
                     <input type="number" name="cena" min="0">  <span> RSD </span>

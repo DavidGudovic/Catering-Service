@@ -14,7 +14,22 @@ import java.util.List;
 public class ProizvodRepository implements IRepository<Proizvod> {
 
     @Override
-    public void dodaj(Proizvod zaDodavanje) {
+    public void dodaj(Proizvod zaDodavanje) throws SQLException{
+        Connection con = ConnectionManager.getConnection();
+        String sql = "INSERT INTO `proizvodi`(`NazivProizvoda`, `Opis`, `Slika`, `CenaPoPorciji`, `KategorijaID`) VALUES (?,?,?,?,?)";
+        try(PreparedStatement stmt = con.prepareStatement(sql)){
+            stmt.setString(1,zaDodavanje.getNazivProizvoda());
+            stmt.setString(2,zaDodavanje.getOpis());
+            stmt.setString(3,zaDodavanje.getSlika());
+            stmt.setInt(4,zaDodavanje.getCenaPoPorciji());
+            stmt.setInt(5, zaDodavanje.getKategorija().getKategorijaID());
+            
+            stmt.executeUpdate();
+        }catch(SQLException sqle){
+            throw sqle;
+        }finally{
+            con.close();
+        }
     }
 
     // Vraca ArrayList svih proizvoda iz baze i odgovarajuce kategorije inner join-om
