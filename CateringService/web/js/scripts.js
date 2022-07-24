@@ -16,8 +16,8 @@ function popust(element) {
     }
     let popust = element.value * 10;
     total.textContent = subtotal - ((subtotal / 100) * popust);
-
 }
+
 
 // Jquery
 
@@ -80,5 +80,9 @@ $(document).ready(function () {
 
     });
 
+    $(".katSelect").on("change", function(){
+       $kategorija = $(".katSelect :selected").attr("id");
+       $(".katID").attr("value", $kategorija);
+    });
 
 });
