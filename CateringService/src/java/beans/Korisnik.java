@@ -108,7 +108,6 @@ public class Korisnik implements Serializable {
 
     //Sistemske operacije
     //Static metode
-    
     // Poziva getSve metodu repozitorija i vraca listu svih korisnika
     public static List<Korisnik> sviKorisnici() throws SQLException {
         KorisnikRepository repository = new KorisnikRepository();
@@ -181,8 +180,10 @@ public class Korisnik implements Serializable {
     public void izmeniKorisnika(Korisnik izmene) throws SQLException {
         KorisnikRepository repository = new KorisnikRepository();
 
-        if (izmene.getPassword() == null) { // Nije menjana sifra
-            izmene.setPassword(repository.getJedan(this).getPassword());
+        if (izmene.getPassword().equals("Neizmenjen")) {
+            izmene.setPasswordHash(repository.getJedan(this).getPassword());
+        } else {
+            izmene.setPassword(izmene.getPassword()); // izmene.getPassword je neheshirann, setPassword heshira
         }
 
         try {
@@ -217,8 +218,21 @@ public class Korisnik implements Serializable {
             throw sqle;
         }
     }
+    /*
+    *Administrator brise korisnika*
+    Predaje this repositoriju na brisanje*
+    */
+    public void izbrisiKorisnika() throws SQLException {
+        KorisnikRepository repository = new KorisnikRepository();
+        try {
+            repository.izbrisi(this);
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
+    }
 
     /*
+    *Korisnik brise svoj profil*
      Poredi uneti password hash (this.password) sa hashom iz baze
      Ako je tacan predaje korisnika za brisanje iz baze (repository.izbrisi) i vraca true
      Ako nije tacan ili je bacen SQLexception vraca false

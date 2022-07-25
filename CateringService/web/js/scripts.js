@@ -79,10 +79,58 @@ $(document).ready(function () {
             });
 
     });
-
+    
+    //Async poziv za Korisnici kontroler za izmenu informacija korisnika
+    $(".btn-izmeni-kor").on("click", function(){
+        // get data
+        $korisnik = event.target.id;
+        $korisnickoIme = $("#korisnicko" + $korisnik).text();
+        $ime = $("#ime" + $korisnik).text();
+        $prezime = $("#prezime" + $korisnik).text();
+        $adresa = $("#adresa" + $korisnik).text();
+        $poeni = $("#poeni" + $korisnik).text();
+        $rola = $("#rola" + $korisnik + " :selected").attr("id");
+        $password = $("#password" + $korisnik).text();
+        
+        if($.isNumeric($poeni)){
+             $.ajax({
+            type: "POST",
+            data:{
+                zahtev : "izmeni",
+                korisnik : $korisnik,
+                korisnicko : $korisnickoIme,
+                ime : $ime,
+                prezime : $prezime,
+                adresa : $adresa,               
+                poeni : $poeni,
+                rola : $rola, 
+                password : $password 
+            },
+            url: "/CateringService/Korisnici",          
+            success: function(){
+                $("#password" + $korisnik).text("Neizmenjen");
+                alert("Korisnik je izmenjen");
+            },
+            error: function() {
+                alert("Doslo je do greske!");
+            }
+        });
+        } else {
+            alert("Poeni moraju biti broj!");
+        }
+       
+    });
+    
+   // Menja vrednost kategorije za dodavanje novog proizvoda 
     $(".katSelect").on("change", function(){
        $kategorija = $(".katSelect :selected").attr("id");
        $(".katID").attr("value", $kategorija);
     });
+    
+    //Menja vrednost role za dodavanje novog korisnika
+    $(".nov-rola").on("change", function(){
+        $(".nov-rolaID").attr("value", $(".nov-rola :selected").attr("id"));
+    });
+    
 
 });
