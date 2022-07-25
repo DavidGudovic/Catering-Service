@@ -3,6 +3,7 @@ package beans;
 import java.io.Serializable;
 
 public class Rola implements Serializable{
+
     private int rolaID;
     private String nazivRole;
     

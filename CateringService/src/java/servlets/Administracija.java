@@ -1,6 +1,7 @@
 package servlets;
 
 import beans.Kategorija;
+import beans.Korisnik;
 import beans.Narudzbina;
 import beans.Proizvod;
 import java.io.IOException;
@@ -35,6 +36,7 @@ public class Administracija extends HttpServlet {
         return !(rola > 2 || (rola > 1 && zahtev.equals("Korisnici")));
     }
 
+    //Hendluje prikaze panela za administraciju
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,8 +45,8 @@ public class Administracija extends HttpServlet {
             return;
         }
 
-        switch (request.getParameter("Zahtev")) {
-            case "Narudzbine":                
+        switch (request.getParameter("Zahtev")) { 
+            case "Narudzbine":     // Poziv za prikaz neostvarenih narudzbina
                 try {
                 List<Narudzbina> narudzbine = Narudzbina.prikazNeostvarenih();
                 Collections.reverse(narudzbine);
@@ -54,7 +56,7 @@ public class Administracija extends HttpServlet {
                 return;
             }
             break;
-            case "Proizvodi":
+            case "Proizvodi": // Poziv za prikaz proizvoda i kategorija
                 try {
                 List<Proizvod> proizvodi = Proizvod.celaPonuda();
                 List<Kategorija> kategorije = Kategorija.sveKategorije();
@@ -69,10 +71,18 @@ public class Administracija extends HttpServlet {
                 return;
             }
             break;
-            case "Izvestaji":
+            case "Izvestaji": // Poziv za prikaz izvestaja
                 break;
-            case "Korisnici":
-                break;
+            case "Korisnici": // Poziv za prikaz korisnika
+                try {
+                List<Korisnik> korisnici = Korisnik.sviKorisnici();
+                request.setAttribute("korisnici", korisnici);
+            } catch (SQLException sqle) {
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+                return;
+            }
+
+            break;
             default:
                 request.getRequestDispatcher("error.jsp").forward(request, response);
                 break;

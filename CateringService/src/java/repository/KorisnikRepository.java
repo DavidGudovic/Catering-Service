@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class KorisnikRepository implements IRepository<Korisnik> {
@@ -65,27 +66,50 @@ public class KorisnikRepository implements IRepository<Korisnik> {
         }
         return null;
     }
-
+    
+    //Pakuje sve redove iz baze u ArrayList korisnika, ne pakuje PasswordHash iz sigurnosnih razloga
     @Override
-    public List<Korisnik> getSve() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public List<Korisnik> getSve() throws SQLException{
+       Connection con = ConnectionManager.getConnection();
+       String sql = "SELECT `KorisnickoIme`, `Ime`, `Prezime`, `Adresa`, `Poeni`,korisnici.`RolaID`,`NazivRole` "
+               + "FROM `korisnici` INNER JOIN `role` ON korisnici.`RolaID` = role.`RolaID` "
+               + "WHERE `KorisnickoIme` != 'izbrisani'";
+       List<Korisnik> rezultat = new ArrayList<>();
+       try(PreparedStatement stmt = con.prepareStatement(sql)){
+          ResultSet rs = stmt.executeQuery();
+          while(rs.next()){
+               Korisnik korisnik = new Korisnik();
+               korisnik.setKorisnickoIme(rs.getString("KorisnickoIme"));
+               korisnik.setIme(rs.getString("Ime"));
+               korisnik.setPrezime(rs.getString("Prezime"));
+               korisnik.setAdresa(rs.getString("Adresa"));
+               korisnik.setPoeni(rs.getInt("Poeni"));
+               korisnik.setRola(new Rola(rs.getInt("RolaID"), rs.getString("NazivRole")));
+               
+               rezultat.add(korisnik);
+           }
+       }catch(SQLException sqle){          
+           throw sqle;
+       }
+       return rezultat;
     }
 
     // Menja red u bazi sa stariT.KorisnickoIme informacijama iz noviT
     @Override
     public void izmeni(Korisnik stariT, Korisnik noviT) throws SQLException {
         Connection con = ConnectionManager.getConnection();
-        String sql = "UPDATE `korisnici` SET `Ime`=?,`Prezime`=?,`Adresa`=?,`Poeni`=?,`PasswordHash`=?,`RolaID`=? "
+        String sql = "UPDATE `korisnici` SET `KorisnickoIme`=?,`Ime`=?,`Prezime`=?,`Adresa`=?,`Poeni`=?,`PasswordHash`=?,`RolaID`=? "
                 + "WHERE `KorisnickoIme` = ?";
         try ( PreparedStatement stmt = con.prepareStatement(sql)) {
-          stmt.setString(1,noviT.getIme());
-          stmt.setString(2,noviT.getPrezime());
-          stmt.setString(3,noviT.getAdresa());
-          stmt.setInt(4,noviT.getPoeni());
-          stmt.setString(5,noviT.getPassword());
-          stmt.setInt(6,noviT.getRola().getRolaID());
+          stmt.setString(1, noviT.getKorisnickoIme());
+          stmt.setString(2,noviT.getIme());
+          stmt.setString(3,noviT.getPrezime());
+          stmt.setString(4,noviT.getAdresa());
+          stmt.setInt(5,noviT.getPoeni());
+          stmt.setString(6,noviT.getPassword());
+          stmt.setInt(7,noviT.getRola().getRolaID());
           
-          stmt.setString(7, stariT.getKorisnickoIme());
+          stmt.setString(8, stariT.getKorisnickoIme());
           stmt.executeUpdate();
         } catch (SQLException sqle) {
             throw sqle;

@@ -3,6 +3,7 @@ package beans;
 import database.MD5;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.List;
 import repository.KorisnikRepository;
 
 public class Korisnik implements Serializable {
@@ -106,10 +107,23 @@ public class Korisnik implements Serializable {
     }
 
     //Sistemske operacije
+    //Static metode
+    
+    // Poziva getSve metodu repozitorija i vraca listu svih korisnika
+    public static List<Korisnik> sviKorisnici() throws SQLException {
+        KorisnikRepository repository = new KorisnikRepository();
+        try {
+            return repository.getSve();
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
+    }
+
+    //NonStatic metode
     /*
      Proverava da li se predata sifra podudara sa korisnikom u bazi koji dodaje repozitory
      ako se podudara, puni objekat podacima iz baze i vraca true(uspeh); \
-    */
+     */
     public boolean login() throws SQLException {
         KorisnikRepository repositorij = new KorisnikRepository();
         try {
@@ -159,25 +173,42 @@ public class Korisnik implements Serializable {
         this.poeni = puni.poeni;
     }
 
+    /* 
+    *Administrator menja korisnikove podatke*
+    Proverava da li je administrator menjao sifru
+    Ako nije puni izmene sa trenutnim hashom sifre iz baze
+     */
+    public void izmeniKorisnika(Korisnik izmene) throws SQLException {
+        KorisnikRepository repository = new KorisnikRepository();
+
+        if (izmene.getPassword() == null) { // Nije menjana sifra
+            izmene.setPassword(repository.getJedan(this).getPassword());
+        }
+
+        try {
+            repository.izmeni(this, izmene);
+        } catch (SQLException sqle) {
+            throw sqle;
+        }
+    }
+
     /*
+    *Korisnik menja svoje podatke*
     Proverava da li je korisnik uneo tacnu sifru,
     ako jeste salje izmenjene podatke repositoriju za promenu u bazi
-    */
+     */
     public boolean izmeniInformacije(Korisnik izmene) throws SQLException {
         KorisnikRepository repository = new KorisnikRepository();
         Korisnik originalniKorisnik;
         try {
             originalniKorisnik = repository.getJedan(this);
-            if (originalniKorisnik.getPassword().equals(this.password)) { //if true - unet je tacan password     
-                if (izmene.getRola() == null) { // if true - Korisnik je izmenio podatke
-                    izmene.setRola(originalniKorisnik.getRola());
-                    izmene.setPoeni(originalniKorisnik.getPoeni());
-                }  // else - Administrator je izmenio podatke TODO
 
+            if (originalniKorisnik.getPassword().equals(this.password)) {
+                izmene.setRola(originalniKorisnik.getRola());
+                izmene.setPoeni(originalniKorisnik.getPoeni());
                 originalniKorisnik.setPasswordHash(izmene.getPassword());
                 originalniKorisnik.napuniPodatke(izmene);
                 repository.izmeni(this, originalniKorisnik);
-
                 return true;
             } else {
                 return false;  // pogresan password;
@@ -186,12 +217,12 @@ public class Korisnik implements Serializable {
             throw sqle;
         }
     }
-    
+
     /*
      Poredi uneti password hash (this.password) sa hashom iz baze
      Ako je tacan predaje korisnika za brisanje iz baze (repository.izbrisi) i vraca true
      Ako nije tacan ili je bacen SQLexception vraca false
-    */
+     */
     public boolean izbrisiProfil() {
         KorisnikRepository repository = new KorisnikRepository();
         try {
@@ -209,7 +240,7 @@ public class Korisnik implements Serializable {
     /*
     Uzima korisnika iz baze od repositorija,
     dodaje poene iz parametra i predaje nazad repositoriju na izmenu (repository.izmeni)    
-    */
+     */
     void dodajPoene(int poeni) throws SQLException {
         KorisnikRepository repository = new KorisnikRepository();
         try {
