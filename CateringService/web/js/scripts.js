@@ -132,5 +132,24 @@ $(document).ready(function () {
         $(".nov-rolaID").attr("value", $(".nov-rola :selected").attr("id"));
     });
     
-
+    //Stavlja max vrednost date picker-a za izvestaj na danasnji datum
+    $('#mesec').attr('max', new Date().toISOString().split('T')[0].slice(0,-3));
+    
+    // submita formu kad se izabere mesec
+    $('#mesec').on("change", function(){
+        $('#mesec-form').submit();
+    });
+    
+    //Generise pdf od izvestaja
+     document.getElementById("pdf").addEventListener("click", () => {
+            const izvestaj = document.getElementById("izvestaj");
+            var opcije = {
+               margin: 1,
+                filename: 'izvestaj.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 1 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };            
+            html2pdf().from(izvestaj).set(opcije).save();
+        });
 });
