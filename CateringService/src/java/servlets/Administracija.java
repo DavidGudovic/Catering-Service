@@ -1,5 +1,6 @@
 package servlets;
 
+import beans.Izvestaj;
 import beans.Kategorija;
 import beans.Korisnik;
 import beans.Narudzbina;
@@ -45,7 +46,7 @@ public class Administracija extends HttpServlet {
             return;
         }
 
-        switch (request.getParameter("Zahtev")) { 
+        switch (request.getParameter("Zahtev")) {
             case "Narudzbine":     // Poziv za prikaz neostvarenih narudzbina
                 try {
                 List<Narudzbina> narudzbine = Narudzbina.prikazNeostvarenih();
@@ -72,6 +73,19 @@ public class Administracija extends HttpServlet {
             }
             break;
             case "Izvestaji": // Poziv za prikaz izvestaja
+                Izvestaj izvestaj = new Izvestaj();
+               try {
+                izvestaj.formiraj();
+            } catch (SQLException sqle) {
+                request.getRequestDispatcher(sqle.getMessage()).forward(request, response);
+                return;
+            }
+                request.setAttribute("proizvodi", izvestaj.getProizvodi());
+                request.setAttribute("korisnici", izvestaj.getKorisnici());
+                request.setAttribute("ostvarenih", izvestaj.getOstvarene());
+                request.setAttribute("totalOstvarenih", izvestaj.getTotalOstvarene());
+                request.setAttribute("otkazanih", izvestaj.getOtkazane());
+                request.setAttribute("totalOtkazanih", izvestaj.getTotalOtkazane()); 
                 break;
             case "Korisnici": // Poziv za prikaz korisnika
                 try {

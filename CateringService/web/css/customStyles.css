@@ -822,6 +822,54 @@ proizvod-body > p{
 /*KRAJ CCS-A ZA KORISNIKE */
 
 /* CSS ZA IZVESTAJE */
+.izvestaj{
+    display: grid;
+    grid-template-rows: 0.5fr 3fr 1fr;
+    grid-template-columns: 1fr;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+.naslov-izvestaja{
+    display: grid;
+    place-content: center;
+}
+
+.naslov-izvestaja > span{
+    font-size: 30px;
+}
+
+.telo-izvestaja{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding: 0 4rem;
+}
+
+.telo-izvestaja > div{
+    border: solid 2px #fff;
+    padding: 2rem;
+}
+.footer-izvestaja{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+.izvestaj-totali{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1rem 4rem;
+    text-align: center;
+}
+
+.izvestaji-btn{
+    display: grid;
+    place-items: center;
+}
+.btn-pdf{
+    width: 5rem;
+    height: 2rem;
+}
 
 /* KRAJ CSS ZA IZVESTAJE */
 /* KRAJ CSSA ZA ADMIN PANEL */

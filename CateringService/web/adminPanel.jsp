@@ -8,8 +8,9 @@
         <link rel="icon" href="./img/svg/minilogo.svg" type="image/icon type">
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
         <link rel="stylesheet" type="text/css" href="./css/customStyles.css"/>
+        <script src="js/html2pdf.js"></script>
         <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>     
         <script src="js/scripts.js"></script>
 
     </head>
