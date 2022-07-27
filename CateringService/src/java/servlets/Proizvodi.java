@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+//Hendluje pozive za brisanje i dodavanje proizvoda, uploaduj-e sliku proizvoda
 @MultipartConfig
 public class Proizvodi extends HttpServlet {
 
@@ -84,6 +85,6 @@ public class Proizvodi extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Hendluje pozive za brisanje i dodavanje proizvoda, uploaduj-e sliku proizvoda";
     }
 }

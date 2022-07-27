@@ -132,13 +132,6 @@ $(document).ready(function () {
         $(".nov-rolaID").attr("value", $(".nov-rola :selected").attr("id"));
     });
     
-    //Stavlja max vrednost date picker-a za izvestaj na danasnji datum
-    $('#mesec').attr('max', new Date().toISOString().split('T')[0].slice(0,-3));
-    
-    // submita formu kad se izabere mesec
-    $('#mesec').on("change", function(){
-        $('#mesec-form').submit();
-    });
     
     //Generise pdf od izvestaja
      document.getElementById("pdf").addEventListener("click", () => {

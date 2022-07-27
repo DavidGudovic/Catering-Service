@@ -73,7 +73,10 @@ public class Izvestaj implements Serializable {
     }
 
     // Metode
-    // formira izvestaj
+    /*
+     Prolazi kroz sve narudzbe dobijene od repositorija ( sve iz ovog meseca)
+    Sabira otkazane, ostvarene, njihove totale, kao i totale kupljenih proizvoda i potrosnje korisnika.
+     */
     public void formiraj() throws SQLException {
         IzvestajRepository izvestajRepository = new IzvestajRepository();
         List<Narudzbina> narudzbine = null;
@@ -106,6 +109,7 @@ public class Izvestaj implements Serializable {
         }
     }
 
+    //Proverava da li proizvod vec postoji u mapi i dodaje ga.
     private void dodajProizvod(Proizvod zaMapu, int kolicina) {
         for (Proizvod izMape : this.proizvodi.keySet()) {
             if (zaMapu.getProizvodID() == izMape.getProizvodID()) { // Ako je proizvod vec u mapi

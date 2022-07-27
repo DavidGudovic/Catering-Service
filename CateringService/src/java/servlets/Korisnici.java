@@ -72,6 +72,6 @@ public class Korisnici extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Hendluje pozive za brisanje, edit i dodavanje novih korisnika";
     }
 }

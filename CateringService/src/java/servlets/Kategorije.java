@@ -7,10 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+//Hendluje pozive za brisanje, dodavanje i edit kategorija
 public class Kategorije extends HttpServlet {
 
-    @Override // hendluje zahtev za brisanje kategorije
+    @Override // hendluje zahtev za brisanje i dodavanje kategorije
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -60,7 +60,7 @@ public class Kategorije extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "Hendluje pozive za brisanje, dodavanje i edit kategorija";
     }
 
 }

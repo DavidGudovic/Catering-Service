@@ -95,7 +95,6 @@ public class Administracija extends HttpServlet {
                 request.getRequestDispatcher("error.jsp").forward(request, response);
                 return;
             }
-
             break;
             default:
                 request.getRequestDispatcher("error.jsp").forward(request, response);
@@ -109,6 +108,7 @@ public class Administracija extends HttpServlet {
             throws ServletException, IOException {
         autorizacija(request);
         request.getRequestDispatcher("adminPanel.jsp").forward(request, response);
+        //do nothing
     }
 
     @Override

@@ -164,6 +164,7 @@ public class NarudzbinaRepository implements IRepository<Narudzbina> {
         }
     }
 
+    // Ne koristi se.
     @Override
     public void izbrisi(Narudzbina zaBrisanje) {
         throw new UnsupportedOperationException();

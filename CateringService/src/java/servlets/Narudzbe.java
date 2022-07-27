@@ -49,7 +49,7 @@ public class Narudzbe extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "Short description";
+        return "hendluje pozive za otkazivanje i ostvarivanje narudzbi";
     }
 
 }

@@ -121,6 +121,7 @@ public class Proizvod implements Serializable {
     }
 
     // NonStatic metode
+    
     /*
      Predaje izmene repositoriju za promenu u bazi
      proizvoda sa this.proizvodID

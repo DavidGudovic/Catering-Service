@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionManager {
     //Hardcode-ovane vrednosti mogle bi biti izvucene iz nekog conf fajla.
     private static String url = "jdbc:mysql://localhost:3306/catering?";    
-    private static String driverName = "com.mysql.cj.jdbc.Driver";   
+    private static String driver = "com.mysql.cj.jdbc.Driver";   
     private static String username = "root";   
     private static String password = "";
     private static Connection con;
@@ -15,7 +15,7 @@ public class ConnectionManager {
     // Vrsi konekciju na bazu catering i vraca Connection objekat
     public static Connection getConnection() {
         try {
-            Class.forName(driverName);
+            Class.forName(driver);
             try {
                 con = DriverManager.getConnection(url, username, password);
                

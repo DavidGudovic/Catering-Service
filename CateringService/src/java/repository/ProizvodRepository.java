@@ -13,6 +13,7 @@ import java.util.List;
 
 public class ProizvodRepository implements IRepository<Proizvod> {
 
+    //Dodaje proizvod u bazu
     @Override
     public void dodaj(Proizvod zaDodavanje) throws SQLException{
         Connection con = ConnectionManager.getConnection();
@@ -60,6 +61,8 @@ public class ProizvodRepository implements IRepository<Proizvod> {
         }
     }
 
+    
+    //Menja row u bazi zadatim informacijama
     @Override
     public void izmeni(Proizvod stariT, Proizvod noviT) throws SQLException{
         Connection con = ConnectionManager.getConnection();
@@ -82,6 +85,7 @@ public class ProizvodRepository implements IRepository<Proizvod> {
         }
     }
 
+    //Brise row iz baze
     @Override
     public void izbrisi(Proizvod zaBrisanje) throws SQLException{
         Connection con = ConnectionManager.getConnection();

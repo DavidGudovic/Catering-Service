@@ -84,6 +84,7 @@ public class KategorijaRepository implements IRepository<Kategorija> {
         }
     }
 
+    //Ne koristi se.
     @Override
     public Kategorija getJedan(Kategorija trazeni) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet.");
