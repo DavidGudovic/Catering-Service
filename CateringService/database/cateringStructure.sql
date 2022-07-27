@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2022 at 07:06 PM
+-- Generation Time: Jul 26, 2022 at 09:54 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -24,18 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `izvestaji`
---
-
-CREATE TABLE `izvestaji` (
-  `IzvestajID` int(11) NOT NULL,
-  `KorisnickoIme` varchar(50) NOT NULL,
-  `TekstIzvestaja` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `kategorije`
 --
 
@@ -44,6 +32,14 @@ CREATE TABLE `kategorije` (
   `NazivKategorije` varchar(30) NOT NULL,
   `Program` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Triggers `kategorije`
+--
+DELIMITER $$
+CREATE TRIGGER `IzbrisiKategorijeProizvoda` BEFORE DELETE ON `kategorije` FOR EACH ROW UPDATE `proizvodi` SET `KategorijaID` = 0 WHERE OLD.`KategorijaID` = proizvodi.KategorijaID
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -80,7 +76,7 @@ CREATE TABLE `narudzbine` (
   `KorisnickoIme` varchar(50) NOT NULL,
   `DatumKreiranja` date NOT NULL,
   `DatumOstvarivanja` date DEFAULT NULL,
-  `Ostvarena` int(11) NOT NULL,
+  `Status` int(11) NOT NULL,
   `UkupnaCena` int(11) NOT NULL,
   `Popust` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -136,13 +132,6 @@ CREATE TABLE `stavkenarudzbine` (
 --
 
 --
--- Indexes for table `izvestaji`
---
-ALTER TABLE `izvestaji`
-  ADD PRIMARY KEY (`IzvestajID`),
-  ADD KEY `FK_IzvestajiKorisnik` (`KorisnickoIme`);
-
---
 -- Indexes for table `kategorije`
 --
 ALTER TABLE `kategorije`
@@ -187,12 +176,6 @@ ALTER TABLE `stavkenarudzbine`
 --
 
 --
--- AUTO_INCREMENT for table `izvestaji`
---
-ALTER TABLE `izvestaji`
-  MODIFY `IzvestajID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `kategorije`
 --
 ALTER TABLE `kategorije`
@@ -219,12 +202,6 @@ ALTER TABLE `role`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `izvestaji`
---
-ALTER TABLE `izvestaji`
-  ADD CONSTRAINT `FK_IzvestajiKorisnik` FOREIGN KEY (`KorisnickoIme`) REFERENCES `korisnici` (`KorisnickoIme`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `korisnici`
