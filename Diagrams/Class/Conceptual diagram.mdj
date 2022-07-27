@@ -1398,8 +1398,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 576,
-											"top": -176,
+											"left": 592,
+											"top": -240,
 											"height": 13
 										},
 										{
@@ -1409,9 +1409,9 @@
 												"$ref": "AAAAAAGB5Ly5zYVr4gY="
 											},
 											"font": "Arial;13;1",
-											"left": 637,
-											"top": 207,
-											"width": 124.26806640625,
+											"left": 645,
+											"top": 175,
+											"width": 229.0615234375,
 											"height": 13,
 											"text": "Izvestaj"
 										},
@@ -1423,8 +1423,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 576,
-											"top": -176,
+											"left": 592,
+											"top": -240,
 											"width": 80.9072265625,
 											"height": 13,
 											"text": "(from Model1)"
@@ -1437,16 +1437,16 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 576,
-											"top": -176,
+											"left": 592,
+											"top": -240,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 632,
-									"top": 200,
-									"width": 134.26806640625,
+									"left": 640,
+									"top": 168,
+									"width": 239.0615234375,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGB5Ly5zYVsaTE="
@@ -1473,27 +1473,112 @@
 									"subViews": [
 										{
 											"_type": "UMLAttributeView",
-											"_id": "AAAAAAGB5M43H97Z4NI=",
+											"_id": "AAAAAAGCPDK+s3uwlTU=",
 											"_parent": {
 												"$ref": "AAAAAAGB5Ly5zYVwjsE="
 											},
 											"model": {
-												"$ref": "AAAAAAGB5M43Gd7Wa0M="
+												"$ref": "AAAAAAGCPDK+qXutk18="
 											},
 											"font": "Arial;13;0",
-											"left": 637,
-											"top": 230,
-											"width": 124.26806640625,
+											"left": 645,
+											"top": 198,
+											"width": 229.0615234375,
 											"height": 13,
-											"text": "-tekstIzvestaja: String",
+											"text": "-proizvodi: HashMap<Proizvod,Integer>",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGCPDNgKX7p2WY=",
+											"_parent": {
+												"$ref": "AAAAAAGB5Ly5zYVwjsE="
+											},
+											"model": {
+												"$ref": "AAAAAAGCPDNgIX7mzmQ="
+											},
+											"font": "Arial;13;0",
+											"left": 645,
+											"top": 213,
+											"width": 229.0615234375,
+											"height": 13,
+											"text": "-korisnici: HashMap<String, Integer>",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGCPDPNjoD2SNA=",
+											"_parent": {
+												"$ref": "AAAAAAGB5Ly5zYVwjsE="
+											},
+											"model": {
+												"$ref": "AAAAAAGCPDPNiIDzH1Y="
+											},
+											"font": "Arial;13;0",
+											"left": 645,
+											"top": 228,
+											"width": 229.0615234375,
+											"height": 13,
+											"text": "-ostvarenih: int",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGCPDP1loIFTCE=",
+											"_parent": {
+												"$ref": "AAAAAAGB5Ly5zYVwjsE="
+											},
+											"model": {
+												"$ref": "AAAAAAGCPDP1kYICUa4="
+											},
+											"font": "Arial;13;0",
+											"left": 645,
+											"top": 243,
+											"width": 229.0615234375,
+											"height": 13,
+											"text": "-otkazanih: int",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGCPDQPuYKQjdo=",
+											"_parent": {
+												"$ref": "AAAAAAGB5Ly5zYVwjsE="
+											},
+											"model": {
+												"$ref": "AAAAAAGCPDQPtYKNqiY="
+											},
+											"font": "Arial;13;0",
+											"left": 645,
+											"top": 258,
+											"width": 229.0615234375,
+											"height": 13,
+											"text": "-totalOstvarenih: int",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGCPDQ9poMbPts=",
+											"_parent": {
+												"$ref": "AAAAAAGB5Ly5zYVwjsE="
+											},
+											"model": {
+												"$ref": "AAAAAAGCPDQ9oYMYoms="
+											},
+											"font": "Arial;13;0",
+											"left": 645,
+											"top": 273,
+											"width": 229.0615234375,
+											"height": 13,
+											"text": "-totalOtkazanih: int",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 632,
-									"top": 225,
-									"width": 134.26806640625,
-									"height": 23
+									"left": 640,
+									"top": 193,
+									"width": 239.0615234375,
+									"height": 98
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -1505,9 +1590,9 @@
 										"$ref": "AAAAAAGB5Ly5zYVo/P0="
 									},
 									"font": "Arial;13;0",
-									"left": 632,
-									"top": 248,
-									"width": 134.26806640625,
+									"left": 640,
+									"top": 291,
+									"width": 239.0615234375,
 									"height": 10
 								},
 								{
@@ -1521,8 +1606,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 288,
-									"top": -88,
+									"left": 296,
+									"top": -120,
 									"width": 10,
 									"height": 10
 								},
@@ -1537,18 +1622,18 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 288,
-									"top": -88,
+									"left": 296,
+									"top": -120,
 									"width": 10,
 									"height": 10
 								}
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 632,
-							"top": 200,
-							"width": 134.26806640625,
-							"height": 58,
+							"left": 640,
+							"top": 168,
+							"width": 239.0615234375,
+							"height": 133,
 							"nameCompartment": {
 								"$ref": "AAAAAAGB5Ly5zYVr4gY="
 							},
@@ -2671,8 +2756,8 @@
 										"$ref": "AAAAAAGB5M6tLOIm9go="
 									},
 									"font": "Arial;13;0",
-									"left": 550,
-									"top": 209,
+									"left": 555,
+									"top": 212,
 									"width": 40.09814453125,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -2694,8 +2779,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 570,
-									"top": 194,
+									"left": 575,
+									"top": 197,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -2715,8 +2800,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 571,
-									"top": 238,
+									"left": 574,
+									"top": 241,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -2734,7 +2819,7 @@
 								"$ref": "AAAAAAGB5KFRN4S6weE="
 							},
 							"lineStyle": 1,
-							"points": "511:232;631:229",
+							"points": "511:233;639:234",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGB5M6tLOIpupI="
@@ -3047,7 +3132,7 @@
 											"top": 558,
 											"width": 439.41650390625,
 											"height": 13,
-											"text": "+noviProizvod(naziv, cenaPoGramu, slika, opis, kategorija, program): void",
+											"text": "+noviProizvod(): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3064,7 +3149,7 @@
 											"top": 573,
 											"width": 439.41650390625,
 											"height": 13,
-											"text": "+izmeniProizvod(naziv, cenaPoGramu, slika, opis, kategorija, program): void",
+											"text": "+izmeniProizvod(Proizvod izmene): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3081,7 +3166,7 @@
 											"top": 588,
 											"width": 439.41650390625,
 											"height": 13,
-											"text": "+ostvariNarudzbu(narudzba): void",
+											"text": "+ostvariNarudzbu(): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3098,7 +3183,7 @@
 											"top": 603,
 											"width": 439.41650390625,
 											"height": 13,
-											"text": "+novaKategorija(naziv, opis): void",
+											"text": "+dodajKategoriju(): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3115,7 +3200,7 @@
 											"top": 618,
 											"width": 439.41650390625,
 											"height": 13,
-											"text": "+brisiKategoriju(kategorija): void",
+											"text": "+izbrisiKategoriju(): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3132,24 +3217,7 @@
 											"top": 633,
 											"width": 439.41650390625,
 											"height": 13,
-											"text": "+kreirajIzvestaj(tekstIzvestaja): void",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
-											"_id": "AAAAAAGB5Ns/wyqBf7U=",
-											"_parent": {
-												"$ref": "AAAAAAGB5NHINPbDqrg="
-											},
-											"model": {
-												"$ref": "AAAAAAGB5Ns/vSpyum0="
-											},
-											"font": "Arial;13;0",
-											"left": 629,
-											"top": 648,
-											"width": 439.41650390625,
-											"height": 13,
-											"text": "+novKorisnik(korisnickoIme, ime, prezime, adresa, rola, password): void",
+											"text": "+formiraj(): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3163,10 +3231,10 @@
 											},
 											"font": "Arial;13;0",
 											"left": 629,
-											"top": 663,
+											"top": 648,
 											"width": 439.41650390625,
 											"height": 13,
-											"text": "+izmeniKorisnika(korisnickoIme, ime, prezime, adresa, rola, password): void",
+											"text": "+izmeniKorisnika(Korisnik izmene): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3180,7 +3248,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 629,
-											"top": 678,
+											"top": 663,
 											"width": 439.41650390625,
 											"height": 13,
 											"text": "+brisiKorisnika(korisnik): void",
@@ -3191,7 +3259,7 @@
 									"left": 624,
 									"top": 403,
 									"width": 449.41650390625,
-									"height": 293
+									"height": 278
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -3767,13 +3835,61 @@
 					"attributes": [
 						{
 							"_type": "UMLAttribute",
-							"_id": "AAAAAAGB5M43Gd7Wa0M=",
+							"_id": "AAAAAAGCPDK+qXutk18=",
 							"_parent": {
 								"$ref": "AAAAAAGB5Ly5zYVo/P0="
 							},
-							"name": "tekstIzvestaja",
+							"name": "proizvodi: HashMap<Proizvod,Integer>",
+							"visibility": "private"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAGCPDNgIX7mzmQ=",
+							"_parent": {
+								"$ref": "AAAAAAGB5Ly5zYVo/P0="
+							},
+							"name": "korisnici: HashMap<String, Integer>",
+							"visibility": "private"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAGCPDPNiIDzH1Y=",
+							"_parent": {
+								"$ref": "AAAAAAGB5Ly5zYVo/P0="
+							},
+							"name": "ostvarenih",
 							"visibility": "private",
-							"type": "String"
+							"type": "int"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAGCPDP1kYICUa4=",
+							"_parent": {
+								"$ref": "AAAAAAGB5Ly5zYVo/P0="
+							},
+							"name": "otkazanih",
+							"visibility": "private",
+							"type": "int"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAGCPDQPtYKNqiY=",
+							"_parent": {
+								"$ref": "AAAAAAGB5Ly5zYVo/P0="
+							},
+							"name": "totalOstvarenih",
+							"visibility": "private",
+							"type": "int"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAGCPDQ9oYMYoms=",
+							"_parent": {
+								"$ref": "AAAAAAGB5Ly5zYVo/P0="
+							},
+							"name": "totalOtkazanih",
+							"visibility": "private",
+							"type": "int"
 						}
 					]
 				},
@@ -4066,60 +4182,6 @@
 							"parameters": [
 								{
 									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NkMNyM9H6w=",
-									"_parent": {
-										"$ref": "AAAAAAGB5Nix8SLKvzQ="
-									},
-									"name": "naziv",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NkMNyM+6IU=",
-									"_parent": {
-										"$ref": "AAAAAAGB5Nix8SLKvzQ="
-									},
-									"name": "cenaPoGramu",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NkMNyM/y3s=",
-									"_parent": {
-										"$ref": "AAAAAAGB5Nix8SLKvzQ="
-									},
-									"name": "slika",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NkMNyNAM9A=",
-									"_parent": {
-										"$ref": "AAAAAAGB5Nix8SLKvzQ="
-									},
-									"name": "opis",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NkMNyNBL3A=",
-									"_parent": {
-										"$ref": "AAAAAAGB5Nix8SLKvzQ="
-									},
-									"name": "kategorija",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NkMNyNCVmk=",
-									"_parent": {
-										"$ref": "AAAAAAGB5Nix8SLKvzQ="
-									},
-									"name": "program",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
 									"_id": "AAAAAAGB5NkMNyNDtQs=",
 									"_parent": {
 										"$ref": "AAAAAAGB5Nix8SLKvzQ="
@@ -4143,53 +4205,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGB5NkNKyO3kYE="
 									},
-									"name": "naziv",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NnKdiUJmh4=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NkNKyO3kYE="
-									},
-									"name": "cenaPoGramu",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NnKdiUKm3o=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NkNKyO3kYE="
-									},
-									"name": "slika",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NnKdiUL/kw=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NkNKyO3kYE="
-									},
-									"name": "opis",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NnKdiUMKf8=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NkNKyO3kYE="
-									},
-									"name": "kategorija",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NnKdiUNiWU=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NkNKyO3kYE="
-									},
-									"name": "program",
-									"type": ""
+									"name": "Proizvod izmene"
 								},
 								{
 									"_type": "UMLParameter",
@@ -4212,15 +4228,6 @@
 							"parameters": [
 								{
 									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NoIJCYHNtA=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NlvHiQpNpA="
-									},
-									"name": "narudzba",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
 									"_id": "AAAAAAGB5NoIJCYI4a8=",
 									"_parent": {
 										"$ref": "AAAAAAGB5NlvHiQpNpA="
@@ -4236,26 +4243,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGB5NHINPa6x9s="
 							},
-							"name": "novaKategorija",
+							"name": "dodajKategoriju",
 							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NpYgica3rQ=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NoTyyanexI="
-									},
-									"name": "naziv",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NpYgicbzQs=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NoTyyanexI="
-									},
-									"name": "opis",
-									"type": ""
-								},
 								{
 									"_type": "UMLParameter",
 									"_id": "AAAAAAGB5NpYgiccSiU=",
@@ -4273,17 +4262,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGB5NHINPa6x9s="
 							},
-							"name": "brisiKategoriju",
+							"name": "izbrisiKategoriju",
 							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5Nr4mCkZlyM=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NqoESfIOpY="
-									},
-									"name": "kategorija",
-									"type": ""
-								},
 								{
 									"_type": "UMLParameter",
 									"_id": "AAAAAAGB5Nr4mSkaYlY=",
@@ -4301,95 +4281,13 @@
 							"_parent": {
 								"$ref": "AAAAAAGB5NHINPa6x9s="
 							},
-							"name": "kreirajIzvestaj",
+							"name": "formiraj",
 							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NsoZynSmdg=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NrUPyg6Yvw="
-									},
-									"name": "tekstIzvestaja",
-									"type": ""
-								},
 								{
 									"_type": "UMLParameter",
 									"_id": "AAAAAAGB5NsoZynThXg=",
 									"_parent": {
 										"$ref": "AAAAAAGB5NrUPyg6Yvw="
-									},
-									"type": "void",
-									"direction": "return"
-								}
-							]
-						},
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAGB5Ns/vSpyum0=",
-							"_parent": {
-								"$ref": "AAAAAAGB5NHINPa6x9s="
-							},
-							"name": "novKorisnik",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NuVMirlr3U=",
-									"_parent": {
-										"$ref": "AAAAAAGB5Ns/vSpyum0="
-									},
-									"name": "korisnickoIme",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NuVMirmFEY=",
-									"_parent": {
-										"$ref": "AAAAAAGB5Ns/vSpyum0="
-									},
-									"name": "ime",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NuVMirnRjc=",
-									"_parent": {
-										"$ref": "AAAAAAGB5Ns/vSpyum0="
-									},
-									"name": "prezime",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NuVMiroNko=",
-									"_parent": {
-										"$ref": "AAAAAAGB5Ns/vSpyum0="
-									},
-									"name": "adresa",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NuVMirplhE=",
-									"_parent": {
-										"$ref": "AAAAAAGB5Ns/vSpyum0="
-									},
-									"name": "rola",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NuVMirqgw0=",
-									"_parent": {
-										"$ref": "AAAAAAGB5Ns/vSpyum0="
-									},
-									"name": "password",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NuVMirrP48=",
-									"_parent": {
-										"$ref": "AAAAAAGB5Ns/vSpyum0="
 									},
 									"type": "void",
 									"direction": "return"
@@ -4410,53 +4308,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGB5NwIbCvvvsA="
 									},
-									"name": "korisnickoIme",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NxIWyxjIBM=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NwIbCvvvsA="
-									},
-									"name": "ime",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NxIWyxkfVk=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NwIbCvvvsA="
-									},
-									"name": "prezime",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NxIWyxldj4=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NwIbCvvvsA="
-									},
-									"name": "adresa",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NxIWyxmtXE=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NwIbCvvvsA="
-									},
-									"name": "rola",
-									"type": ""
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGB5NxIWyxnGKo=",
-									"_parent": {
-										"$ref": "AAAAAAGB5NwIbCvvvsA="
-									},
-									"name": "password",
-									"type": ""
+									"name": "Korisnik izmene"
 								},
 								{
 									"_type": "UMLParameter",
