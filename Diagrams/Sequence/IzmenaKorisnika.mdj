@@ -946,7 +946,7 @@
 												"$ref": "AAAAAAGCQL/Po9ZNx4Y="
 											},
 											"edgePosition": 1,
-											"text": "1 : dwa"
+											"text": "1 : izmene"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -2709,7 +2709,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGCQLQ4ydUhW+U="
 							},
-							"name": "dwa",
+							"name": "izmene",
 							"source": {
 								"$ref": "AAAAAAGCQLSm+9U1TQw="
 							},
@@ -3046,7 +3046,8 @@
 					"_parent": {
 						"$ref": "AAAAAAGCQLQ4yNUgnYg="
 					},
-					"name": "Role2"
+					"name": "Role2",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -3054,7 +3055,8 @@
 					"_parent": {
 						"$ref": "AAAAAAGCQLQ4yNUgnYg="
 					},
-					"name": "Role3"
+					"name": "Role3",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -3062,7 +3064,8 @@
 					"_parent": {
 						"$ref": "AAAAAAGCQLQ4yNUgnYg="
 					},
-					"name": "Role4"
+					"name": "Role4",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -3070,7 +3073,8 @@
 					"_parent": {
 						"$ref": "AAAAAAGCQLQ4yNUgnYg="
 					},
-					"name": "Role5"
+					"name": "Role5",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -3078,7 +3082,8 @@
 					"_parent": {
 						"$ref": "AAAAAAGCQLQ4yNUgnYg="
 					},
-					"name": "Role6"
+					"name": "Role6",
+					"type": ""
 				},
 				{
 					"_type": "UMLAttribute",
@@ -3086,7 +3091,8 @@
 					"_parent": {
 						"$ref": "AAAAAAGCQLQ4yNUgnYg="
 					},
-					"name": "Role7"
+					"name": "Role7",
+					"type": ""
 				}
 			]
 		}
