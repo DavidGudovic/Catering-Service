@@ -1,6 +1,8 @@
 # CateringService
 Java Web app for a fictional Catering Service , project written entirely in the Serbian language, for school. 
 
+Pure Java, CSS, and a little Jquery, visual design of this one is not my proudest moment.
+
 App has 3 roles, Client, Manager, Administrator. 
 
 Functionality: 
