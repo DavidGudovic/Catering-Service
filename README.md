@@ -24,7 +24,7 @@ Adding/Editing of products
 Viewing/Exporting to pdf of monthly report  
 Adding/Editing user accounts  
 
-# UI Screenshots
+# UI Screenshots ( This is probably the worst looking Frontend i've ever build :) ) 
 
 Products page
 ![Cela ponuda](https://user-images.githubusercontent.com/56200401/183285574-84ecbcf1-a125-4292-9b00-9100988d119a.jpg)
